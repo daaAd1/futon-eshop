@@ -1,38 +1,24 @@
 {
-  "name": "futon-eshop",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-<<<<<<< HEAD
-=======
-    "node-sass-chokidar": "^1.3.0",
-    "prop-types": "^15.6.2",
->>>>>>> refs/remotes/origin/master
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "react-redux": "^5.0.7",
-    "react-router-dom": "^4.3.1",
-<<<<<<< HEAD
-    "react-scripts": "1.1.4",
-=======
-    "react-scripts": "^1.1.4",
->>>>>>> refs/remotes/origin/master
-    "redux": "^4.0.0"
-  },
+  "name": "futon",
+  "version": "1.0.0",
+  "description": "eshop with MERN stack",
+  "main": "server.js",
+  "repository": "github:daaAd1/futon-eshop",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-<<<<<<< HEAD
-=======
+    "client-install": "npm install --prefix client",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Rastislav Vangor, Samuel Sepesi",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "concurrently": "^3.6.0",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.1"
   },
   "devDependencies": {
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^17.0.0",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-jsx-a11y": "^6.1.0",
-    "eslint-plugin-react": "^7.10.0"
->>>>>>> refs/remotes/origin/master
+    "nodemon": "^1.17.5"
   }
 }
