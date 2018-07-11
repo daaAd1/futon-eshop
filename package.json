@@ -16,7 +16,10 @@
     "body-parser": "^1.18.3",
     "concurrently": "^3.6.0",
     "express": "^4.16.3",
-    "mongoose": "^5.2.1"
+    "mongoose": "^5.2.1",
+    "react-image-gallery": "^0.8.9",
+    "react-slick": "^0.23.1",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "nodemon": "^1.17.5"
