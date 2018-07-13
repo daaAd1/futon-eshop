@@ -8,7 +8,6 @@ import futon3 from '../img/futon3.jpeg';
 import futon4 from '../img/futon4.jpeg';
 import futon5 from '../img/futon5.jpeg';
 import futon6 from '../img/futon6.jpeg';
-import ImageSlider from './ImageSlider';
 
 const ProductGeneralUI = (props) => {
   const { children } = props;
@@ -55,13 +54,9 @@ const ProductGeneralUI = (props) => {
               Množstvo:
               <input id="mnozstvo" type="number" value="1" min="1" max="10" />
             </label>
-            <Button text="Pridať do košíka" color="blue" />
+            <Button text="Pridať do košíka" shop="add_to_cart" />
           </div>
         </div>
-      </div>
-      <div className="ProductGeneralUI-similarProducts">
-        <h2>Podobné produkty</h2>
-        <ImageSlider images={sliderImages} />
       </div>
       <div className="ProductGeneralUI-longDescription">
         <h2>Popis produktu</h2>

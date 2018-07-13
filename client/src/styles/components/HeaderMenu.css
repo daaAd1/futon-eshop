@@ -3,9 +3,9 @@
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
-  background-color: #f57f17;
+
+  background-color: #261c1b;
   color: white;
-  width: 100%;
 }
 
 .HeaderMenu a {
@@ -16,64 +16,65 @@
 }
 
 .HeaderMenu img {
+  width: 230px;
+  height: 50px;
   margin: 15px 20px 10px 20px;
-  width: 60px;
-  height: 60px;
 }
 
-.HeaderMenu ul {
-  display: flex;
-  flex-flow: row wrap;
-  list-style-type: none;
-}
-
-.HeaderMenu li {
-  padding: 0px 10px;
-}
-
-.HeaderMenu-mainCategories {
-}
-
+.HeaderMenu-mainCategories,
 .HeaderMenu-cartLogin {
-  margin: 0px 20px 0px 20px;
-}
-
-.HeaderMenu-cartLogin a {
   margin: 0px 0px 0px 10px;
 }
 
-.HeaderMenu-dropdown {
+.HeaderMenu-cartLogin a {
+  color: #eb4b3d;
+}
+
+.HeaderMenu-dropdown p,
+.HeaderMenu-cartLogin a {
+  margin: 0;
+  line-height: 55px;
+  vertical-align: middle;
+  padding: 0px 16px;
+}
+
+.HeaderMenu-dropdown,
+.HeaderMenu-cartLogin a {
   display: inline-block;
 }
 
-.HeaderMenu-dropdown > a > div {
-  padding: 12px 16px;
+.HeaderMenu-cartLogin a:hover,
+.HeaderMenu-dropdown:hover {
+  background-color: #261c1b;
+  border-bottom: 2px solid #eb4b3d;
+  border-top: 2px solid #eb4b3d;
+  font-size: 20px;
 }
 
-.HeaderMenu-dropdown:hover {
-  background-color: #ff6f00;
+.HeaderMenu-dropdownHidden a:hover {
+  font-size: 25px;
+  color: #eb4b3d;
 }
 
 .HeaderMenu-dropdown:hover .HeaderMenu-dropdownHidden {
-  opacity: 1;
-
-  -webkit-transition: all 0.4s;
-  transition: all 0.4s;
+  display: block;
 }
 
 .HeaderMenu-dropdownHidden {
-  opacity: 0;
+  display: none;
   position: absolute;
+  margin-top: 2px;
   z-index: 1;
 
-  background-color: #ff6f00;
+  background-color: #261c1b;
   color: white;
 }
 
 .HeaderMenu-dropdownHidden a {
   float: none;
   display: block;
-  width: 200px;
+  width: 230px;
+  line-height: 35px;
   text-align: left;
 
   font-size: 17px;
@@ -89,18 +90,71 @@
   transition: all 0.25s ease;
 }
 
-.HeaderMenu-dropdownHidden a:hover {
-  background-color: #e65100;
-}
-
 .HeaderMenu-dropdownHidden a:last-child {
   border: 0;
 }
 
-.HeaderMenu-cartLogin a:hover {
-  background-color: #ff6f00;
-}
-
 .HeaderMenu svg {
   margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+  .HeaderMenu {
+    justify-content: center;
+    padding: 10px 0px;
+  }
+
+  .HeaderMenu-heading {
+    text-align: center;
+  }
+
+  .HeaderMenu-mainContent {
+    flex-flow: column wrap;
+    align-items: center;
+  }
+
+  .HeaderMenu img {
+    margin: 0;
+    margin-bottom: 30px;
+  }
+
+  .HeaderMenu-mainCategories,
+  .HeaderMenu-cartLogin {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
+    padding: 0px 0px 0px;
+    width: 100%;
+    margin: 0;
+  }
+
+  .HeaderMenu-mainCategories {
+    padding-bottom: 30px;
+  }
+
+  .HeaderMenu-dropdown p,
+  .HeaderMenu-cartLogin a {
+    line-height: 35px;
+    vertical-align: middle;
+    padding: 0px 16px 0px;
+    margin: 2px 0px;
+    font-size: 25px;
+  }
+
+  .HeaderMenu-dropdown,
+  .HeaderMenu-cartLogin a {
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+  }
+
+  .HeaderMenu-dropdown:hover .HeaderMenu-dropdownHidden {
+    display: none;
+  }
+
+  .HeaderMenu-dropdownHidden a:hover,
+  .HeaderMenu-cartLogin a:hover,
+  .HeaderMenu-dropdown:hover {
+    font-size: 25px;
+  }
 }

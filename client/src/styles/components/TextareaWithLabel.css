@@ -1,0 +1,29 @@
+.TextareaWithLabel {
+  display: flex;
+  flex-flow: column wrap;
+  max-width: 300px;
+  text-align: left;
+  padding-bottom: 1px;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.TextareaWithLabel textarea {
+  max-width: 300px;
+  margin-top: 4px;
+  padding: 8px;
+  border: 1px solid #e9e9ed;
+  resize: none;
+}
+
+.TextareaWithLabel textarea::placeholder {
+  color: #ccced7;
+}
+
+.wrongInput textarea {
+  border: 1px solid #eb4b3d;
+}
+
+.wrongInput textarea:focus {
+  outline: none;
+}

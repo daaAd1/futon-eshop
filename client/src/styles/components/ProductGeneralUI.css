@@ -36,9 +36,14 @@
   padding: 0 30px 0 0px;
 }
 
+.image-gallery-image {
+  max-width: 650px;
+  max-height: 350px;
+}
+
 .ProductGeneralUI-images img {
   width: 100%;
-  max-width: 650px;
+
   display: inline-block;
   background-size: contain;
   background-position: center center;
@@ -80,20 +85,6 @@ input {
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.ProductGeneralUI-details button {
-  background-color: #f57f17;
-  color: white;
-  margin: 0;
-}
-
-.ProductGeneralUI-details button:hover {
-  background-color: #ff6f00;
-}
-
-.ProductGeneralUI-details svg {
-  vertical-align: middle;
-}
-
 .ProductGeneralUI-price {
   font-weight: 700;
   padding: 0px 0px 10px;
@@ -115,7 +106,7 @@ input {
 
 @media only screen and (max-width: 600px) {
   .ProductGeneralUI {
-    margin: 0 auto;
+    margin: 10px 5px;
     padding: 20px 0px;
   }
 
@@ -133,9 +124,8 @@ input {
   }
 
   .ProductGeneralUI-details,
-  .ProductGeneralUI-longDescription,
-  .ProductGeneralUI-similarProducts {
-    padding: 0px 0px 30px;
+  .ProductGeneralUI-longDescription {
+    padding: 0px 0px 0px;
     width: 80%;
     margin: 0 auto;
   }

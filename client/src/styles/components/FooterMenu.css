@@ -3,9 +3,9 @@
   flex-flow: row wrap;
   justify-content: space-around;
 
-  margin: 5px 10px;
+  margin: 15px;
 
-  background-color: #f57f17;
+  background-color: #261c1b;
   color: white;
 }
 
@@ -20,5 +20,13 @@
 }
 
 .FooterMenu a:hover {
-  background-color: #ff6f00;
+  background-color: #eb4b3d;
+}
+
+@media only screen and (max-width: 760px) {
+  .FooterMenu {
+    display: flex;
+    flex-flow: column;
+    margin: 10px 5px;
+  }
 }

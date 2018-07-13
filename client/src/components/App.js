@@ -3,6 +3,7 @@ import '../styles/components/App.css';
 import ProductGeneralUI from './ProductGeneralUI';
 import HeaderMenu from './HeaderMenu';
 import FooterMenu from './FooterMenu';
+import Form from './Form';
 
 class App extends Component {
   render() {
@@ -10,6 +11,7 @@ class App extends Component {
       <div>
         <HeaderMenu />
         <div className="App-container">
+          <Form />
           <ProductGeneralUI />
         </div>
         <FooterMenu />

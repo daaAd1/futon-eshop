@@ -1,0 +1,37 @@
+.Form {
+  position: relative;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 50%;
+  max-width: 900px;
+
+  padding: 30px 30px;
+  margin: 20px 20px;
+
+  border: 1px solid #efefef;
+  box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.Form h1 {
+  padding: 0px 0px 30px;
+}
+
+.Form-inputFields {
+  padding: 0px 0px 30px;
+}
+
+@media only screen and (max-width: 600px) {
+  .Form {
+    margin: 5px;
+    padding: 20px 20px;
+  }
+
+  .Form-heading {
+    text-align: center;
+  }
+}
