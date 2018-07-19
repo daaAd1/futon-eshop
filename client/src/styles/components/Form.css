@@ -17,6 +17,10 @@
   flex-flow: column wrap;
 }
 
+.Form:hover {
+  box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.2);
+}
+
 .Form h1 {
   padding: 0px 0px 30px;
 }
