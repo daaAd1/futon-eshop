@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/components/App.css';
 import ProductGeneralUI from './ProductGeneralUI';
+import ProductListGeneralUI from './ProductListGeneralUI';
 import HeaderMenu from './HeaderMenu';
 import FooterMenu from './FooterMenu';
 import Form from './Form';
@@ -11,6 +12,7 @@ class App extends Component {
       <div>
         <HeaderMenu />
         <div className="App-container">
+          <ProductListGeneralUI categoryName="Futony" />
           <Form />
           <ProductGeneralUI
             name="Matrac hriva - latex"

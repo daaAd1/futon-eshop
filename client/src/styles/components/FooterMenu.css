@@ -27,6 +27,7 @@
   .FooterMenu {
     display: flex;
     flex-flow: column;
-    margin: 10px 5px;
+    margin: 10px auto;
+    width: 95%;
   }
 }

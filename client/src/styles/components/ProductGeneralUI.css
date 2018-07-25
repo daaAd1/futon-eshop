@@ -108,6 +108,7 @@ input {
   .ProductGeneralUI {
     margin: 10px 5px;
     padding: 20px 0px;
+    width: 95%;
   }
 
   .ProductGeneralUI-heading {

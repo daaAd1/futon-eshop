@@ -1,0 +1,44 @@
+.ProductListGeneralUI {
+  margin: 0 auto;
+  width: 952px;
+  font-size: 0;
+  padding: 30px 10px;
+  margin: 20px 20px;
+  border: 1px solid #efefef;
+  box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.ProductListGeneralUI:hover {
+  box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.2);
+}
+
+.ProductListGeneralUI > h1 {
+  font-size: 2rem;
+  margin: 20px;
+}
+
+@media screen and (max-width: 650px) {
+  .ProductListGeneralUI {
+    width: 95%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+
+  .ProductListGeneralUI > h1 {
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 651px) and (max-width: 950px) {
+  .ProductListGeneralUI {
+    width: 642px;
+  }
+}
+
+@media screen and (min-width: 951px) and (max-width: 1230px) {
+  .ProductListGeneralUI {
+    width: 952px;
+  }
+}
