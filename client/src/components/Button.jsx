@@ -71,17 +71,21 @@ const defaultProps = {
 };
 
 const Button = (props) => {
-  const { text, type, color, round, shop, disabled } = props;
+  const { text, type, className, round, shop, disabled } = props;
 
   return (
     <div>
       {shop === 'add_to_cart' && (
-        <button className={`Button ${type} ${round}`} disabled={disabled}>
+        <button className={`Button ${type} ${round} ${className}`} disabled={disabled}>
           {addToCartIcon} {text}
         </button>
       )}
       {shop !== 'add_to_cart' && (
-        <button className={`Button ${type} ${round}`} disabled={disabled}>
+        <button
+          onClick={props.onClick}
+          className={`Button ${type} ${round} ${className}`}
+          disabled={disabled}
+        >
           {text}
         </button>
       )}

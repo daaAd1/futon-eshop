@@ -11,6 +11,8 @@
     "react-dropdown": "^1.5.0",
     "react-emotion": "^9.2.6",
     "react-image-gallery": "^0.8.9",
+    "react-password-strength": "^2.3.1",
+    "react-password-strength-meter": "^1.0.5",
     "react-responsive-navbar": "^1.0.11",
     "react-scripts": "1.1.4",
     "react-slick": "^0.23.1",
@@ -18,7 +20,8 @@
     "react-stickynode": "^2.0.1",
     "react-textarea-autosize": "^7.0.2",
     "react-waypoint": "^8.0.3",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "zxcvbn": "^4.4.2"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -4,12 +4,8 @@
   max-width: 300px;
   text-align: left;
   padding-bottom: 1px;
-  font-size: 18px;
+  font-size: 20px;
   margin-bottom: 15px;
-}
-
-.Dropdown-root {
-  margin-top: 4px;
 }
 
 .Dropdown-control,

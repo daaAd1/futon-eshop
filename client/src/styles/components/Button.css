@@ -5,7 +5,7 @@
   padding: 0px 16px;
   margin: 0;
 
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
 
@@ -31,15 +31,22 @@
 .Button:disabled {
   font-weight: 400;
 
-  background-color: lightgray;
+  background-color: #eb4b3d;
   color: gray;
 }
 
 .Button:disabled:hover,
 .Button:disabled:focus {
   cursor: initial;
-  background-color: lightgray;
+  background-color: #eb4b3d;
   color: gray;
+}
+
+.Button:disabled:active {
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+  transform: translateY(0px);
 }
 
 .Button:active {

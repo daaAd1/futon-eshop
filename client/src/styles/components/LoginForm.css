@@ -1,0 +1,77 @@
+.LoginForm {
+  position: relative;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 50%;
+
+  width: 95%;
+  max-width: 900px;
+
+  padding: 30px 30px;
+  margin: 20px 20px;
+
+  border: 1px solid #efefef;
+  box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.LoginForm:hover {
+  box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.2);
+}
+
+.LoginForm h1 {
+  padding: 0px 0px 30px;
+}
+
+.LoginForm-inputFields {
+  padding: 0px 0px 30px;
+}
+
+.LoginForm-additionalLinks {
+  display: flex;
+  flex-flow: column;
+  margin-top: 30px;
+  max-width: 300px;
+}
+
+.LoginForm a {
+  color: #888888;
+}
+
+.LoginForm-registrationLink {
+  margin: 0;
+}
+
+.LoginForm-registrationLink a {
+  color: #eb4b3d !important;
+  margin-left: 6px;
+}
+
+.LoginForm a:hover {
+  color: #aaaaaa;
+}
+
+.LoginForm-registrationLink a:hover {
+  color: #f3928a !important;
+}
+
+.tracking-in-expand-slower {
+  -webkit-animation: tracking-in-expand 1s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+  animation: tracking-in-expand 1s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+}
+
+@media only screen and (max-width: 600px) {
+  .LoginForm {
+    margin: 5px;
+    padding: 20px 20px;
+    width: 95%;
+  }
+
+  .LoginForm-heading {
+    text-align: center;
+  }
+}
