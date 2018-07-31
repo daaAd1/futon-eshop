@@ -13,10 +13,15 @@
   "author": "Rastislav Vangor, Samuel Sepesi",
   "license": "MIT",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "concurrently": "^3.6.0",
     "express": "^4.16.3",
-    "mongoose": "^5.2.1",
+    "express-session": "^1.15.6",
+    "mongoose": "^5.2.4",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "react-image-gallery": "^0.8.9",
     "react-slick": "^0.23.1",
     "slick-carousel": "^1.8.1"
