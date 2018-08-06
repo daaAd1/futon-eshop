@@ -7,6 +7,8 @@ import { correctInputIcon, incorrectInputIcon } from '../icons';
 const propTypes = {
   regex: PropTypes.string,
   required: PropTypes.bool,
+  size: PropTypes.string,
+  maxLength: PropTypes.number,
 
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
@@ -15,6 +17,8 @@ const propTypes = {
 
 const defaultProps = {
   required: false,
+  size: '',
+  maxLength: 100,
 };
 
 class TextareaWithLabel extends React.Component {
@@ -29,9 +33,14 @@ class TextareaWithLabel extends React.Component {
   }
 
   handleTextareaChange(event) {
-    this.setState({
-      text: event.target.value,
-    });
+    const text = event.target.value;
+    const { maxLength } = this.props;
+
+    if (text.length <= maxLength) {
+      this.setState({
+        text,
+      });
+    }
   }
 
   checkIfTextIsEmptyAndCheckTextAgainstRegex(text, regex) {
@@ -39,7 +48,7 @@ class TextareaWithLabel extends React.Component {
   }
 
   render() {
-    const { label, placeholder, id, regex, required } = this.props;
+    const { label, placeholder, id, regex, required, size } = this.props;
     const { text } = this.state;
 
     let wrongInputClassName = '';
@@ -48,15 +57,15 @@ class TextareaWithLabel extends React.Component {
     }
 
     return (
-      <label htmlFor={id} className={`TextareaWithLabel ${wrongInputClassName}`}>
+      <label htmlFor={id} className={`TextareaWithLabel ${size} ${wrongInputClassName}`}>
         {label}
         <div>
           <TextareaAutosize
             onChange={this.handleTextareaChange}
-            type="password"
             placeholder={placeholder}
             id={id}
             required
+            value={text}
           />
           {this.checkIfTextIsEmptyAndCheckTextAgainstRegex(text, regex) && (
             <div className="fade-in">{incorrectInputIcon}</div>

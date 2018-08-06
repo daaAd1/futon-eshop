@@ -6,6 +6,8 @@ import { showPasswordIcon, hidePasswordIcon, correctInputIcon, incorrectInputIco
 
 const propTypes = {
   strengthIndicator: PropTypes.bool,
+  arePasswordsSame: PropTypes.bool,
+  repeatPassword: PropTypes.bool,
 
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
@@ -14,6 +16,8 @@ const propTypes = {
 
 const defaultProps = {
   strengthIndicator: false,
+  arePasswordsSame: true,
+  repeatPassword: false,
 };
 
 /*
@@ -51,10 +55,20 @@ class PasswordWithLabel extends React.Component {
       password,
       evaluation: evaluation.score,
     });
+
+    this.props.onChange(event);
   }
 
   render() {
-    const { label, placeholder, strengthIndicator, id } = this.props;
+    const {
+      label,
+      placeholder,
+      strengthIndicator,
+      id,
+      arePasswordsSame,
+      login,
+      repeatPassword,
+    } = this.props;
     const { password, evaluation, passwordShown } = this.state;
     const inputType = passwordShown ? 'text' : 'password';
     const passwordShowAnimation = passwordShown ? 'tracking-in-contract' : 'tracking-in-expand';
@@ -91,16 +105,25 @@ class PasswordWithLabel extends React.Component {
               onClick={this.togglePassword}
               onKeyDown={this.togglePassword}
               role="button"
-              tabIndex={0}
+              tabIndex={1}
             >
               {showPasswordIcon}
             </div>
           )}
-          {password !== '' && (
-            <div className="PasswordWithLabel-passwordState">
-              {evaluation !== 0 ? correctInputIcon : incorrectInputIcon}
-            </div>
-          )}
+          {!login &&
+            !repeatPassword &&
+            password !== '' && (
+              <div className="PasswordWithLabel-passwordState fade-in">
+                {evaluation !== 0 ? correctInputIcon : incorrectInputIcon}
+              </div>
+            )}
+          {!login &&
+            repeatPassword &&
+            password !== '' && (
+              <div className="PasswordWithLabel-passwordState fade-in">
+                {arePasswordsSame ? correctInputIcon : incorrectInputIcon}
+              </div>
+            )}
         </div>
         {strengthIndicator &&
           password !== '' &&
@@ -122,6 +145,7 @@ class PasswordWithLabel extends React.Component {
           password.length > 5 && (
             <p className="PasswordWithLabel-redText">heslo je prílíš jednoduché</p>
           )}
+        {!arePasswordsSame && <p className="PasswordWithLabel-redText">heslá nie sú rovnaké</p>}
       </label>
     );
   }

@@ -31,7 +31,7 @@ class LoginForm extends React.Component {
         <h1>Prihlásenie</h1>
         <div className="LoginForm-inputFields">
           <TextareaWithLabel label="Email" placeholder="jantoth@gmail.com" id="email" />
-          <PasswordWithLabel label="Heslo" id="password" />
+          <PasswordWithLabel login label="Heslo" id="password" onChange={() => {}} />
         </div>
         {isLoading && (
           <Button

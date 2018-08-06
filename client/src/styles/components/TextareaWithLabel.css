@@ -1,22 +1,36 @@
 .TextareaWithLabel {
   display: flex;
   flex-flow: column wrap;
-  width: 300px;
+  width: 350px;
   text-align: left;
   padding-bottom: 1px;
   font-size: 20px;
-  overflow: hidden;
   margin-bottom: 15px;
+}
+
+.half {
+  width: 160px;
+}
+
+.third {
+  width: 97px;
+}
+
+.quarter {
+  width: 65px;
 }
 
 .TextareaWithLabel > div {
   display: flex;
+  position: relative;
 }
 
 .TextareaWithLabel > div > div {
   position: absolute;
   display: inline-block;
-  left: 330px;
+  left: 100%;
+  width: 30px;
+  height: 30px;
 }
 
 .TextareaWithLabel svg {
@@ -27,7 +41,7 @@
 }
 
 .TextareaWithLabel textarea {
-  width: 300px;
+  width: 100%;
   padding: 8px;
 
   resize: none;
@@ -47,4 +61,30 @@
 
 .wrongInput textarea:not(:focus) {
   border-bottom: 2px solid #b71c1c !important;
+}
+
+@media only screen and (max-width: 440px) {
+  .TextareaWithLabel {
+    width: 95%;
+  }
+
+  .half,
+  .third,
+  .quarter {
+    margin-right: 0 !important;
+  }
+
+  .TextareaWithLabel > div > div {
+    left: calc(100%);
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .half,
+  .third,
+  .quarter {
+    width: 95%;
+    margin-right: 0 !important;
+    max-width: 350px;
+  }
 }

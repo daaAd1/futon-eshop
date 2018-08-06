@@ -31,14 +31,15 @@
 .Button:disabled {
   font-weight: 400;
 
-  background-color: #eb4b3d;
+  box-shadow: 0px 0px;
+  background-color: transparent;
   color: gray;
 }
 
 .Button:disabled:hover,
 .Button:disabled:focus {
   cursor: initial;
-  background-color: #eb4b3d;
+  background-color: transparent;
   color: gray;
 }
 
@@ -66,12 +67,10 @@
 }
 
 .tertiary {
-  background-color: white;
+  background-color: transparent;
   color: #eb4b3d;
 
   box-shadow: 0px 0px;
-
-  text-transform: none;
 }
 
 .tertiary:hover {

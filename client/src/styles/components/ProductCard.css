@@ -48,6 +48,7 @@
 
 @media screen and (max-width: 650px) {
   .ProductCard {
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
   }
 }

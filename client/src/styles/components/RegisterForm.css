@@ -25,6 +25,7 @@
 
 .RegisterForm h1 {
   padding: 0px 0px 30px;
+  margin: 0;
 }
 
 .RegisterForm-inputFields {
@@ -34,6 +35,41 @@
 .RegisterForm-requiredFieldsNotice {
   margin-top: 0;
   color: #b71c1c;
+}
+
+.rc-steps-item-process .rc-steps-item-icon {
+  background: #eb4b3d !important;
+  border-color: #eb4b3d !important;
+}
+
+.rc-steps-item-finish .rc-steps-item-icon {
+  border-color: #eb4b3d;
+  background-color: #fff;
+}
+
+.rc-steps-item-finish .rc-steps-item-icon > .rc-steps-icon {
+  color: #eb4b3d;
+}
+
+.rc-steps-item-finish .rc-steps-item-title:after,
+.rc-steps-item-finish .rc-steps-item-tail:after {
+  background-color: #eb4b3d !important;
+}
+
+.rc-steps {
+  margin: 20px 0px;
+}
+
+.RegisterForm-backAndNextButtons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+@media only screen and (max-width: 330px) {
+  .RegisterForm-backAndNextButtons {
+    justify-content: center;
+  }
 }
 
 @media only screen and (max-width: 600px) {
