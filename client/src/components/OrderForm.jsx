@@ -4,16 +4,16 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import MediaQuery from 'react-responsive';
 import 'rc-steps/assets/index.css';
 import 'rc-steps/assets/iconfont.css';
-import '../styles/components/RegisterForm.css';
+import '../styles/components/OrderForm.css';
 import TextareaWithLabel from './TextareaWithLabel';
 import PasswordWithLabel from './PasswordWithLabel';
 import Button from './Button';
 import InputFieldsContainer from './InputFieldsContainer';
-import RegisterFormAddress from './RegisterFormAddress';
-import RegisterFormContact from './RegisterFormContact';
-import RegisterFormPassword from './RegisterFormPassword';
+import OrderFormAddress from './OrderFormAddress';
+import OrderFormContact from './OrderFormContact';
+import OrderFormPassword from './OrderFormPassword';
 
-class RegisterForm extends React.Component {
+class OrderForm extends React.Component {
   state = {
     currentStep: 1,
     maxSteps: 3,
@@ -51,8 +51,8 @@ class RegisterForm extends React.Component {
 
     const { currentStep, maxSteps } = this.state;
     return (
-      <div className="RegisterForm">
-        <h1>Objednávka</h1>
+      <div className="OrderForm">
+        <h1>Objednanie tovaru</h1>
         <MediaQuery query="(max-width:630px)">
           <Steps direction="vertical" current={currentStep - 1}>
             <Steps.Step onClick={() => this.setCurrentStep(1)} title="Kontaktné informácie" />
@@ -68,21 +68,31 @@ class RegisterForm extends React.Component {
             <Steps.Step onClick={() => this.setCurrentStep(3)} title="Vytvorenie účtu" />
           </Steps>
         </MediaQuery>
-        <CSSTransitionGroup
-          transitionName="example"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}
-        >
-          {currentStep === 1 && <RegisterFormContact />}
-          {currentStep === 2 && <RegisterFormAddress />}
-          {currentStep === 3 && <RegisterFormPassword />}
-        </CSSTransitionGroup>
+        {currentStep === 1 && (
+          <div className="slide-in-right ">
+            <OrderFormContact />
+          </div>
+        )}
+        {currentStep === 2 && (
+          <div className="slide-in-right ">
+            <OrderFormAddress />
+          </div>
+        )}
+        {currentStep === 3 && (
+          <div className="slide-in-right ">
+            <OrderFormPassword />
+          </div>
+        )}
 
-        <div className="RegisterForm-backAndNextButtons">
-          {currentStep === 1 && <Button disabled onClick={this.handleBackClick} text="<- Späť" />}
-          {currentStep !== 1 && (
-            <Button type="tertiary" onClick={this.handleBackClick} text="<- Späť" />
-          )}
+        <div className="OrderForm-backAndNextButtons">
+          {
+            <Button
+              type="tertiary"
+              disabled={currentStep === 1}
+              onClick={this.handleBackClick}
+              text="<- Späť"
+            />
+          }
           {currentStep !== maxSteps && (
             <Button onClick={this.handleNextClick} text="Pokračovať ->" />
           )}
@@ -92,4 +102,4 @@ class RegisterForm extends React.Component {
   }
 }
 
-export default RegisterForm;
+export default OrderForm;

@@ -1,0 +1,14 @@
+.OrderFormAddress {
+  padding-bottom: 30px;
+  height: 400px;
+}
+
+.OrderFormAddress h1 {
+  font-size: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+  .OrderFormAddress {
+    height: 100%;
+  }
+}

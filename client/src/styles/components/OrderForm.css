@@ -1,4 +1,4 @@
-.RegisterForm {
+.OrderForm {
   position: relative;
   flex-grow: 1;
   flex-shrink: 1;
@@ -19,20 +19,20 @@
   flex-flow: column wrap;
 }
 
-.RegisterForm:hover {
+.OrderForm:hover {
   box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.2);
 }
 
-.RegisterForm h1 {
+.OrderForm h1 {
   padding: 0px 0px 30px;
   margin: 0;
 }
 
-.RegisterForm-inputFields {
+.OrderForm-inputFields {
   padding: 0px 0px 30px;
 }
 
-.RegisterForm-requiredFieldsNotice {
+.OrderForm-requiredFieldsNotice {
   margin-top: 0;
   color: #b71c1c;
 }
@@ -57,29 +57,29 @@
 }
 
 .rc-steps {
-  margin: 20px 0px;
+  margin: 20px 0px 40px;
 }
 
-.RegisterForm-backAndNextButtons {
+.OrderForm-backAndNextButtons {
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
 }
 
 @media only screen and (max-width: 330px) {
-  .RegisterForm-backAndNextButtons {
+  .OrderForm-backAndNextButtons {
     justify-content: center;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .RegisterForm {
+  .OrderForm {
     margin: 5px;
     padding: 20px 20px;
     width: 95%;
   }
 
-  .RegisterForm-heading {
+  .OrderForm-heading {
     text-align: center;
   }
 }

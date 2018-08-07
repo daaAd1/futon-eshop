@@ -1,29 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import zxcvbn from 'zxcvbn';
 import '../styles/components/PasswordWithLabel.css';
 import { showPasswordIcon, hidePasswordIcon, correctInputIcon, incorrectInputIcon } from '../icons';
 
 const propTypes = {
-  strengthIndicator: PropTypes.bool,
-  arePasswordsSame: PropTypes.bool,
-  repeatPassword: PropTypes.bool,
+  type: PropTypes.string,
+  originalPassword: PropTypes.string,
 
   label: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
-  strengthIndicator: false,
-  arePasswordsSame: true,
-  repeatPassword: false,
+  type: 'login',
+  originalPassword: '',
 };
 
 /*
 NOTE: strength indicator code is split out so it is possible to animate every strength change
 */
-
+let zxcvbn;
 class PasswordWithLabel extends React.Component {
   constructor(props) {
     super(props);
@@ -38,6 +34,12 @@ class PasswordWithLabel extends React.Component {
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.type === 'registration') {
+      zxcvbn = require('zxcvbn');
+    }
+  }
+
   togglePassword() {
     this.setState((prevState) => ({
       passwordShown: !prevState.passwordShown,
@@ -46,106 +48,86 @@ class PasswordWithLabel extends React.Component {
 
   handlePasswordChange(event) {
     const password = event.target.value;
-    const evaluation = zxcvbn(password);
-    if (password.length < 6) {
-      evaluation.score = 0;
+
+    let evaluation;
+    if (zxcvbn !== undefined) {
+      evaluation = zxcvbn(password);
+
+      if (password.length < 6) {
+        evaluation.score = 0;
+      }
+      this.setState({
+        evaluation: evaluation.score,
+      });
     }
 
     this.setState({
       password,
-      evaluation: evaluation.score,
     });
 
     this.props.onChange(event);
   }
 
   render() {
-    const {
-      label,
-      placeholder,
-      strengthIndicator,
-      id,
-      arePasswordsSame,
-      login,
-      repeatPassword,
-    } = this.props;
+    const { label, id, type, originalPassword } = this.props;
     const { password, evaluation, passwordShown } = this.state;
     const inputType = passwordShown ? 'text' : 'password';
     const passwordShowAnimation = passwordShown ? 'tracking-in-contract' : 'tracking-in-expand';
-    const borderBottom = password !== '' && strengthIndicator ? '' : 'border-bottom';
+    const borderBottom = password !== '' && type === 'registration' ? '' : 'border-bottom';
 
     return (
       <label htmlFor={id} className="PasswordWithLabel">
         <p>
           {label}
-          {strengthIndicator && <small> (min. 6 znakov)</small>}
+          {type === 'registration' && <small> (min. 6 znakov)</small>}
         </p>
         <div>
           <input
             className={`${passwordShowAnimation} ${borderBottom}`}
             type={inputType}
-            placeholder={placeholder}
             id={id}
             onChange={this.handlePasswordChange}
           />
-          {passwordShown && (
-            <div
-              className="PasswordWithLabel-showPasswordIcon"
-              onClick={this.togglePassword}
-              onKeyDown={this.togglePassword}
-              role="button"
-              tabIndex={0}
-            >
-              {hidePasswordIcon}
-            </div>
-          )}
-          {!passwordShown && (
-            <div
-              className="PasswordWithLabel-showPasswordIcon"
-              onClick={this.togglePassword}
-              onKeyDown={this.togglePassword}
-              role="button"
-              tabIndex={1}
-            >
-              {showPasswordIcon}
-            </div>
-          )}
-          {!login &&
-            !repeatPassword &&
+          <div
+            className="PasswordWithLabel-showPasswordIcon"
+            onClick={this.togglePassword}
+            onKeyDown={this.togglePassword}
+            role="button"
+            tabIndex={-1}
+          >
+            {passwordShown && hidePasswordIcon}
+            {!passwordShown && showPasswordIcon}
+          </div>
+
+          {type === 'registration' &&
             password !== '' && (
               <div className="PasswordWithLabel-passwordState fade-in">
                 {evaluation !== 0 ? correctInputIcon : incorrectInputIcon}
               </div>
             )}
-          {!login &&
-            repeatPassword &&
+          {type === 'repeat' &&
             password !== '' && (
               <div className="PasswordWithLabel-passwordState fade-in">
-                {arePasswordsSame ? correctInputIcon : incorrectInputIcon}
+                {originalPassword !== '' &&
+                  password !== '' &&
+                  (originalPassword === password ? correctInputIcon : incorrectInputIcon)}
               </div>
             )}
         </div>
-        {strengthIndicator &&
-          password !== '' &&
-          evaluation === 0 && <div className={`PasswordWithLabel-strengthIndicator-0`} />}
-        {strengthIndicator &&
-          password !== '' &&
-          evaluation === 1 && <div className={`PasswordWithLabel-strengthIndicator-1`} />}
-        {strengthIndicator &&
-          password !== '' &&
-          evaluation === 2 && <div className={`PasswordWithLabel-strengthIndicator-2`} />}
-        {strengthIndicator &&
-          password !== '' &&
-          evaluation === 3 && <div className={`PasswordWithLabel-strengthIndicator-3`} />}
-        {strengthIndicator &&
-          password !== '' &&
-          evaluation === 4 && <div className={`PasswordWithLabel-strengthIndicator-4`} />}
-        {evaluation === 0 &&
-          password !== '' &&
-          password.length > 5 && (
-            <p className="PasswordWithLabel-redText">heslo je prílíš jednoduché</p>
+        {type === 'registration' &&
+          password !== '' && (
+            <div className={`PasswordWithLabel-strengthIndicator-${evaluation}`} />
           )}
-        {!arePasswordsSame && <p className="PasswordWithLabel-redText">heslá nie sú rovnaké</p>}
+        {type === 'registration' &&
+          password !== '' &&
+          (evaluation === 0 &&
+            password.length > 5 && (
+              <p className="PasswordWithLabel-redText">heslo je prílíš jednoduché</p>
+            ))}
+        {type === 'repeat' &&
+          !(originalPassword === '' || password === '' || originalPassword === password) && (
+            <p className="PasswordWithLabel-redText">heslá nie sú rovnaké</p>
+          )}
       </label>
     );
   }

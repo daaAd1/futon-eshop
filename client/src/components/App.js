@@ -4,7 +4,7 @@ import ProductGeneralUI from './ProductGeneralUI';
 import ProductListGeneralUI from './ProductListGeneralUI';
 import HeaderMenu from './HeaderMenu';
 import FooterMenu from './FooterMenu';
-import RegisterForm from './RegisterForm';
+import OrderForm from './OrderForm';
 import LoginForm from './LoginForm';
 import Form from './Form';
 
@@ -16,7 +16,7 @@ class App extends Component {
         <div className="App-container">
           <ProductListGeneralUI categoryName="Futony" />
           <LoginForm />
-          <RegisterForm />
+          <OrderForm />
           <Form />
           <ProductGeneralUI
             name="Matrac hriva - latex"

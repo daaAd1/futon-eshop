@@ -1,10 +1,10 @@
 import React from 'react';
-import '../styles/components/RegisterFormPassword.css';
+import '../styles/components/OrderFormPassword.css';
 import InputFieldsContainer from './InputFieldsContainer';
 import TextareaWithLabel from './TextareaWithLabel';
 import PasswordWithLabel from './PasswordWithLabel';
 
-class RegisterFormPassword extends React.Component {
+class OrderFormPassword extends React.Component {
   state = {
     password: '',
     repeatPassword: '',
@@ -33,26 +33,23 @@ class RegisterFormPassword extends React.Component {
     const { password, repeatPassword } = this.state;
 
     return (
-      <div className="RegisterFormPassword">
+      <div className="OrderFormPassword">
         <h1>Vytvorenie účtu</h1>
         <PasswordWithLabel
           label="Heslo*"
-          placeholder=""
           id="register-password"
-          required
-          strengthIndicator
+          type="registration"
           onChange={this.handlePasswordChange}
         />
         <PasswordWithLabel
           label="Potvrdenie hesla*"
-          placeholder=""
           id="register-password-repeat"
-          required
-          repeatPassword
-          arePasswordsSame={password === '' || repeatPassword === '' || password === repeatPassword}
+          type="repeat"
+          originalPassword={password}
           onChange={this.handleSecondPasswordChange}
         />
-        <div className="RegisterFormPassword-noRegistration">
+        <div className="OrderFormPassword-separatingContainer" />
+        <div className="OrderFormPassword-noRegistration">
           <a href="#">Pokračujte bez vytvorenia účtu -></a>
         </div>
       </div>
@@ -60,4 +57,4 @@ class RegisterFormPassword extends React.Component {
   }
 }
 
-export default RegisterFormPassword;
+export default OrderFormPassword;
