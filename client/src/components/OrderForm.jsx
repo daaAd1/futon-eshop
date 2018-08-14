@@ -11,7 +11,7 @@ import Button from './Button';
 import InputFieldsContainer from './InputFieldsContainer';
 import OrderFormAddress from './OrderFormAddress';
 import OrderFormContact from './OrderFormContact';
-import OrderFormPassword from './OrderFormPassword';
+import OrderFormPayment from './OrderFormPayment';
 
 class OrderForm extends React.Component {
   state = {
@@ -57,7 +57,7 @@ class OrderForm extends React.Component {
           <Steps direction="vertical" current={currentStep - 1}>
             <Steps.Step onClick={() => this.setCurrentStep(1)} title="Kontaktné informácie" />
             <Steps.Step onClick={() => this.setCurrentStep(2)} title="Adresa" />
-            <Steps.Step onClick={() => this.setCurrentStep(3)} title="Vytvorenie účtu" />
+            <Steps.Step onClick={() => this.setCurrentStep(3)} title="Doprava" />
           </Steps>
         </MediaQuery>
         <MediaQuery query="(min-width: 631px)">
@@ -65,7 +65,7 @@ class OrderForm extends React.Component {
           <Steps current={currentStep - 1}>
             <Steps.Step onClick={() => this.setCurrentStep(1)} title="Kontaktné informácie" />
             <Steps.Step onClick={() => this.setCurrentStep(2)} title="Adresa" />
-            <Steps.Step onClick={() => this.setCurrentStep(3)} title="Vytvorenie účtu" />
+            <Steps.Step onClick={() => this.setCurrentStep(3)} title="Spôsob platby" />
           </Steps>
         </MediaQuery>
         {currentStep === 1 && (
@@ -80,7 +80,7 @@ class OrderForm extends React.Component {
         )}
         {currentStep === 3 && (
           <div className="slide-in-right ">
-            <OrderFormPassword />
+            <OrderFormPayment />
           </div>
         )}
 

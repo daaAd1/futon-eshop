@@ -1,15 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../img/logo.jpg';
+import * as routes from '../routes';
 import '../styles/components/HeaderMenu.css';
-import { emptyCartIcon, hamburgerIcon, arrowDownIcon } from '../icons';
+import { hamburgerIcon, arrowDownIcon } from '../icons';
+import Cart from './Cart';
 
 const HeaderMenu = (props) => {
   return (
     <div className="HeaderMenu">
       <div className="HeaderMenu-logoAndIconContainer">
-        <a href="/home">
+        <Link to={routes.HOME}>
           <img src={logo} alt="Nejfuton logo" />
-        </a>
+        </Link>
         <label title="Show menu" className="HeaderMenu-hamburgerIcon" htmlFor="dropdownMainMenu">
           {hamburgerIcon}
         </label>
@@ -82,11 +85,9 @@ const HeaderMenu = (props) => {
         </div>
         <div className="HeaderMenu-rightContainer">
           <div className="HeaderMenu-rightContainerDropdownLink">
-            <a href="/abc">Prihlásenie</a>
+            <Link to={routes.SHOWROOM}>Showroom</Link>
           </div>
-          <div className="HeaderMenu-rightContainerDropdownLink">
-            <a href="/bcd">{emptyCartIcon} Košík</a>
-          </div>
+          <Cart numberOfItems={3} />
         </div>
       </div>
     </div>

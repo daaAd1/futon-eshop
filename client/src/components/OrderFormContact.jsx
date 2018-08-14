@@ -11,7 +11,7 @@ class OrderFormContact extends React.Component {
     return (
       <div className="OrderFormContact">
         <h1>Kontaktné informácie</h1>
-        <p className="RegisterForm-requiredFieldsNotice">*Povinné polia</p>
+        <p className="OrderForm-requiredFieldsNotice">*Povinné polia</p>
         <InputFieldsContainer flow="row" className="Form-inputFields   ">
           <TextareaWithLabel
             regex={nameRegularExpression}

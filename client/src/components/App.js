@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { HashRouter, Route, Link } from 'react-router-dom';
 import '../styles/components/App.css';
+import * as routes from '../routes';
 import ProductGeneralUI from './ProductGeneralUI';
 import ProductListGeneralUI from './ProductListGeneralUI';
 import HeaderMenu from './HeaderMenu';
@@ -7,46 +9,144 @@ import FooterMenu from './FooterMenu';
 import OrderForm from './OrderForm';
 import LoginForm from './LoginForm';
 import Form from './Form';
+import Home from './Home';
+import CartPage from './CartPage';
+import ShowRoom from './ShowRoom';
+import InformationPage from './InformationPage';
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <HeaderMenu />
-        <div className="App-container">
-          <ProductListGeneralUI categoryName="Futony" />
-          <LoginForm />
-          <OrderForm />
-          <Form />
-          <ProductGeneralUI
-            name="Matrac hriva - latex"
-            price="100,00"
-            smallDesc="Futon Kami patrí medzi mäkké futony. Konská hriva patrí medzi luxusné materiály a
-          matrace z certifikovaných ekologických a šetrne získavaných konských hrív majú jedinečné
-          vlastnosti. Výborne pohlcujú vlhkosť a znižujú množstvo roztočov v matraci. Preto sú
-          vhodné aj pre alergikov."
-            longDesc="<b>Zloženie</b>: 3 vrstvy 100 % bavlny, 1 cm konská hriva, 4 cm latexu, 1 cm konská hriva,
-          3 vrstvy 100 % bavlny <br /> <b>Výška</b>: 18 cm Nosnosť matraca: 130 kg <br />{' '}
-          <b>Hmotnosť matraca</b>: od 19 kg (veľkosť 90x200 cm) do 40 kg (veľkosť 200x200 cm) <br />{' '}
-          <b>Tvrdosť matraca</b>: najmäkší matrac <br /> <b>Bavlna</b>: Je hlavnou súčasťou
-          tradičného japonského futonu. Je pevná, tvrdá a priedušná. Dobre fixuje chrbát. Je
-          hygienická vďaka tomu, že rýchlo schne. Extrémne vysoká gramáž 1000g/m². Vo vnútri futonu
-          je spracovaná ihlovým strojom a stlačená.
-          <br /> <b>Latexová vrstva</b>: Zvyšuje pružnosť a mäkkosť matraca. Je ideálna aj pokiaľ
-          budete na matraci často sedieť.<br /> <b>Zloženie</b>: 80 % prírodný kaučuk a 20 % umelý
-          kaučuk.<br /> <b> Konská hriva</b>: Dodáva matracu skvelé vlastnosti. Je vzdušná, ľahká,
-          výborne odvádza vlhkosť. Matrac s konskou hrivou je odolný voči plesniam a baktériám.
-          Konská hriva sa získava zastrihávaním koncov konskej hrivy. <br />{' '}
-          <b>Povrch matraca a gramáž</b>: bavlnené rúno 300g/m² <br />{' '}
-          <b>Certifikácia tkanín matraca</b>: Eko-tex <br /> <b>Značka Matraca</b>: Nejfuton – Česká
-          republika <br /> <b>Cena za dopravu</b>: malá zásielka: 5 €, stredná zásielka:12 €, veľká
-          zásielka: 20 € <br /> <b>Doprava</b>: prepravnou spoločnosťou TOPTRANS <br />{' '}
-          <b>Osobný odber</b>: v Košiciach po dohode <br /> <b>Platba</b>: dobierkou alebo prevodom
-          na účet"
+      <HashRouter>
+        <div>
+          <HeaderMenu />
+          <Route exact path={routes.HOME} component={() => <Home />} />
+          <Route exact path={routes.CART} component={() => <CartPage />} />
+          <Route exact path={routes.CHECKOUT} component={() => <OrderForm />} />
+          <Route exact path={routes.SHOWROOM} component={() => <ShowRoom />} />
+          <Route exact path={routes.FAQ} component={() => <InformationPage text="faq" />} />
+          <Route
+            exact
+            path={routes.CONTACT}
+            component={() => (
+              <InformationPage
+                text="
+Showroom Košice
+ 
+
+Radi Vás privítame v našej vzorkovej predajni, kde si môžete vyskúšať futony a pozrieť rozkladacie pohovky a postele.
+
+
+
+Ak máte záujem stretnúť sa v našom showroome, zavolajte prosím deň vopred na tel. 0904 013 837, aby sme si dohodli stretnutie, keďže tam nie sme vždy prítomní..
+
+
+
+Nájdete nás:
+
+
+
+Slovenská 10/A (budova Vodoarm, 1. poschodie)
+
+040 01 Košice 
+
+Mapa tu
+
+
+
+Otváracie hodiny:
+
+PO-PI  9.00 – 17.00
+
+SO       9.00 – 13.00
+
+
+
+Otázky a objednávky môžete zasielať na mail info@matrace-futony.sk
+
+
+
+alebo nás môžete kontaktovať na telefónnom čísle +421 904 013 837.
+
+ 
+
+Showroom Košice
+
+ 
+
+ 
+
+O firme
+ 
+
+Matrace-futony.sk je on-line obchod pre Váš zdravý spánok. 
+
+Prinášame kvalitný a prehľadne riešený e-shop pre pohodlný nákup. Pri tovare nájdete všetky informácie. V Blogu sa o futonoch dočítate veľa faktov o tomto obľúbenom japonskom matraci. Tovar je zaradený do štyroch základných skupín: Pohovky, Postele, Futony a Doplnky.
+
+
+
+Textilný tovar predávaný v našom e-shope má dlhoročnú tradíciu už od roku 1994 a je obľúbeným sortimentom pre mnoho krajín západnej Európy. Textílie sú vyrábané z materiálov podliehajúcim vysokým štandardom kvality certifikátu eko-tex.
+
+
+
+Sme Vám plne k dispozícii k Vašej spokojnosti. Radi obratom zodpovieme akékoľvek otázky spojené s výberom ideálneho futonu. Poradíme, predvedieme, privezieme.
+ 
+
+Kontakt
+ 
+
+TOP DETAIL s.r.o.
+
+Baltická 1359/2
+
+040 12 Košice
+
+Slovenská republika
+
+Slovenská republika
+
+
+
+tel: +421 0904 013 837
+
+email: info@matrace-futony.sk
+
+
+
+Fakturačné údaje
+
+
+
+TOP DETAIL s.r.o.Baltická 1359/2040 12 KošiceSlovenská republika tel: +421 0911 013 837email: info@matrace-futony.sk IČO: 47 133 899DIČ: 20 23 76 76 03
+TOP DETAIL s.r.o.
+
+Baltická 1359/2
+
+040 12 Košice 
+
+Slovenská republika
+
+IČO: 47 133 899
+
+DIČ: 20 23 76 76 03
+
+ 
+
+Číslo účtu:
+
+SK0675000000004018026864"
+              />
+            )}
           />
+          <Route
+            exact
+            path={routes.SHIPPING}
+            component={() => <InformationPage text="shipping" />}
+          />
+          <Route exact path={routes.TERMS} component={() => <InformationPage text="terms" />} />
+          <FooterMenu />
         </div>
-        <FooterMenu />
-      </div>
+      </HashRouter>
     );
   }
 }

@@ -1,7 +1,7 @@
 .TextareaWithLabel {
   display: flex;
   flex-flow: column wrap;
-  width: 350px;
+  max-width: 350px;
   text-align: left;
   padding-bottom: 1px;
   font-size: 20px;
@@ -47,6 +47,8 @@
   resize: none;
   overflow: hidden;
 
+  background-color: white;
+  color: #444444;
   border: 1px solid #ccc;
 }
 

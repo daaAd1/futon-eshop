@@ -28,7 +28,7 @@ class LoginForm extends React.Component {
     const { isLoading } = this.state;
     return (
       <div className="LoginForm">
-        <h1>Prihlásenie</h1>
+        <h1>Prihláste sa do svojho účtu</h1>
         <div className="LoginForm-inputFields">
           <TextareaWithLabel label="Email" placeholder="jantoth@gmail.com" id="email" />
           <PasswordWithLabel type="login" label="Heslo" id="login-password" onChange={() => {}} />

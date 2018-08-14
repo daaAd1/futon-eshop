@@ -1,0 +1,37 @@
+.CartItem {
+  display: flex;
+  flex-flow: row;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.CartItem img {
+  width: 60px;
+  height: 60px;
+}
+
+.CartItem p {
+  width: 40%;
+}
+
+.CartItem svg {
+  width: 25px;
+  height: 25px;
+}
+
+.abc {
+  width: 30px;
+  height: 30px;
+}
+
+.CartItem svg:hover {
+  width: 30px;
+  height: 30px;
+}
+
+.CartItem input {
+  width: 15%;
+  border: 0;
+  padding: 8px;
+}
