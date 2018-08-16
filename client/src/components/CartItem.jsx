@@ -30,21 +30,26 @@ class CartItem extends React.Component {
 
   render() {
     const { isOpen, quantity } = this.state;
-    const { name, itemQuantity, value } = this.props;
+    const { name, itemQuantity, value, price, type } = this.props;
 
     return (
       <div onClick={this.toggleOpen} className="CartItem">
         <img src={futon2} />
-        <p>{name}</p>
-        <input
-          id={`quantity-${name}`}
-          type="number"
-          onChange={this.changeQuantity}
-          value={quantity || itemQuantity}
-          min="1"
-          max="10"
-        />
-        <div className="abc">{deleteIcon}</div>
+        <p className={`CartItem-name`}>{name}</p>
+        {type !== 'readOnly' ? (
+          <input
+            id={`quantity-${name}`}
+            type="number"
+            onChange={this.changeQuantity}
+            value={quantity || itemQuantity}
+            min="1"
+            max="10"
+          />
+        ) : (
+          <p>Počet kusov: {itemQuantity}</p>
+        )}
+        <p className="CartItem-price">{price},00 €</p>
+        {type !== 'readOnly' && <div className="CartItem-deleteIcon">{deleteIcon}</div>}
       </div>
     );
   }

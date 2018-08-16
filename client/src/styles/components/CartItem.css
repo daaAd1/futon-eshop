@@ -9,10 +9,19 @@
 .CartItem img {
   width: 60px;
   height: 60px;
+  margin: 5px;
+}
+
+.CartItem-name {
+  width: 40%;
 }
 
 .CartItem p {
-  width: 40%;
+  min-width: 10%;
+}
+
+.CartItem-price {
+  text-align: right;
 }
 
 .CartItem svg {
@@ -20,9 +29,10 @@
   height: 25px;
 }
 
-.abc {
+.CartItem-deleteIcon {
   width: 30px;
   height: 30px;
+  cursor: pointer;
 }
 
 .CartItem svg:hover {
@@ -34,4 +44,8 @@
   width: 15%;
   border: 0;
   padding: 8px;
+}
+
+.CartItem-price {
+  width: 15%;
 }

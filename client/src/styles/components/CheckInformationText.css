@@ -1,0 +1,8 @@
+.CheckInformationText {
+  max-width: 400px;
+}
+
+.CheckInformationText p:first-child {
+  margin-right: 30px;
+  font-weight: 700;
+}

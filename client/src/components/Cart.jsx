@@ -32,7 +32,7 @@ class Cart extends React.Component {
 
   render() {
     const { isOpen } = this.state;
-    const { numberOfItems } = this.props;
+    const { numberOfItems, totalPrice } = this.props;
 
     const isOpenClass = isOpen ? 'Cart-isOpen' : '';
 
@@ -45,9 +45,20 @@ class Cart extends React.Component {
         {isOpen && (
           <div className=" Cart-info">
             <div className="Cart-items">
-              <CartItem itemQuantity="1" name="Matrac hriva-latex" />{' '}
-              <CartItem itemQuantity="3" name="Matrac vlna-hriva-latex" />{' '}
-              <CartItem itemQuantity="2" name="Bavlnený matrac s vrstvou kokosu a peny" />
+              <CartItem price="99" itemQuantity="1" name="Matrac hriva-latex" />{' '}
+              <CartItem price="199" itemQuantity="3" name="Matrac vlna-hriva-latex" />{' '}
+              <CartItem
+                price="299"
+                itemQuantity="2"
+                name="Bavlnený matrac s vrstvou kokosu a peny"
+              />
+              <div className="Cart-totalPrice">
+                <p>Cena celkovo:</p>{' '}
+                <p>
+                  {totalPrice}
+                  ,00 €
+                </p>
+              </div>
             </div>
             <div className="Cart-buttons">
               <Link

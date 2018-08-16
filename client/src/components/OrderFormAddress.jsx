@@ -13,12 +13,17 @@ class OrderFormAddress extends React.Component {
       <div className="OrderFormAddress">
         <h1>Adresa</h1>
         <p className="OrderForm-requiredFieldsNotice">*Povinné polia</p>
-        <TextareaWithLabel
-          regex={nameRegularExpression}
-          label="Štát*"
-          placeholder=""
-          id="address-state"
-        />
+        <fieldset className="OrderFormAddress-countryChooser" id="country">
+          <legend>Štát*</legend>
+          <p>
+            <input checked type="radio" name="platba" id="slovensko" value="small" />
+            <label for="slovensko">Slovensko</label>
+          </p>
+          <p>
+            <input type="radio" name="platba" id="cesko" value="medium" />
+            <label for="cesko">Česká republika</label>
+          </p>
+        </fieldset>
         <TextareaWithLabel
           regex={nameRegularExpression}
           label="Mesto*"

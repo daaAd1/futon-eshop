@@ -2,6 +2,10 @@
   position: relative;
 }
 
+.Cart:hover {
+  cursor: pointer;
+}
+
 .Cart-isOpen:before {
   border-bottom: 2px solid #eb4b3d;
 }
@@ -14,18 +18,42 @@
   height: 35px;
 }
 
+.Cart-totalPrice {
+  margin: 20px 5px 0px 0px;
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+}
+
+.Cart-totalPrice p {
+  margin: 0px;
+}
+
+.Cart-totalPrice p:first-child {
+  margin-right: 20px;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.Cart-totalPrice p:last-child {
+  margin-right: 40px;
+  font-weight: 700;
+  font-size: 18px;
+}
+
 .Cart-info {
-  width: 500px;
+  width: 600px;
   display: block;
   right: -15px;
   top: 62px;
 
   position: absolute;
   margin-top: 2px;
-  z-index: 1;
+  z-index: 30;
 
   background-color: #261c1b;
   color: white;
+  cursor: initial;
 }
 
 .Cart-info a {
@@ -129,6 +157,11 @@
   .Cart-info {
     left: 0px;
     width: 100%;
+    position: initial;
+  }
+
+  .Cart-totalPrice:last-child {
+    margin-right: 15px;
   }
 }
 
