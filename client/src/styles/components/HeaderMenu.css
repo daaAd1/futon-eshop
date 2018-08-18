@@ -245,7 +245,7 @@
   .HeaderMenu-centerContainer,
   .HeaderMenu-rightContainer {
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column;
   }
 
   .HeaderMenu-rightContainer div {

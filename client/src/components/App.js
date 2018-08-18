@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { HashRouter, Route, Link } from 'react-router-dom';
 import '../styles/components/App.css';
+import 'react-table/react-table.css';
 import * as routes from '../routes';
 import ProductGeneralUI from './ProductGeneralUI';
 import ProductListGeneralUI from './ProductListGeneralUI';
@@ -13,15 +14,23 @@ import Home from './Home';
 import CartPage from './CartPage';
 import ShowRoom from './ShowRoom';
 import InformationPage from './InformationPage';
+import AdminDashboard from './AdminDashboard';
+import AdminProducts from './AdminProducts';
+import AdminOrders from './AdminOrders';
+import AdminAttributes from './AdminAttributes';
 
 class App extends Component {
   render() {
     return (
       <HashRouter>
         <div>
+          <AdminDashboard />
+          <Route exact path={routes.ADMIN_ORDERS} component={() => <AdminOrders />} />
+          <Route exact path={routes.ADMIN_PRODUCTS} component={() => <AdminProducts />} />
+          <Route exact path={routes.ADMIN_ATTRIBUTES} component={() => <AdminAttributes />} />
           <HeaderMenu />
           <Route exact path={routes.HOME} component={() => <Home />} />
-          <Route exact path={routes.CART} component={() => <CartPage />} />
+          <Route exact path={routes.CART} component={() => <CartPage totalPrice="599" />} />
           <Route exact path={routes.CHECKOUT} component={() => <OrderForm />} />
           <Route exact path={routes.SHOWROOM} component={() => <ShowRoom />} />
           <Route exact path={routes.FAQ} component={() => <InformationPage text="faq" />} />

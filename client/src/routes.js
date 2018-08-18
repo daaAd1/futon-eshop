@@ -1,4 +1,8 @@
 export const HOME = '/';
+export const ADMIN = '/admin';
+export const ADMIN_ORDERS = '/admin/orders';
+export const ADMIN_PRODUCTS = '/admin/products';
+export const ADMIN_ATTRIBUTES = '/admin/attributes';
 export const CART = '/kosik';
 export const CHECKOUT = '/checkout';
 export const SHOWROOM = '/showroom';

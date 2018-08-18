@@ -1,0 +1,19 @@
+.AdminDashboard {
+  position: relative;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 50%;
+  max-width: 1200px;
+
+  padding: 30px 30px;
+  margin: 20px auto;
+
+  border: 1px solid #efefef;
+  box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.AdminDashboard:hover {
+  box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.2);
+}

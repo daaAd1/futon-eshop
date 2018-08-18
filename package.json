@@ -24,6 +24,7 @@
     "passport-local": "^1.0.0",
     "react-image-gallery": "^0.8.9",
     "react-slick": "^0.23.1",
+    "react-table": "^6.8.6",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {

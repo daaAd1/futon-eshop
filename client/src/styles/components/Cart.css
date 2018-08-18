@@ -19,7 +19,7 @@
 }
 
 .Cart-totalPrice {
-  margin: 20px 5px 0px 0px;
+  margin: 20px 0px 0px 0px;
   display: flex;
   flex-flow: row;
   justify-content: flex-end;
@@ -36,7 +36,6 @@
 }
 
 .Cart-totalPrice p:last-child {
-  margin-right: 40px;
   font-weight: 700;
   font-size: 18px;
 }
@@ -161,7 +160,6 @@
   }
 
   .Cart-totalPrice:last-child {
-    margin-right: 15px;
   }
 }
 
