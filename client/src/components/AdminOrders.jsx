@@ -132,7 +132,7 @@ class AdminOrders extends React.Component {
                       name="Bavlnený matrac s vrstvou kokosu a peny"
                     />
                     <div className="Cart-totalPrice">
-                      <p>Cena celkovo:</p> <p>599 ,00 €</p>
+                      <p>Cena celkovo:</p> <p>599,00 €</p>
                     </div>
                   </div>
                 </div>

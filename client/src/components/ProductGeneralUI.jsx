@@ -1,6 +1,11 @@
 import React from 'react';
 import ImageGallery from 'react-image-gallery';
 import '../styles/components/ProductGeneralUI.css';
+import ReactHtmlParser, {
+  processNodes,
+  convertNodeToElement,
+  htmlparser2,
+} from 'react-html-parser';
 import Button from './Button';
 import futon from '../img/futon.jpeg';
 import futon2 from '../img/futon2.jpeg';
@@ -46,7 +51,7 @@ const ProductGeneralUI = (props) => {
       </div>
       <div className="ProductGeneralUI-longDescription">
         <h2>Popis produktu</h2>
-        <p>{longDesc}</p>
+        <p>{ReactHtmlParser(longDesc)}</p>
       </div>
     </div>
   );

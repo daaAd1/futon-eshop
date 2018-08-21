@@ -47,3 +47,8 @@
 .AdminOrders-orderInfo p:first-child {
   font-weight: 700;
 }
+
+.AdminOrders-orderInfo p:last-child {
+  text-align: right;
+  width: 80%;
+}

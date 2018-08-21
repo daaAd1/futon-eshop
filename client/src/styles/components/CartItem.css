@@ -22,11 +22,7 @@
 
 .CartItem-price {
   text-align: right;
-}
-
-.CartItem svg {
-  width: 25px;
-  height: 25px;
+  width: 15% !important;
 }
 
 .CartItem-deleteIcon {
@@ -35,17 +31,18 @@
   cursor: pointer;
 }
 
-.CartItem svg:hover {
-  width: 30px;
-  height: 30px;
-}
-
 .CartItem input {
   width: 15%;
   border: 0;
   padding: 8px;
 }
 
-.CartItem-price {
-  width: 15%;
+.CartItem svg {
+  width: 25px;
+  height: 25px;
+}
+
+.CartItem svg:hover {
+  width: 30px;
+  height: 30px;
 }

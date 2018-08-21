@@ -17,3 +17,51 @@
 .AdminProducts:hover {
   box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.2);
 }
+
+.AdminProducts-orderInfo {
+  display: flex;
+  flex-flow: column;
+  padding: 10px 20px;
+  width: 100%;
+}
+
+.AdminProducts-orderInfo > div {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 0px 10px;
+  font-size: 17px;
+}
+
+.AdminProducts-orderInfo p:first-child {
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+.AdminProducts-orderInfo p:last-child {
+  text-align: right;
+  width: 80%;
+}
+
+.AdminProducts textarea {
+  width: 80%;
+  resize: none;
+  margin: 10px 0px 10px;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.AdminProducts-saveButton button {
+  margin: 20px 0px 20px 20px;
+}
+
+.AdminProducts-imageUpload {
+  width: 80%;
+}
+
+.AdminProducts-imageUpload > div > div {
+  border: 1px solid #ccc;
+}

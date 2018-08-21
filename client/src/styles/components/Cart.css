@@ -25,6 +25,11 @@
   justify-content: flex-end;
 }
 
+.Cart-totalPrice p:first-child {
+  width: 30%;
+  text-align: right;
+}
+
 .Cart-totalPrice p {
   margin: 0px;
 }
