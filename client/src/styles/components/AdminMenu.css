@@ -7,7 +7,8 @@
   color: white;
 }
 
-.AdminMenu a {
+.AdminMenu a,
+.AdminMenu p {
   padding: 10px;
   text-align: center;
   flex-grow: 1;
@@ -15,6 +16,12 @@
   text-decoration: none;
   color: white;
   font-size: 20px;
+}
+
+.AdminMenu p {
+  margin: 0;
+  color: #eb4b3d;
+  font-weight: 700;
 }
 
 .AdminMenu a:hover {
@@ -25,7 +32,6 @@
   .AdminMenu {
     display: flex;
     flex-flow: column;
-    margin: 10px auto;
-    width: 95%;
+    width: 100%;
   }
 }

@@ -17,3 +17,9 @@
 .AdminAttributes:hover {
   box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.2);
 }
+
+@media only screen and (max-width: 760px) {
+  .AdminAttributes {
+    width: 95%;
+  }
+}

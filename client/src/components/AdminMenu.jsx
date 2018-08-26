@@ -7,6 +7,7 @@ class AdminMenu extends React.Component {
   render() {
     return (
       <div className="AdminMenu">
+        <p>ADMIN</p>
         <NavLink to={routes.ADMIN_ORDERS}>Objednávky</NavLink>
         <NavLink to={routes.ADMIN_PRODUCTS}>Produkty</NavLink>
         <NavLink to={routes.ADMIN_ATTRIBUTES}>Atribúty</NavLink>

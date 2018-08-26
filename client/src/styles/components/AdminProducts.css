@@ -3,6 +3,7 @@
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: 50%;
+  width: 95%;
   max-width: 1200px;
 
   padding: 30px 30px;
@@ -14,44 +15,26 @@
   position: relative;
 }
 
+.AdminProducts-gridContainer {
+  display: flex;
+  flex-flow: column;
+  overflow: auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  height: 353px;
+}
+
 .AdminProducts:hover {
   box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.2);
 }
 
-.AdminProducts-orderInfo {
-  display: flex;
-  flex-flow: column;
-  padding: 10px 20px;
-  width: 100%;
-}
-
-.AdminProducts-orderInfo > div {
+.AdminProducts-header {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
-  align-content: center;
   align-items: center;
-  border: 1px solid #ccc;
-  padding: 0px 10px;
-  font-size: 17px;
-}
-
-.AdminProducts-orderInfo p:first-child {
-  font-weight: 700;
-  margin-right: 10px;
-}
-
-.AdminProducts-orderInfo p:last-child {
-  text-align: right;
-  width: 80%;
-}
-
-.AdminProducts textarea {
-  width: 80%;
-  resize: none;
-  margin: 10px 0px 10px;
-  text-align: right;
-  vertical-align: middle;
 }
 
 .AdminProducts-saveButton button {
@@ -64,4 +47,69 @@
 
 .AdminProducts-imageUpload > div > div {
   border: 1px solid #ccc;
+}
+
+.AdminProducts li {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+.AdminProducts-productInfo {
+  display: flex;
+  flex-flow: column;
+  padding: 10px 20px;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.AdminProducts-productInfo > div {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  border-right: 1px solid rgba(0, 0, 0, 0.02);
+  padding: 0px 10px;
+  font-size: 17px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.AdminProducts-productInfo p:first-child {
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+.AdminProducts-productInfo p:last-child {
+  text-align: right;
+  width: 80%;
+}
+
+.AdminProducts-productInfo textarea {
+  width: 80%;
+  resize: none;
+  margin: 10px 0px 10px;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.AdminProducts-navButtons {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+.AdminProducts-navButtons div {
+  width: 50%;
+}
+
+.AdminProducts-navButtons div button {
+  width: 100%;
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 760px) {
+  .AdminProducts {
+    width: 95%;
+  }
 }

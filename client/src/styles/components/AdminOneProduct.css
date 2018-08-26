@@ -1,0 +1,86 @@
+.AdminOneProduct-properties {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.AdminOneProduct-cursorPointer {
+  cursor: pointer;
+}
+
+.AdminOneProduct-propertiesInactive {
+  color: #ccc;
+}
+
+.AdminOneProduct-properties div {
+  flex: 100 0 auto;
+  width: 100px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 7px 5px;
+  line-height: 40px;
+}
+
+.AdminOneProduct-expandedInfo {
+  display: flex;
+  flex-flow: column;
+  padding: 10px 20px;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.AdminOneProduct-expandedInfo > div {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  border-right: 1px solid rgba(0, 0, 0, 0.02);
+  padding: 0px 10px;
+  font-size: 17px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.AdminOneProduct-expandedInfo p:first-child {
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+.AdminOneProduct-expandedInfo p:last-child {
+  text-align: right;
+  width: 80%;
+}
+
+.AdminOneProduct-expandedInfo textarea {
+  width: 80%;
+  resize: none;
+  margin: 10px 0px 10px;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.AdminOneProduct-activeButton {
+  border: 1px solid transparent;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+.AdminOneProduct svg {
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.AdminOneProduct-small {
+  max-width: 50px;
+}
+
+.AdminOneProduct-medium {
+  max-width: 75px;
+}

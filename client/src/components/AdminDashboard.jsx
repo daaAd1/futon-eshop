@@ -7,7 +7,6 @@ class AdminDashboard extends React.Component {
     return (
       <div className="AdminDashboard">
         <AdminMenu />
-        <h1>Admin rozhranie</h1>
       </div>
     );
   }
