@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/components/AdminProductsFirstRow.css';
+import '../../styles/admin/AdminProductsFirstRow.css';
 
 class AdminProductsFirstRow extends React.Component {
   render() {

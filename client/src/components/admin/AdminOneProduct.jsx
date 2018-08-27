@@ -2,16 +2,16 @@ import React from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import ImageUploader from 'react-images-upload';
 import Dropdown from 'react-dropdown';
-import Button from './Button';
+import Button from '../Button';
 import {
   deleteIcon,
   chevronDownIcon,
   chevronUpIcon,
   fullCircleIcon,
   emptyCircleIcon,
-} from '../icons';
-import '../styles/components/AdminOneProduct.css';
-import SelectWithLabel from './SelectWithLabel';
+} from '../../icons';
+import '../../styles/admin/AdminOneProduct.css';
+import SelectWithLabel from '../SelectWithLabel';
 
 class AdminOneProduct extends React.Component {
   state = {

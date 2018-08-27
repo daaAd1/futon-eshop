@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/components/AdminAttributesFirstRow.css';
+import '../../styles/admin/AdminAttributesFirstRow.css';
 
 class AdminAttributesFirstRow extends React.Component {
   render() {

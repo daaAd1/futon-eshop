@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactTable from 'react-table';
-import '../styles/components/AdminOrders.css';
-import { deleteIcon } from '../icons';
-import CartItem from './CartItem';
+import CartItem from '../CartItem';
+import { deleteIcon } from '../../icons';
+import '../../styles/admin/AdminOrders.css';
 
 class AdminOrders extends React.Component {
   render() {

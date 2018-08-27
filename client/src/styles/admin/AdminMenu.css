@@ -6,7 +6,7 @@
   background-color: #261c1b;
   color: white;
 
-  position: fixed;
+  position: sticky;
   width: 100%;
   top: 0;
   z-index: 1;
@@ -38,5 +38,9 @@
     display: flex;
     flex-flow: column;
     width: 100%;
+  }
+
+  .AdminMenu {
+    position: initial;
   }
 }

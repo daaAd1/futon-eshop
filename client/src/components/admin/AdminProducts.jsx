@@ -1,14 +1,12 @@
 import React from 'react';
-import ReactTable from 'react-table';
 import TextareaAutosize from 'react-textarea-autosize';
-import ReactPaginate from 'react-paginate';
-import Button from './Button';
-import '../styles/components/AdminProducts.css';
-import { deleteIconWhite } from '../icons';
-import CartItem from './CartItem';
 import ImageUploader from 'react-images-upload';
+import Button from '../Button';
+import CartItem from '../CartItem';
 import AdminOneProduct from './AdminOneProduct';
 import AdminProductsFirstRow from './AdminProductsFirstRow';
+import { deleteIconWhite } from '../../icons';
+import '../../styles/admin/AdminProducts.css';
 
 class AdminProducts extends React.Component {
   constructor() {

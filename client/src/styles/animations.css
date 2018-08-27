@@ -3,6 +3,7 @@
   position: relative;
   width: 35px;
   height: 35px;
+  border: 2px solid #eb4b3d;
 }
 .lds-ring div {
   box-sizing: border-box;
@@ -11,10 +12,10 @@
   width: 25px;
   height: 25px;
   margin: 6px;
-  border: 2px solid #fff;
+  border: 2px solid #eb4b3d;
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #fff transparent transparent transparent;
+  border-color: #eb4b3d transparent transparent transparent;
 }
 .lds-ring div:nth-child(1) {
   animation-delay: -0.45s;

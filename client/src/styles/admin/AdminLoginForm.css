@@ -1,4 +1,4 @@
-.LoginForm {
+.AdminLoginForm {
   position: relative;
   flex-grow: 1;
   flex-shrink: 1;
@@ -17,39 +17,39 @@
   flex-flow: column wrap;
 }
 
-.LoginForm h1 {
+.AdminLoginForm h1 {
   padding: 0px 0px 30px;
 }
 
-.LoginForm-inputFields {
+.AdminLoginForm-inputFields {
   padding: 0px 0px 30px;
 }
 
-.LoginForm-additionalLinks {
+.AdminLoginForm-additionalLinks {
   display: flex;
   flex-flow: column;
   margin-top: 30px;
   max-width: 300px;
 }
 
-.LoginForm a {
+.AdminLoginForm a {
   color: #888888;
 }
 
-.LoginForm-registrationLink {
+.AdminLoginForm-registrationLink {
   margin: 0;
 }
 
-.LoginForm-registrationLink a {
+.AdminLoginForm-registrationLink a {
   color: #eb4b3d !important;
   margin-left: 6px;
 }
 
-.LoginForm a:hover {
+.AdminLoginForm a:hover {
   color: #aaaaaa;
 }
 
-.LoginForm-registrationLink a:hover {
+.AdminLoginForm-registrationLink a:hover {
   color: #f3928a !important;
 }
 
@@ -59,13 +59,13 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .LoginForm {
+  .AdminLoginForm {
     margin: 5px;
     padding: 20px 20px;
     width: 95%;
   }
 
-  .LoginForm-heading {
+  .AdminLoginForm-heading {
     text-align: center;
   }
 }

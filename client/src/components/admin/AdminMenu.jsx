@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import '../styles/components/AdminMenu.css';
-import * as routes from '../routes';
+import '../../styles/admin/AdminMenu.css';
+import * as routes from '../../routes';
 
 class AdminMenu extends React.Component {
   render() {

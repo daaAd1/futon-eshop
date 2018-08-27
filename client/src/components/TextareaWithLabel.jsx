@@ -44,6 +44,8 @@ class TextareaWithLabel extends React.Component {
         text,
       });
     }
+
+    this.props.onChange(event);
   }
 
   render() {

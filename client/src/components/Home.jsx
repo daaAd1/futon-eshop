@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import '../styles/components/App.css';
 import ProductGeneralUI from './ProductGeneralUI';
 import ProductListGeneralUI from './ProductListGeneralUI';
+import AdminLoginForm from './admin/AdminLoginForm';
 import OrderForm from './OrderForm';
-import LoginForm from './LoginForm';
-import Form from './Form';
 
 class Home extends Component {
   render() {
@@ -12,9 +11,8 @@ class Home extends Component {
       <div>
         <div className="App-container">
           <ProductListGeneralUI categoryName="Futony" />
-          <LoginForm />
+          <AdminLoginForm />
           <OrderForm />
-          <Form />
           <ProductGeneralUI
             name="Matrac hriva - latex"
             price="100,00"

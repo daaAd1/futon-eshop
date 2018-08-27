@@ -1,12 +1,12 @@
 import React from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import Dropdown from 'react-dropdown';
-import Button from './Button';
+import Button from '../Button';
 import AdminAttributesFirstRow from './AdminAttributesFirstRow';
 import AdminOneAttribute from './AdminOneAttribute';
-import { deleteIcon } from '../icons';
-import '../styles/components/AdminAttributes.css';
 import AdminAttributesOptionsFirstRow from './AdminAttributesOptionsFirstRow';
+import { deleteIcon } from '../../icons';
+import '../../styles/admin/AdminAttributes.css';
 
 class AdminAttributes extends React.Component {
   constructor() {

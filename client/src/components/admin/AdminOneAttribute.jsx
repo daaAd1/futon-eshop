@@ -1,9 +1,9 @@
 import React from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import Dropdown from 'react-dropdown';
-import Button from './Button';
-import { deleteIcon, deleteIconWhite, chevronDownIcon, chevronUpIcon } from '../icons';
-import '../styles/components/AdminOneAttribute.css';
+import Button from '../Button';
+import { deleteIcon, deleteIconWhite, chevronDownIcon, chevronUpIcon } from '../../icons';
+import '../../styles/admin/AdminOneAttribute.css';
 import AdminAttributesFirstRow from './AdminAttributesFirstRow';
 import AdminAttributesOptionsFirstRow from './AdminAttributesOptionsFirstRow';
 

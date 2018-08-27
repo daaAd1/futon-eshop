@@ -1,9 +1,9 @@
 import React from 'react';
-import Button from './Button';
+import Button from '../Button';
 import TextareaAutosize from 'react-textarea-autosize';
-import '../styles/components/AdminTypes.css';
 import AdminOneType from './AdminOneType';
 import AdminTypesFirstRow from './AdminTypesFirstRow';
+import '../../styles/admin/AdminTypes.css';
 
 class AdminTypes extends React.Component {
   constructor() {

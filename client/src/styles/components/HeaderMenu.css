@@ -5,6 +5,11 @@
   justify-content: center;
   background-color: #261c1b;
   color: white;
+
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1;
 }
 
 .HeaderMenu-navigationLinks {

@@ -1,9 +1,9 @@
 import React from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import ImageUploader from 'react-images-upload';
-import Button from './Button';
-import { deleteIcon, chevronDownIcon, chevronUpIcon } from '../icons';
-import '../styles/components/AdminOneType.css';
+import Button from '../Button';
+import { deleteIcon, chevronDownIcon, chevronUpIcon } from '../../icons';
+import '../../styles/admin/AdminOneType.css';
 
 class AdminOneType extends React.Component {
   state = {

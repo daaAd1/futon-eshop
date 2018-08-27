@@ -3,22 +3,18 @@ import { HashRouter, Route, Link } from 'react-router-dom';
 import '../styles/components/App.css';
 import 'react-table/react-table.css';
 import * as routes from '../routes';
-import ProductGeneralUI from './ProductGeneralUI';
-import ProductListGeneralUI from './ProductListGeneralUI';
 import HeaderMenu from './HeaderMenu';
 import FooterMenu from './FooterMenu';
 import OrderForm from './OrderForm';
-import LoginForm from './LoginForm';
-import Form from './Form';
 import Home from './Home';
 import CartPage from './CartPage';
 import ShowRoom from './ShowRoom';
 import InformationPage from './InformationPage';
-import AdminDashboard from './AdminDashboard';
-import AdminProducts from './AdminProducts';
-import AdminOrders from './AdminOrders';
-import AdminAttributes from './AdminAttributes';
-import AdminTypes from './AdminTypes';
+import AdminDashboard from './admin/AdminDashboard';
+import AdminProducts from './admin/AdminProducts';
+import AdminOrders from './admin/AdminOrders';
+import AdminAttributes from './admin/AdminAttributes';
+import AdminTypes from './admin/AdminTypes';
 
 class App extends Component {
   render() {

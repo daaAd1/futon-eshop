@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/components/AdminDashboard.css';
+import '../../styles/admin/AdminDashboard.css';
 import AdminMenu from './AdminMenu';
 
 class AdminDashboard extends React.Component {
