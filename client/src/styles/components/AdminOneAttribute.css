@@ -1,0 +1,153 @@
+.AdminOneAttribute-properties {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.AdminOneAttribute-cursorPointer {
+  cursor: pointer;
+}
+
+.AdminOneAttribute-propertiesInactive {
+  color: #ccc;
+}
+
+.AdminOneAttribute-properties div {
+  flex: 100 0 auto;
+  width: 100px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 7px 5px;
+  line-height: 40px;
+}
+
+.AdminOneAttribute-expandedInfo {
+  display: flex;
+  flex-flow: column;
+  padding: 10px 20px;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.AdminOneAttribute-expandedInfo > div {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  border-right: 1px solid rgba(0, 0, 0, 0.02);
+  padding: 0px 10px;
+  font-size: 17px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.AdminOneAttribute-expandedInfo p:first-child {
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+.AdminOneAttribute-expandedInfo p:last-child {
+  text-align: right;
+  width: 80%;
+  border-right: 0;
+}
+
+.AdminOneAttribute-expandedInfo textarea {
+  width: 80%;
+  resize: none;
+  margin: 10px 0px 10px;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.AdminOneAttribute-activeButton {
+  border: 1px solid transparent;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+.AdminOneAttribute svg {
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.AdminOneAttribute-saveButton button {
+  margin: 20px 0px 20px 20px;
+}
+
+.AdminOneAttribute-dropdownRow > div {
+  display: flex;
+  justify-content: flex-end;
+  width: 80%;
+}
+
+.AdminOneAttribute-dropdownRow > div > div {
+  width: 80%;
+}
+
+.AdminOneAttribute-optionsRow {
+  align-items: baseline !important;
+}
+
+.AdminOneAttribute-optionsRow > p {
+  margin: 0 !important;
+}
+
+.AdminOneAttribute-optionsRow > div {
+  width: 80%;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.AdminOneAttribute-oneOption {
+  flex-flow: row;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.AdminOneAttribute-oneOption textarea {
+  flex: 100 0 auto;
+  width: 100px;
+  white-space: nowrap;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  border: 0;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 7px 5px;
+  line-height: 40px;
+  margin: 0px;
+}
+
+.AdminOneAttribute-deleteButton {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  line-height: 54px;
+  width: 50px;
+  text-align: center;
+}
+
+.AdminOneAttribute-newOption {
+  margin: 10px !important;
+  width: 100%;
+}
+
+.AdminOneAttribute-newOption button {
+  width: 100%;
+}
+
+.AdminOneAttribute-small {
+  max-width: 50px;
+}
+
+.AdminOneAttribute-medium {
+  max-width: 75px;
+}

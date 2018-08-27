@@ -1,4 +1,4 @@
-.AdminAttributes {
+.AdminTypes {
   position: relative;
   flex-grow: 1;
   flex-shrink: 1;
@@ -15,35 +15,22 @@
   position: relative;
 }
 
-.AdminAttributes-listOfAttributes {
-  display: flex;
-  flex-flow: column;
-  overflow: auto;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-  box-sizing: border-box;
-}
-
-.AdminAttributes-newAttributeButton button {
-  margin: 20px 0px 20px 20px;
-}
-
-.AdminProducts:hover {
+.AdminTypes:hover {
   box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.2);
 }
 
-.AdminAttributes-header {
+.AdminTypes-listOfTypes {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.AdminTypes-header {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
   align-items: center;
 }
 
-.AdminAttributes-saveButton button {
-  margin: 20px 0px 20px 20px;
-}
-
-.AdminAttributes-newAttribute {
+.AdminTypes-newType {
   display: flex;
   flex-flow: column;
   padding: 10px 20px;
@@ -51,7 +38,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.AdminAttributes-newAttribute > div {
+.AdminTypes-newType > div {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
@@ -63,23 +50,30 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.AdminAttributes-newAttribute p:first-child {
+.AdminTypes-newType p:first-child {
   font-weight: 700;
   margin-right: 10px;
 }
 
-.AdminAttributes-newAttribute p:last-child {
+.AdminTypes-newType p:last-child {
   text-align: right;
   width: 80%;
 }
 
-.AdminAttributes-newAttribute textarea {
+.AdminTypes-newType textarea {
+  width: 80%;
   resize: none;
+  margin: 10px 0px 10px;
   text-align: right;
+  vertical-align: middle;
+}
+
+.AdminTypes-newTypeButton button {
+  margin: 20px 0px 20px 20px;
 }
 
 @media only screen and (max-width: 760px) {
-  .AdminAttributes {
+  .AdminTypes {
     width: 95%;
   }
 }

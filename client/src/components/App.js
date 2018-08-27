@@ -18,6 +18,7 @@ import AdminDashboard from './AdminDashboard';
 import AdminProducts from './AdminProducts';
 import AdminOrders from './AdminOrders';
 import AdminAttributes from './AdminAttributes';
+import AdminTypes from './AdminTypes';
 
 class App extends Component {
   render() {
@@ -27,6 +28,7 @@ class App extends Component {
           <AdminDashboard />
           <Route exact path={routes.ADMIN_ORDERS} component={() => <AdminOrders />} />
           <Route exact path={routes.ADMIN_PRODUCTS} component={() => <AdminProducts />} />
+          <Route exact path={routes.ADMIN_TYPES} component={() => <AdminTypes />} />
           <Route exact path={routes.ADMIN_ATTRIBUTES} component={() => <AdminAttributes />} />
           <HeaderMenu />
           <Route exact path={routes.HOME} component={() => <Home />} />

@@ -4,7 +4,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import ReactPaginate from 'react-paginate';
 import Button from './Button';
 import '../styles/components/AdminProducts.css';
-import { deleteIcon } from '../icons';
+import { deleteIconWhite } from '../icons';
 import CartItem from './CartItem';
 import ImageUploader from 'react-images-upload';
 import AdminOneProduct from './AdminOneProduct';
@@ -18,6 +18,7 @@ class AdminProducts extends React.Component {
       isNewProductOpen: false,
       currentPage: 1,
       numOfProducts: 17,
+      itemsPerPage: 5,
     };
 
     this.onDrop = this.onDrop.bind(this);
@@ -81,9 +82,9 @@ class AdminProducts extends React.Component {
   }
 
   handleNextClick() {
-    const { currentPage, numOfProducts } = this.state;
+    const { currentPage, numOfProducts, itemsPerPage } = this.state;
 
-    currentPage < numOfProducts / 5
+    currentPage < numOfProducts / itemsPerPage
       ? this.setState({
           currentPage: currentPage + 1,
         })
@@ -263,50 +264,13 @@ class AdminProducts extends React.Component {
       },
     ];
 
-    const columns = [
-      {
-        Header: 'id',
-        accessor: 'id',
-        maxWidth: 50,
-      },
-      {
-        Header: 'Názov',
-        accessor: 'name',
-      },
-      {
-        Header: 'Krátky popis',
-        accessor: 'smallDesc',
-      },
-      {
-        Header: 'Dlhý popis',
-        accessor: 'longDesc',
-      },
-      {
-        Header: 'Cena',
-        accessor: 'price',
-        maxWidth: 120,
-      },
-      {
-        Header: 'Typ',
-        accessor: 'type',
-        maxWidth: 100,
-      },
-      {
-        Header: 'Obrázky',
-        accessor: 'images',
-        maxWidth: 110,
-      },
-      {
-        Header: '',
-        Cell: <button className="AdminOrders-deleteButton">{deleteIcon}</button>,
-        maxWidth: 50,
-      },
-    ];
-
-    const { expanded, isNewProductOpen, currentPage, numOfProducts } = this.state;
+    const { expanded, isNewProductOpen, currentPage, numOfProducts, itemsPerPage } = this.state;
     const products = data.map((product, index) => {
       const rows = [];
-      if (product.id <= currentPage * 5 && product.id >= currentPage * 5 - 4) {
+      if (
+        product.id <= currentPage * itemsPerPage &&
+        product.id >= currentPage * itemsPerPage - (itemsPerPage - 1)
+      ) {
         rows.push(
           <AdminOneProduct
             id={product.id}
@@ -320,10 +284,10 @@ class AdminProducts extends React.Component {
       }
       if (
         product.id === numOfProducts.toString() &&
-        product.id <= currentPage * 5 &&
-        product.id >= currentPage * 5 - 4
+        product.id <= currentPage * itemsPerPage &&
+        product.id >= currentPage * itemsPerPage - (itemsPerPage - 1)
       ) {
-        const numOfAdditionalRowsNeeded = currentPage * 5 - numOfProducts;
+        const numOfAdditionalRowsNeeded = currentPage * itemsPerPage - numOfProducts;
         for (let numOfEmptyRows = 0; numOfEmptyRows < numOfAdditionalRowsNeeded; numOfEmptyRows++) {
           rows.push(<AdminOneProduct id="" name="" shortDesc="" longDesc="" price="" type="" />);
         }
@@ -370,11 +334,11 @@ class AdminProducts extends React.Component {
                   maxFileSize={5242880}
                 />
                 <h2>Nahrané súbory</h2>
-                <ul>
+                <ul className="AdminProducts-uploadedImages">
                   {this.state.images.map((img, index) => (
                     <li key={img.name}>
                       {img.name} - {img.size / 1000000} mb{' '}
-                      <Button onClick={() => this.removeImage(index)} text="odstrániť" />
+                      <Button onClick={() => this.removeImage(index)} text={deleteIconWhite} />
                     </li>
                   ))}
                 </ul>

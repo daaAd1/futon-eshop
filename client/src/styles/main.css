@@ -36,3 +36,9 @@ body {
 svg {
   vertical-align: middle;
 }
+
+textarea,
+input {
+  border: 1px solid #ccc;
+  color: #444444;
+}

@@ -1,0 +1,27 @@
+.AdminAttributesOptionsFirstRow {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  flex: 1 0 auto;
+}
+
+.AdminAttributesOptionsFirstRow p {
+  width: 100px;
+  flex: 100 0 auto;
+  text-align: center;
+  font-weight: 700;
+  margin: 0 !important;
+  padding: 7px 5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.AdminAttributesOptionsFirstRow-small {
+  max-width: 50px;
+}
+
+.AdminAttributesOptionsFirstRow-medium {
+  max-width: 100px;
+}

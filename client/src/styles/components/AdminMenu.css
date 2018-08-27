@@ -5,6 +5,11 @@
 
   background-color: #261c1b;
   color: white;
+
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1;
 }
 
 .AdminMenu a,

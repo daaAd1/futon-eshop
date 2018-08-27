@@ -2,37 +2,37 @@ import React from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import Dropdown from 'react-dropdown';
 import Button from './Button';
+import { deleteIcon, deleteIconWhite, chevronDownIcon, chevronUpIcon } from '../icons';
+import '../styles/components/AdminOneAttribute.css';
 import AdminAttributesFirstRow from './AdminAttributesFirstRow';
-import AdminOneAttribute from './AdminOneAttribute';
-import { deleteIcon } from '../icons';
-import '../styles/components/AdminAttributes.css';
 import AdminAttributesOptionsFirstRow from './AdminAttributesOptionsFirstRow';
 
-class AdminAttributes extends React.Component {
+class AdminOneAttribute extends React.Component {
+  state = {
+    isExpanded: false,
+    options: [
+      {
+        name: 'červená',
+        price: '11,99',
+      },
+      {
+        name: 'modrá',
+        price: '19,99',
+      },
+    ],
+  };
+
   constructor() {
     super();
-    this.state = {
-      isNewAttributeFormOpen: false,
-      options: [
-        {
-          name: '',
-          price: '',
-        },
-        {
-          name: '',
-          price: '',
-        },
-      ],
-    };
 
-    this.toggleNewAttributeForm = this.toggleNewAttributeForm.bind(this);
-    this.removeOption = this.removeOption.bind(this);
+    this.handleExpandChange = this.handleExpandChange.bind(this);
     this.addNewOption = this.addNewOption.bind(this);
+    this.removeOption = this.removeOption.bind(this);
   }
 
-  toggleNewAttributeForm() {
+  handleExpandChange() {
     this.setState((prevState) => ({
-      isNewAttributeFormOpen: !prevState.isNewAttributeFormOpen,
+      isExpanded: !prevState.isExpanded,
     }));
   }
 
@@ -49,16 +49,8 @@ class AdminAttributes extends React.Component {
   }
 
   render() {
-    const { isNewAttributeFormOpen, options } = this.state;
-    const attributesArr = [
-      { name: 'veľkosť futonu', type: 'doplnok' },
-      { name: 'farba futonu', type: 'posteľ' },
-      { name: 'farba tkaniny', type: 'sofa' },
-      { name: 'veľkosť futonu', type: 'futon' },
-    ];
-    const attributes = attributesArr.map((attribute) => (
-      <AdminOneAttribute name={attribute.name} type={attribute.type} />
-    ));
+    const { isExpanded, options } = this.state;
+    const { id, name, shortDesc, longDesc, price, type } = this.props;
     const attributeOptions = options.map((option, index) => (
       <div className="AdminOneAttribute-oneOption">
         <TextareaAutosize value={option.name} />
@@ -70,16 +62,28 @@ class AdminAttributes extends React.Component {
     ));
 
     return (
-      <div className="AdminAttributes">
-        <div className="AdminAttributes-header">
-          <h1>Atribúty</h1>
-          <Button onClick={this.toggleNewAttributeForm} text="Nový atribút" />
+      <div className="AdminOneAttribute">
+        <div className="AdminOneAttribute-properties">
+          <div
+            onClick={this.handleExpandChange}
+            className="AdminOneAttribute-small AdminOneAttribute-cursorPointer"
+          >
+            {isExpanded ? chevronUpIcon : chevronDownIcon}
+          </div>
+          <div>{name}</div>
+          <div>{type}</div>
+          <div
+            onClick={this.handleActiveChange}
+            className="AdminOneAttribute-small AdminOneProduct-cursorPointer"
+          >
+            <button className="AdminOneAttribute-activeButton">{deleteIcon}</button>
+          </div>
         </div>
-        {isNewAttributeFormOpen && (
-          <div className="AdminAttributes-newAttribute swing-in-top-bck">
+        {isExpanded && (
+          <div className="AdminOneAttribute-expandedInfo swing-in-top-bck">
             <div>
-              <p>Názov typu</p>
-              <TextareaAutosize />
+              <p>Názov</p>
+              <TextareaAutosize value={name} />
             </div>
             <div className="AdminOneAttribute-dropdownRow">
               <p>Typ</p>
@@ -97,19 +101,15 @@ class AdminAttributes extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="AdminAttributes-newAttributeButton">
+            <div className="AdminOneAttribute-saveButton">
               <p />
-              <Button text="Vytvoriť atribút" />
+              <Button text="Uložiť" />
             </div>
           </div>
         )}
-        <div className="AdminAttributes-listOfAttributes">
-          <AdminAttributesFirstRow />
-          {attributes}
-        </div>
       </div>
     );
   }
 }
 
-export default AdminAttributes;
+export default AdminOneAttribute;

@@ -1,4 +1,4 @@
-.AdminOneProduct-properties {
+.AdminOneType-properties {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
@@ -6,15 +6,11 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.AdminOneProduct-cursorPointer {
+.AdminOneType-cursorPointer {
   cursor: pointer;
 }
 
-.AdminOneProduct-propertiesInactive {
-  color: #ccc;
-}
-
-.AdminOneProduct-properties div {
+.AdminOneType-properties div {
   flex: 100 0 auto;
   width: 100px;
   white-space: nowrap;
@@ -25,7 +21,7 @@
   line-height: 40px;
 }
 
-.AdminOneProduct-expandedInfo {
+.AdminOneType-expandedInfo {
   display: flex;
   flex-flow: column;
   padding: 10px 20px;
@@ -33,7 +29,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.AdminOneProduct-expandedInfo > div {
+.AdminOneType-expandedInfo > div {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
@@ -45,62 +41,42 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.AdminOneProduct-expandedInfo p:first-child {
+.AdminOneType-expandedInfo p:first-child {
   font-weight: 700;
   margin-right: 10px;
 }
 
-.AdminOneProduct-expandedInfo p:last-child {
+.AdminOneType-expandedInfo p:last-child {
   text-align: right;
   width: 80%;
 }
 
-.AdminOneProduct-expandedInfo textarea {
+.AdminOneType-expandedInfo textarea {
   width: 80%;
   resize: none;
   margin: 10px 0px 10px;
   text-align: right;
   vertical-align: middle;
-  border: 1px solid #ccc;
 }
 
-.AdminOneProduct-activeButton {
+.AdminOneType-activeButton {
   border: 1px solid transparent;
   background-color: transparent;
   cursor: pointer;
   outline: none;
 }
 
-.AdminOneProduct svg {
+.AdminOneType svg {
   width: 24px;
   height: 24px;
   margin: 0;
   margin-bottom: 5px;
 }
 
-.AdminOneProduct-uploadedImages {
-  padding: 0;
-}
-
-.AdminOneProduct-uploadedImages li {
-  padding-bottom: 10px;
-  align-items: center;
-}
-
-.AdminOneProduct-dropdownRow > div {
-  display: flex;
-  justify-content: flex-end;
-  width: 80%;
-}
-
-.AdminOneProduct-dropdownRow > div > div {
-  width: 80%;
-}
-
-.AdminOneProduct-small {
+.AdminOneType-small {
   max-width: 50px;
 }
 
-.AdminOneProduct-medium {
+.AdminOneType-medium {
   max-width: 75px;
 }
