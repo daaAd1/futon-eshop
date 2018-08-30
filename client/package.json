@@ -16,6 +16,7 @@
     "react-multistep": "^3.2.3",
     "react-password-strength": "^2.3.1",
     "react-password-strength-meter": "^1.0.5",
+    "react-redux": "^5.0.7",
     "react-responsive": "^5.0.0",
     "react-responsive-navbar": "^1.0.11",
     "react-router-dom": "^4.3.1",
@@ -27,6 +28,7 @@
     "react-textarea-autosize": "^7.0.4",
     "react-transition-group": "^1.2.1",
     "react-waypoint": "^8.0.3",
+    "redux": "^4.0.0",
     "slick-carousel": "^1.8.1",
     "zxcvbn": "^4.4.2"
   },
@@ -42,6 +44,7 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.11.1"
+    "eslint-plugin-react": "^7.11.1",
+    "redux-devtools": "^3.4.1"
   }
 }

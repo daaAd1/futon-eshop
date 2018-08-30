@@ -11,7 +11,7 @@ import futon from '../img/futon.jpeg';
 import futon2 from '../img/futon2.jpeg';
 import futon3 from '../img/futon3.jpeg';
 
-const ProductGeneralUI = (props) => {
+const Product = (props) => {
   const { name, price, smallDesc, longDesc } = props;
 
   const images = [
@@ -45,7 +45,11 @@ const ProductGeneralUI = (props) => {
               Množstvo:
               <input id="mnozstvo" type="number" value="1" min="1" max="10" />
             </label>
-            <Button text="Pridať do košíka" shop="add_to_cart" />
+            <Button
+              onClick={() => props.onAddToCartClick(1, 3)}
+              text="Pridať do košíka"
+              shop="add_to_cart"
+            />
           </div>
         </div>
       </div>
@@ -57,4 +61,4 @@ const ProductGeneralUI = (props) => {
   );
 };
 
-export default ProductGeneralUI;
+export default Product;

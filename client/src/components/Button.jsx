@@ -76,7 +76,11 @@ const Button = (props) => {
   return (
     <div>
       {shop === 'add_to_cart' && (
-        <button className={`Button ${type} ${round} ${className}`} disabled={disabled}>
+        <button
+          onClick={props.onClick}
+          className={`Button ${type} ${round} ${className}`}
+          disabled={disabled}
+        >
           {addToCartIcon} {text}
         </button>
       )}
