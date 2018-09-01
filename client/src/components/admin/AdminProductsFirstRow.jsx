@@ -11,6 +11,8 @@ class AdminProductsFirstRow extends React.Component {
         <p>Krátky popis</p>
         <p>Dlhý popis</p>
         <p>Cena</p>
+        <p>Kategória</p>
+        <p>Podkategória</p>
         <p>Typ</p>
         <p className="AdminProductFirstRow-small" />
       </div>

@@ -24,8 +24,9 @@ class CartItem extends React.Component {
 
   changeQuantity(event) {
     this.setState({
-      quantity: event.target.value,
+      quantity: Number(event.target.value),
     });
+    this.props.onRemoveProductClick(1, Number(event.target.value));
   }
 
   render() {
@@ -48,7 +49,14 @@ class CartItem extends React.Component {
         ) : (
           <p>Počet kusov: {itemQuantity}</p>
         )}
-        {type !== 'readOnly' && <div className="CartItem-deleteIcon">{deleteIcon}</div>}
+        {type !== 'readOnly' && (
+          <div
+            onClick={() => this.props.onRemoveProductClick(1, 2)}
+            className="CartItem-deleteIcon"
+          >
+            {deleteIcon}
+          </div>
+        )}
         <p className="CartItem-price">
           {price}
           ,00 €

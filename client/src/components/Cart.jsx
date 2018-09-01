@@ -45,9 +45,20 @@ class Cart extends React.Component {
         {isOpen && (
           <div className=" Cart-info">
             <div className="Cart-items">
-              <CartItem price="99" itemQuantity="1" name="Matrac hriva-latex" />{' '}
-              <CartItem price="199" itemQuantity="3" name="Matrac vlna-hriva-latex" />{' '}
               <CartItem
+                onRemoveProductClick={this.props.onRemoveProductClick}
+                price="99"
+                itemQuantity="1"
+                name="Matrac hriva-latex"
+              />{' '}
+              <CartItem
+                onRemoveProductClick={this.props.onRemoveProductClick}
+                price="199"
+                itemQuantity="3"
+                name="Matrac vlna-hriva-latex"
+              />{' '}
+              <CartItem
+                onRemoveProductClick={this.props.onRemoveProductClick}
                 price="299"
                 itemQuantity="2"
                 name="Bavlnený matrac s vrstvou kokosu a peny"

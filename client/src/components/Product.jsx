@@ -36,7 +36,6 @@ const Product = (props) => {
         <div className="ProductGeneralUI-images">
           <ImageGallery items={images} showPlayButton={false} slideDuration={0} />
         </div>
-
         <div className="ProductGeneralUI-details">
           <p className="ProductGeneralUI-description">{smallDesc}</p>
           <div className="ProductGeneralUI-cartDetails">

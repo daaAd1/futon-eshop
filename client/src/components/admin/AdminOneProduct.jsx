@@ -75,7 +75,7 @@ class AdminOneProduct extends React.Component {
 
   render() {
     const { isExpanded, isActive } = this.state;
-    const { id, name, shortDesc, longDesc, price, type } = this.props;
+    const { id, name, shortDesc, longDesc, price, type, category, subCategory } = this.props;
 
     const productActive = isActive
       ? 'color-change-reverse'
@@ -95,6 +95,8 @@ class AdminOneProduct extends React.Component {
           <div>{shortDesc}</div>
           <div>{longDesc}</div>
           <div>{price}</div>
+          <div>{category}</div>
+          <div>{subCategory}</div>
           <div>{type}</div>
           <div
             onClick={this.handleActiveChange}
@@ -128,8 +130,19 @@ class AdminOneProduct extends React.Component {
               <TextareaAutosize value={price} />
             </div>
             <div className="AdminOneProduct-dropdownRow">
-              <p>Typ</p>
+              <p>Kategória</p>
               <Dropdown value="doplnok" options={['doplnok', 'sofa', 'futon']} />
+            </div>
+            <div className="AdminOneProduct-dropdownRow">
+              <p>Podkategória</p>
+              <Dropdown value="latex" options={['latex', '110x120cm', 'bavlna']} />
+            </div>
+            <div className="AdminOneProduct-dropdownRow">
+              <p>Typ</p>
+              <Dropdown
+                value="doplnok cerveny"
+                options={['doplnok cerveny', 'postel jeden ram', 'postel jedna farba']}
+              />
             </div>
             <div>
               <p>Obrázky</p>

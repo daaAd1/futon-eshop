@@ -3,7 +3,7 @@ import { HashRouter, Route, Link } from 'react-router-dom';
 import '../styles/components/App.css';
 import 'react-table/react-table.css';
 import * as routes from '../routes';
-import HeaderMenu from './HeaderMenu';
+import HeaderMenuContainer from '../containers/HeaderMenuContainer';
 import FooterMenu from './FooterMenu';
 import OrderForm from './OrderForm';
 import Home from './Home';
@@ -26,7 +26,7 @@ class App extends Component {
           <Route exact path={routes.ADMIN_PRODUCTS} component={() => <AdminProducts />} />
           <Route exact path={routes.ADMIN_TYPES} component={() => <AdminTypes />} />
           <Route exact path={routes.ADMIN_ATTRIBUTES} component={() => <AdminAttributes />} />
-          <HeaderMenu />
+          <HeaderMenuContainer />
           <Route exact path={routes.HOME} component={() => <Home />} />
           <Route exact path={routes.CART} component={() => <CartPage totalPrice="599" />} />
           <Route exact path={routes.CHECKOUT} component={() => <OrderForm />} />

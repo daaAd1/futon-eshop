@@ -87,7 +87,11 @@ const HeaderMenu = (props) => {
           <div className="HeaderMenu-rightContainerDropdownLink">
             <Link to={routes.SHOWROOM}>Showroom</Link>
           </div>
-          <Cart totalPrice={599} numberOfItems={3} />
+          <Cart
+            onRemoveProductClick={props.onRemoveFromCartClick}
+            totalPrice={599}
+            numberOfItems={3}
+          />
         </div>
       </div>
     </div>

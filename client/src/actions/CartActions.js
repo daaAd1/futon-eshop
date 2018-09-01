@@ -6,10 +6,10 @@ const addProductToCart = (id, count) => ({
   count,
 });
 
-const removeProductFromCart = (id, count) => ({
+const removeProductFromCart = (id, newCount) => ({
   type: types.REMOVE_PRODUCT_FROM_CART,
   id,
-  count,
+  newCount,
 });
 
 const example = {
@@ -21,6 +21,9 @@ const example = {
       additionalOptions: [{ 'farba tkaniny': 'cervena' }, { 'velkost futonu': '190x200cm' }],
     },
   ],
+  isHamburgerOpen: false,
+  isCartOpen: false,
+  route: '/',
 };
 
 export { addProductToCart, removeProductFromCart };

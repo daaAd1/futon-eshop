@@ -18,6 +18,17 @@ class OrderForm extends React.Component {
   state = {
     currentStep: 1,
     maxSteps: 4,
+    firstName: '',
+    lastName: '',
+    email: '',
+    telephone: '',
+    state: '',
+    city: '',
+    adress: '',
+    psc: '',
+    payment: '',
+    delivery: '',
+    note: '',
   };
 
   constructor(props) {

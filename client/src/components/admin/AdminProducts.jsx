@@ -92,23 +92,14 @@ class AdminProducts extends React.Component {
   render() {
     const data = [
       {
-        id: '1',
-        name: 'Matrac hriva-latex',
-        shortDesc:
-          'Futon Kami patrí medzi mäkké futony. Konská hriva patrí medzi luxusné materiály a matrace z certifikovaných ekologických a šetrne získavaných konských hrív majú jedinečné vlastnosti. Výborne pohlcujú vlhkosť a znižujú množstvo roztočov v matraci. Preto sú vhodné aj pre alergikov. ',
-        longDesc:
-          '<b>Zloženie</b>: 3 vrstvy 100 % bavlny, 1 cm konská hriva, 4 cm latexu, 1 cm konská hriva,       3 vrstvy 100 % bavlny <br /> <b>Výška</b>: 18 cm Nosnosť matraca: 130 kg <br /><b>Hmotnosť matraca</b>: od 19 kg (veľkosť 90x200 cm) do 40 kg (veľkosť 200x200 cm) <br /><b>Tvrdosť matraca</b>: najmäkší matrac <br /> <b>Bavlna</b>: Je hlavnou súčasťoutradičného japonského futonu. Je pevná, tvrdá a priedušná. Dobre fixuje chrbát. Je hygienická vďaka tomu, že rýchlo schne. Extrémne vysoká gramáž 1000g/m². Vo vnútri futonuje spracovaná ihlovým strojom a stlačená.        <br /> <b>Latexová vrstva</b>: Zvyšuje pružnosť a mäkkosť matraca. Je ideálna aj pokiaľ        budete na matraci často sedieť.<br /> <b>Zloženie</b>: 80 % prírodný kaučuk a 20 % umelý        kaučuk.<br /> <b> Konská hriva</b>: Dodáva matracu skvelé vlastnosti. Je vzdušná, ľahká,        výborne odvádza vlhkosť. Matrac s konskou hrivou je odolný voči plesniam a baktériám.        Konská hriva sa získava zastrihávaním koncov konskej hrivy. <br />        <b>Povrch matraca a gramáž</b>: bavlnené rúno 300g/m² <br />        <b>Certifikácia tkanín matraca</b>: Eko-tex <br /> <b>Značka Matraca</b>: Nejfuton – Česká        republika <br /> <b>Cena za dopravu</b>: malá zásielka: 5 €, stredná zásielka:12 €, veľká        zásielka: 20 € <br /> <b>Doprava</b>: prepravnou spoločnosťou TOPTRANS <br />        <b>Osobný odber</b>: v Košiciach po dohode <br /> <b>Platba</b>: dobierkou alebo prevodomna účet',
-        price: '599,00 €',
-        type: 'doplnok',
-        images: '1',
-      },
-      {
         id: '2',
         name: 'Jozef Korikov',
         email: 'jozefkorikov@email.com',
         telephone: '+421901901901',
         price: '199,00 €',
-        type: 'postel',
+        type: 'postel jedna farba',
+        category: 'postel',
+        subCategory: 'latex',
         images: '2',
       },
       {
@@ -119,7 +110,9 @@ class AdminProducts extends React.Component {
         longDesc:
           '<b>Zloženie</b>: 3 vrstvy 100 % bavlny, 1 cm konská hriva, 4 cm latexu, 1 cm konská hriva,       3 vrstvy 100 % bavlny <br /> <b>Výška</b>: 18 cm Nosnosť matraca: 130 kg <br /><b>Hmotnosť matraca</b>: od 19 kg (veľkosť 90x200 cm) do 40 kg (veľkosť 200x200 cm) <br /><b>Tvrdosť matraca</b>: najmäkší matrac <br /> <b>Bavlna</b>: Je hlavnou súčasťoutradičného japonského futonu. Je pevná, tvrdá a priedušná. Dobre fixuje chrbát. Je hygienická vďaka tomu, že rýchlo schne. Extrémne vysoká gramáž 1000g/m². Vo vnútri futonuje spracovaná ihlovým strojom a stlačená.        <br /> <b>Latexová vrstva</b>: Zvyšuje pružnosť a mäkkosť matraca. Je ideálna aj pokiaľ        budete na matraci často sedieť.<br /> <b>Zloženie</b>: 80 % prírodný kaučuk a 20 % umelý        kaučuk.<br /> <b> Konská hriva</b>: Dodáva matracu skvelé vlastnosti. Je vzdušná, ľahká,        výborne odvádza vlhkosť. Matrac s konskou hrivou je odolný voči plesniam a baktériám.        Konská hriva sa získava zastrihávaním koncov konskej hrivy. <br />        <b>Povrch matraca a gramáž</b>: bavlnené rúno 300g/m² <br />        <b>Certifikácia tkanín matraca</b>: Eko-tex <br /> <b>Značka Matraca</b>: Nejfuton – Česká        republika <br /> <b>Cena za dopravu</b>: malá zásielka: 5 €, stredná zásielka:12 €, veľká        zásielka: 20 € <br /> <b>Doprava</b>: prepravnou spoločnosťou TOPTRANS <br />        <b>Osobný odber</b>: v Košiciach po dohode <br /> <b>Platba</b>: dobierkou alebo prevodomna účet',
         price: '599,00 €',
-        type: 'doplnok',
+        type: 'doplnok cerveny',
+        category: 'doplnok',
+        subCategory: '100x200cm',
         images: '1',
       },
       {
@@ -128,7 +121,9 @@ class AdminProducts extends React.Component {
         email: 'jozefkorikov@email.com',
         telephone: '+421901901901',
         price: '199,00 €',
-        type: 'postel',
+        type: 'postel jeden ram',
+        category: 'postel',
+        subCategory: '100x200cm',
         images: '2',
       },
       {
@@ -139,126 +134,130 @@ class AdminProducts extends React.Component {
         longDesc:
           '<b>Zloženie</b>: 3 vrstvy 100 % bavlny, 1 cm konská hriva, 4 cm latexu, 1 cm konská hriva,       3 vrstvy 100 % bavlny <br /> <b>Výška</b>: 18 cm Nosnosť matraca: 130 kg <br /><b>Hmotnosť matraca</b>: od 19 kg (veľkosť 90x200 cm) do 40 kg (veľkosť 200x200 cm) <br /><b>Tvrdosť matraca</b>: najmäkší matrac <br /> <b>Bavlna</b>: Je hlavnou súčasťoutradičného japonského futonu. Je pevná, tvrdá a priedušná. Dobre fixuje chrbát. Je hygienická vďaka tomu, že rýchlo schne. Extrémne vysoká gramáž 1000g/m². Vo vnútri futonuje spracovaná ihlovým strojom a stlačená.        <br /> <b>Latexová vrstva</b>: Zvyšuje pružnosť a mäkkosť matraca. Je ideálna aj pokiaľ        budete na matraci často sedieť.<br /> <b>Zloženie</b>: 80 % prírodný kaučuk a 20 % umelý        kaučuk.<br /> <b> Konská hriva</b>: Dodáva matracu skvelé vlastnosti. Je vzdušná, ľahká,        výborne odvádza vlhkosť. Matrac s konskou hrivou je odolný voči plesniam a baktériám.        Konská hriva sa získava zastrihávaním koncov konskej hrivy. <br />        <b>Povrch matraca a gramáž</b>: bavlnené rúno 300g/m² <br />        <b>Certifikácia tkanín matraca</b>: Eko-tex <br /> <b>Značka Matraca</b>: Nejfuton – Česká        republika <br /> <b>Cena za dopravu</b>: malá zásielka: 5 €, stredná zásielka:12 €, veľká        zásielka: 20 € <br /> <b>Doprava</b>: prepravnou spoločnosťou TOPTRANS <br />        <b>Osobný odber</b>: v Košiciach po dohode <br /> <b>Platba</b>: dobierkou alebo prevodomna účet',
         price: '599,00 €',
-        type: 'doplnok',
+        type: 'doplnok bez ramu',
+        category: 'doplnok',
+        subCategory: 'bavlna',
         images: '1',
       },
       {
-        id: '6',
+        id: '2',
         name: 'Jozef Korikov',
         email: 'jozefkorikov@email.com',
         telephone: '+421901901901',
         price: '199,00 €',
-        type: 'postel',
+        type: 'postel jedna farba',
+        category: 'postel',
+        subCategory: 'latex',
         images: '2',
       },
       {
-        id: '7',
+        id: '3',
         name: 'Matrac hriva-latex',
         shortDesc:
           'Futon Kami patrí medzi mäkké futony. Konská hriva patrí medzi luxusné materiály a matrace z certifikovaných ekologických a šetrne získavaných konských hrív majú jedinečné vlastnosti. Výborne pohlcujú vlhkosť a znižujú množstvo roztočov v matraci. Preto sú vhodné aj pre alergikov. ',
         longDesc:
           '<b>Zloženie</b>: 3 vrstvy 100 % bavlny, 1 cm konská hriva, 4 cm latexu, 1 cm konská hriva,       3 vrstvy 100 % bavlny <br /> <b>Výška</b>: 18 cm Nosnosť matraca: 130 kg <br /><b>Hmotnosť matraca</b>: od 19 kg (veľkosť 90x200 cm) do 40 kg (veľkosť 200x200 cm) <br /><b>Tvrdosť matraca</b>: najmäkší matrac <br /> <b>Bavlna</b>: Je hlavnou súčasťoutradičného japonského futonu. Je pevná, tvrdá a priedušná. Dobre fixuje chrbát. Je hygienická vďaka tomu, že rýchlo schne. Extrémne vysoká gramáž 1000g/m². Vo vnútri futonuje spracovaná ihlovým strojom a stlačená.        <br /> <b>Latexová vrstva</b>: Zvyšuje pružnosť a mäkkosť matraca. Je ideálna aj pokiaľ        budete na matraci často sedieť.<br /> <b>Zloženie</b>: 80 % prírodný kaučuk a 20 % umelý        kaučuk.<br /> <b> Konská hriva</b>: Dodáva matracu skvelé vlastnosti. Je vzdušná, ľahká,        výborne odvádza vlhkosť. Matrac s konskou hrivou je odolný voči plesniam a baktériám.        Konská hriva sa získava zastrihávaním koncov konskej hrivy. <br />        <b>Povrch matraca a gramáž</b>: bavlnené rúno 300g/m² <br />        <b>Certifikácia tkanín matraca</b>: Eko-tex <br /> <b>Značka Matraca</b>: Nejfuton – Česká        republika <br /> <b>Cena za dopravu</b>: malá zásielka: 5 €, stredná zásielka:12 €, veľká        zásielka: 20 € <br /> <b>Doprava</b>: prepravnou spoločnosťou TOPTRANS <br />        <b>Osobný odber</b>: v Košiciach po dohode <br /> <b>Platba</b>: dobierkou alebo prevodomna účet',
         price: '599,00 €',
-        type: 'doplnok',
+        type: 'doplnok cerveny',
+        category: 'doplnok',
+        subCategory: '100x200cm',
         images: '1',
       },
       {
-        id: '8',
+        id: '4',
         name: 'Jozef Korikov',
         email: 'jozefkorikov@email.com',
         telephone: '+421901901901',
         price: '199,00 €',
-        type: 'postel',
+        type: 'postel jeden ram',
+        category: 'postel',
+        subCategory: '100x200cm',
         images: '2',
       },
       {
-        id: '9',
+        id: '5',
         name: 'Matrac hriva-latex',
         shortDesc:
           'Futon Kami patrí medzi mäkké futony. Konská hriva patrí medzi luxusné materiály a matrace z certifikovaných ekologických a šetrne získavaných konských hrív majú jedinečné vlastnosti. Výborne pohlcujú vlhkosť a znižujú množstvo roztočov v matraci. Preto sú vhodné aj pre alergikov. ',
         longDesc:
           '<b>Zloženie</b>: 3 vrstvy 100 % bavlny, 1 cm konská hriva, 4 cm latexu, 1 cm konská hriva,       3 vrstvy 100 % bavlny <br /> <b>Výška</b>: 18 cm Nosnosť matraca: 130 kg <br /><b>Hmotnosť matraca</b>: od 19 kg (veľkosť 90x200 cm) do 40 kg (veľkosť 200x200 cm) <br /><b>Tvrdosť matraca</b>: najmäkší matrac <br /> <b>Bavlna</b>: Je hlavnou súčasťoutradičného japonského futonu. Je pevná, tvrdá a priedušná. Dobre fixuje chrbát. Je hygienická vďaka tomu, že rýchlo schne. Extrémne vysoká gramáž 1000g/m². Vo vnútri futonuje spracovaná ihlovým strojom a stlačená.        <br /> <b>Latexová vrstva</b>: Zvyšuje pružnosť a mäkkosť matraca. Je ideálna aj pokiaľ        budete na matraci často sedieť.<br /> <b>Zloženie</b>: 80 % prírodný kaučuk a 20 % umelý        kaučuk.<br /> <b> Konská hriva</b>: Dodáva matracu skvelé vlastnosti. Je vzdušná, ľahká,        výborne odvádza vlhkosť. Matrac s konskou hrivou je odolný voči plesniam a baktériám.        Konská hriva sa získava zastrihávaním koncov konskej hrivy. <br />        <b>Povrch matraca a gramáž</b>: bavlnené rúno 300g/m² <br />        <b>Certifikácia tkanín matraca</b>: Eko-tex <br /> <b>Značka Matraca</b>: Nejfuton – Česká        republika <br /> <b>Cena za dopravu</b>: malá zásielka: 5 €, stredná zásielka:12 €, veľká        zásielka: 20 € <br /> <b>Doprava</b>: prepravnou spoločnosťou TOPTRANS <br />        <b>Osobný odber</b>: v Košiciach po dohode <br /> <b>Platba</b>: dobierkou alebo prevodomna účet',
         price: '599,00 €',
-        type: 'doplnok',
+        type: 'doplnok bez ramu',
+        category: 'doplnok',
+        subCategory: 'bavlna',
         images: '1',
       },
       {
-        id: '10',
+        id: '4',
         name: 'Jozef Korikov',
         email: 'jozefkorikov@email.com',
         telephone: '+421901901901',
         price: '199,00 €',
-        type: 'postel',
+        type: 'postel jeden ram',
+        category: 'postel',
+        subCategory: '100x200cm',
         images: '2',
       },
       {
-        id: '11',
+        id: '5',
         name: 'Matrac hriva-latex',
         shortDesc:
           'Futon Kami patrí medzi mäkké futony. Konská hriva patrí medzi luxusné materiály a matrace z certifikovaných ekologických a šetrne získavaných konských hrív majú jedinečné vlastnosti. Výborne pohlcujú vlhkosť a znižujú množstvo roztočov v matraci. Preto sú vhodné aj pre alergikov. ',
         longDesc:
           '<b>Zloženie</b>: 3 vrstvy 100 % bavlny, 1 cm konská hriva, 4 cm latexu, 1 cm konská hriva,       3 vrstvy 100 % bavlny <br /> <b>Výška</b>: 18 cm Nosnosť matraca: 130 kg <br /><b>Hmotnosť matraca</b>: od 19 kg (veľkosť 90x200 cm) do 40 kg (veľkosť 200x200 cm) <br /><b>Tvrdosť matraca</b>: najmäkší matrac <br /> <b>Bavlna</b>: Je hlavnou súčasťoutradičného japonského futonu. Je pevná, tvrdá a priedušná. Dobre fixuje chrbát. Je hygienická vďaka tomu, že rýchlo schne. Extrémne vysoká gramáž 1000g/m². Vo vnútri futonuje spracovaná ihlovým strojom a stlačená.        <br /> <b>Latexová vrstva</b>: Zvyšuje pružnosť a mäkkosť matraca. Je ideálna aj pokiaľ        budete na matraci často sedieť.<br /> <b>Zloženie</b>: 80 % prírodný kaučuk a 20 % umelý        kaučuk.<br /> <b> Konská hriva</b>: Dodáva matracu skvelé vlastnosti. Je vzdušná, ľahká,        výborne odvádza vlhkosť. Matrac s konskou hrivou je odolný voči plesniam a baktériám.        Konská hriva sa získava zastrihávaním koncov konskej hrivy. <br />        <b>Povrch matraca a gramáž</b>: bavlnené rúno 300g/m² <br />        <b>Certifikácia tkanín matraca</b>: Eko-tex <br /> <b>Značka Matraca</b>: Nejfuton – Česká        republika <br /> <b>Cena za dopravu</b>: malá zásielka: 5 €, stredná zásielka:12 €, veľká        zásielka: 20 € <br /> <b>Doprava</b>: prepravnou spoločnosťou TOPTRANS <br />        <b>Osobný odber</b>: v Košiciach po dohode <br /> <b>Platba</b>: dobierkou alebo prevodomna účet',
         price: '599,00 €',
-        type: 'doplnok',
+        type: 'doplnok bez ramu',
+        category: 'doplnok',
+        subCategory: 'bavlna',
         images: '1',
       },
       {
-        id: '12',
+        id: '2',
         name: 'Jozef Korikov',
         email: 'jozefkorikov@email.com',
         telephone: '+421901901901',
         price: '199,00 €',
-        type: 'postel',
+        type: 'postel jedna farba',
+        category: 'postel',
+        subCategory: 'latex',
         images: '2',
       },
       {
-        id: '13',
+        id: '3',
         name: 'Matrac hriva-latex',
         shortDesc:
           'Futon Kami patrí medzi mäkké futony. Konská hriva patrí medzi luxusné materiály a matrace z certifikovaných ekologických a šetrne získavaných konských hrív majú jedinečné vlastnosti. Výborne pohlcujú vlhkosť a znižujú množstvo roztočov v matraci. Preto sú vhodné aj pre alergikov. ',
         longDesc:
           '<b>Zloženie</b>: 3 vrstvy 100 % bavlny, 1 cm konská hriva, 4 cm latexu, 1 cm konská hriva,       3 vrstvy 100 % bavlny <br /> <b>Výška</b>: 18 cm Nosnosť matraca: 130 kg <br /><b>Hmotnosť matraca</b>: od 19 kg (veľkosť 90x200 cm) do 40 kg (veľkosť 200x200 cm) <br /><b>Tvrdosť matraca</b>: najmäkší matrac <br /> <b>Bavlna</b>: Je hlavnou súčasťoutradičného japonského futonu. Je pevná, tvrdá a priedušná. Dobre fixuje chrbát. Je hygienická vďaka tomu, že rýchlo schne. Extrémne vysoká gramáž 1000g/m². Vo vnútri futonuje spracovaná ihlovým strojom a stlačená.        <br /> <b>Latexová vrstva</b>: Zvyšuje pružnosť a mäkkosť matraca. Je ideálna aj pokiaľ        budete na matraci často sedieť.<br /> <b>Zloženie</b>: 80 % prírodný kaučuk a 20 % umelý        kaučuk.<br /> <b> Konská hriva</b>: Dodáva matracu skvelé vlastnosti. Je vzdušná, ľahká,        výborne odvádza vlhkosť. Matrac s konskou hrivou je odolný voči plesniam a baktériám.        Konská hriva sa získava zastrihávaním koncov konskej hrivy. <br />        <b>Povrch matraca a gramáž</b>: bavlnené rúno 300g/m² <br />        <b>Certifikácia tkanín matraca</b>: Eko-tex <br /> <b>Značka Matraca</b>: Nejfuton – Česká        republika <br /> <b>Cena za dopravu</b>: malá zásielka: 5 €, stredná zásielka:12 €, veľká        zásielka: 20 € <br /> <b>Doprava</b>: prepravnou spoločnosťou TOPTRANS <br />        <b>Osobný odber</b>: v Košiciach po dohode <br /> <b>Platba</b>: dobierkou alebo prevodomna účet',
         price: '599,00 €',
-        type: 'doplnok',
+        type: 'doplnok cerveny',
+        category: 'doplnok',
+        subCategory: '100x200cm',
         images: '1',
       },
       {
-        id: '14',
+        id: '4',
         name: 'Jozef Korikov',
         email: 'jozefkorikov@email.com',
         telephone: '+421901901901',
         price: '199,00 €',
-        type: 'postel',
+        type: 'postel jeden ram',
+        category: 'postel',
+        subCategory: '100x200cm',
         images: '2',
       },
       {
-        id: '15',
+        id: '5',
         name: 'Matrac hriva-latex',
         shortDesc:
           'Futon Kami patrí medzi mäkké futony. Konská hriva patrí medzi luxusné materiály a matrace z certifikovaných ekologických a šetrne získavaných konských hrív majú jedinečné vlastnosti. Výborne pohlcujú vlhkosť a znižujú množstvo roztočov v matraci. Preto sú vhodné aj pre alergikov. ',
         longDesc:
           '<b>Zloženie</b>: 3 vrstvy 100 % bavlny, 1 cm konská hriva, 4 cm latexu, 1 cm konská hriva,       3 vrstvy 100 % bavlny <br /> <b>Výška</b>: 18 cm Nosnosť matraca: 130 kg <br /><b>Hmotnosť matraca</b>: od 19 kg (veľkosť 90x200 cm) do 40 kg (veľkosť 200x200 cm) <br /><b>Tvrdosť matraca</b>: najmäkší matrac <br /> <b>Bavlna</b>: Je hlavnou súčasťoutradičného japonského futonu. Je pevná, tvrdá a priedušná. Dobre fixuje chrbát. Je hygienická vďaka tomu, že rýchlo schne. Extrémne vysoká gramáž 1000g/m². Vo vnútri futonuje spracovaná ihlovým strojom a stlačená.        <br /> <b>Latexová vrstva</b>: Zvyšuje pružnosť a mäkkosť matraca. Je ideálna aj pokiaľ        budete na matraci často sedieť.<br /> <b>Zloženie</b>: 80 % prírodný kaučuk a 20 % umelý        kaučuk.<br /> <b> Konská hriva</b>: Dodáva matracu skvelé vlastnosti. Je vzdušná, ľahká,        výborne odvádza vlhkosť. Matrac s konskou hrivou je odolný voči plesniam a baktériám.        Konská hriva sa získava zastrihávaním koncov konskej hrivy. <br />        <b>Povrch matraca a gramáž</b>: bavlnené rúno 300g/m² <br />        <b>Certifikácia tkanín matraca</b>: Eko-tex <br /> <b>Značka Matraca</b>: Nejfuton – Česká        republika <br /> <b>Cena za dopravu</b>: malá zásielka: 5 €, stredná zásielka:12 €, veľká        zásielka: 20 € <br /> <b>Doprava</b>: prepravnou spoločnosťou TOPTRANS <br />        <b>Osobný odber</b>: v Košiciach po dohode <br /> <b>Platba</b>: dobierkou alebo prevodomna účet',
         price: '599,00 €',
-        type: 'doplnok',
+        type: 'doplnok bez ramu',
+        category: 'doplnok',
+        subCategory: 'bavlna',
         images: '1',
-      },
-      {
-        id: '16',
-        name: 'Jozef Korikov',
-        email: 'jozefkorikov@email.com',
-        telephone: '+421901901901',
-        price: '199,00 €',
-        type: 'postel',
-        images: '2',
-      },
-      {
-        id: '17',
-        name: 'Jozef Korikov',
-        email: 'jozefkorikov@email.com',
-        telephone: '+421901901901',
-        price: '199,00 €',
-        type: 'postel',
-        images: '2',
       },
     ];
 
@@ -277,6 +276,8 @@ class AdminProducts extends React.Component {
             longDesc={product.longDesc}
             price={product.price}
             type={product.type}
+            category={product.category}
+            subCategory={product.subCategory}
           />,
         );
       }
