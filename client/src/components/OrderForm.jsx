@@ -18,17 +18,17 @@ class OrderForm extends React.Component {
   state = {
     currentStep: 1,
     maxSteps: 4,
-    firstName: '',
-    lastName: '',
-    email: '',
-    telephone: '',
-    state: '',
-    city: '',
-    adress: '',
-    psc: '',
-    payment: '',
-    delivery: '',
-    note: '',
+    firstName: localStorage.getItem('form-firstName') || '',
+    lastName: localStorage.getItem('form-lastName') || '',
+    email: localStorage.getItem('form-email') || '',
+    phone: localStorage.getItem('form-phone') || '',
+    country: localStorage.getItem('form-country') || 'Slovensko',
+    city: localStorage.getItem('form-city') || '',
+    address: localStorage.getItem('form-address') || '',
+    psc: localStorage.getItem('form-psc') || '',
+    payment: localStorage.getItem('form-payment') || 'Dobierka',
+    delivery: localStorage.getItem('form-delivery') || 'Toptrans',
+    note: localStorage.getItem('form-note') || '',
   };
 
   constructor(props) {
@@ -37,6 +37,14 @@ class OrderForm extends React.Component {
     this.handleBackClick = this.handleBackClick.bind(this);
     this.handleNextClick = this.handleNextClick.bind(this);
     this.setCurrentStep = this.setCurrentStep.bind(this);
+    this.handleFormChange = this.handleFormChange.bind(this);
+  }
+
+  handleFormChange(property, value) {
+    this.setState({
+      [property]: value,
+    });
+    localStorage.setItem(`form-${property}`, value);
   }
 
   handleBackClick() {
@@ -64,7 +72,20 @@ class OrderForm extends React.Component {
     const nameRegularExpression = new RegExp('\\w+\\s\\w+');
     const emailRegularExpresion = new RegExp('[^@]+@[^@]+\\.[^@]+');
 
-    const { currentStep } = this.state;
+    const {
+      currentStep,
+      country,
+      payment,
+      delivery,
+      note,
+      firstName,
+      lastName,
+      email,
+      phone,
+      city,
+      address,
+      psc,
+    } = this.state;
     return (
       <div className="OrderForm">
         <h1>Objednanie tovaru</h1>
@@ -87,22 +108,38 @@ class OrderForm extends React.Component {
         </MediaQuery>
         {currentStep === 1 && (
           <div className="slide-in-right ">
-            <OrderFormContact />
+            <OrderFormContact
+              firstName={firstName}
+              lastName={lastName}
+              email={email}
+              phone={phone}
+              onChange={this.handleFormChange}
+            />
           </div>
         )}
         {currentStep === 2 && (
           <div className="slide-in-right ">
-            <OrderFormAddress />
+            <OrderFormAddress
+              psc={psc}
+              address={address}
+              city={city}
+              country={country}
+              onChange={this.handleFormChange}
+            />
           </div>
         )}
         {currentStep === 3 && (
           <div className="slide-in-right ">
-            <OrderFormPayment />
+            <OrderFormPayment
+              payment={payment}
+              delivery={delivery}
+              onChange={this.handleFormChange}
+            />
           </div>
         )}
         {currentStep === 4 && (
           <div className="slide-in-right ">
-            <OrderFormLastStep />
+            <OrderFormLastStep note={note} onChange={this.handleFormChange} />
           </div>
         )}
 

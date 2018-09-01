@@ -9,19 +9,36 @@ class OrderFormAddress extends React.Component {
     const emailRegularExpression = new RegExp('[^@]+@[^@]+\\.[^@]+');
     const pscRegularExpression = new RegExp('\\d{5}');
 
+    const { country, city, address, psc } = this.props;
     return (
       <div className="OrderFormAddress">
         <h1>Adresa</h1>
         <p className="OrderForm-requiredFieldsNotice">*Povinné polia</p>
-        <fieldset className="OrderFormAddress-countryChooser" id="country">
+        <fieldset
+          onChange={(event) => this.props.onChange('country', event.target.value)}
+          className="OrderFormAddress-countryChooser"
+          id="country"
+        >
           <legend>Štát*</legend>
           <p>
-            <input checked type="radio" name="platba" id="slovensko" value="small" />
-            <label for="slovensko">Slovensko</label>
+            <input
+              checked={country === 'Slovensko'}
+              type="radio"
+              name="platba"
+              id="slovensko"
+              value="Slovensko"
+            />
+            <label htmlFor="slovensko">Slovensko</label>
           </p>
           <p>
-            <input type="radio" name="platba" id="cesko" value="medium" />
-            <label for="cesko">Česká republika</label>
+            <input
+              checked={country === 'Česká republika'}
+              type="radio"
+              name="platba"
+              id="cesko"
+              value="Česká republika"
+            />
+            <label htmlFor="cesko">Česká republika</label>
           </p>
         </fieldset>
         <TextareaWithLabel
@@ -29,6 +46,8 @@ class OrderFormAddress extends React.Component {
           label="Mesto*"
           placeholder="Bratislava"
           id="address-city"
+          value={city}
+          onChange={(value) => this.props.onChange('city', value)}
         />
         <InputFieldsContainer flow="row" className="Form-inputFields">
           <TextareaWithLabel
@@ -36,6 +55,8 @@ class OrderFormAddress extends React.Component {
             label="Názov a číslo ulice*"
             placeholder="Košická 2"
             id="register-address-street-number"
+            value={address}
+            onChange={(value) => this.props.onChange('address', value)}
           />
           <TextareaWithLabel
             regex={pscRegularExpression}
@@ -44,6 +65,8 @@ class OrderFormAddress extends React.Component {
             id="register-psc"
             size="third"
             maxLength={5}
+            value={psc}
+            onChange={(value) => this.props.onChange('psc', value)}
           />
         </InputFieldsContainer>
       </div>

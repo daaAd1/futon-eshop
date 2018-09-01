@@ -7,7 +7,7 @@ import { packageIcon, payIcon, deliveryIcon, creditCardIcon } from '../icons';
 
 class OrderFormLastStep extends React.Component {
   render() {
-    const { password, repeatPassword } = this.props;
+    const { password, repeatPassword, note } = this.props;
 
     return (
       <div className="OrderFormLastStep">
@@ -46,7 +46,12 @@ class OrderFormLastStep extends React.Component {
           </div>
           <div className="OrderFormLastStep-additionalNote">
             <h2>Poznámka/Pripomienka ku objednávke</h2>
-            <TextareaAutosize minRows={3} placeholder="Poznámka k objednávke" />
+            <TextareaAutosize
+              onChange={(event) => this.props.onChange('note', event.target.value)}
+              value={note}
+              minRows={3}
+              placeholder="Poznámka k objednávke"
+            />
           </div>
         </div>
       </div>

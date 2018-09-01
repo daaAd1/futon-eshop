@@ -32,46 +32,77 @@ class OrderFormPayment extends React.Component {
 
   render() {
     const { password, repeatPassword } = this.state;
+    const { payment, delivery } = this.props;
 
     return (
       <div className="OrderFormPayment">
         <h1>Spôsob platby a doručenia</h1>
         <form>
-          <fieldset id="payment">
+          <fieldset
+            onChange={(event) => this.props.onChange('payment', event.target.value)}
+            id="payment"
+          >
             <legend>
               {creditCardIcon}
               Spôsob platby
             </legend>
             <p>
-              <input checked type="radio" name="platba" id="dobierkou" value="small" />
-              <label for="dobierkou">
+              <input
+                checked={payment === 'Dobierka'}
+                type="radio"
+                name="platba"
+                id="dobierkou"
+                value="Dobierka"
+              />
+              <label htmlFor="dobierkou">
                 {packageIcon}
                 Dobierkou
               </label>
             </p>
             <p>
-              <input type="radio" name="platba" id="prevodom" value="medium" />
-              <label for="prevodom">
+              <input
+                checked={payment === 'Prevod'}
+                type="radio"
+                name="platba"
+                id="prevodom"
+                value="Prevod"
+              />
+              <label htmlFor="prevodom">
                 {payIcon}
                 Prevodom na účet
               </label>
             </p>
           </fieldset>
-          <fieldset id="delivery">
+          <fieldset
+            onChange={(event) => this.props.onChange('delivery', event.target.value)}
+            id="delivery"
+          >
             <legend>
               {deliveryIcon}
               Spôsob doručenia
             </legend>
             <p>
-              <input checked type="radio" name="doprava" id="toptrans" value="small" />
-              <label for="toptrans">
+              <input
+                checked={delivery === 'Toptrans'}
+                type="radio"
+                name="doprava"
+                id="toptrans"
+                value="Toptrans"
+              />
+              <label htmlFor="toptrans">
                 {packageIcon}
                 TOPTRANS +12,00 €
               </label>
             </p>
             <p>
-              <input type="radio" name="doprava" id="kosice" value="medium" />
-              <label for="kosice">
+              <input
+                checked={delivery === 'Košice'}
+                type="radio"
+                name="doprava"
+                id="kosice"
+                value="Košice"
+              />
+              <label htmlFor="kosice">
                 {personIcon}
                 Doručenie v Košiciach
               </label>

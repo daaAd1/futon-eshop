@@ -45,11 +45,11 @@ class TextareaWithLabel extends React.Component {
       });
     }
 
-    this.props.onChange(event);
+    this.props.onChange(event.target.value);
   }
 
   render() {
-    const { label, placeholder, id, regex, size } = this.props;
+    const { label, placeholder, id, regex, size, value } = this.props;
     const { text } = this.state;
 
     let wrongInputClassName = '';
@@ -65,7 +65,7 @@ class TextareaWithLabel extends React.Component {
             onChange={this.handleTextareaChange}
             placeholder={placeholder}
             id={id}
-            value={text}
+            value={value}
           />
           {TextareaWithLabel.checkIfTextIsEmptyAndCheckTextAgainstRegex(text, regex) && (
             <div className="fade-in">{incorrectInputIcon}</div>

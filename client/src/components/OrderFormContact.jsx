@@ -7,6 +7,7 @@ class OrderFormContact extends React.Component {
   render() {
     const nameRegularExpression = new RegExp('\\w\\w+');
     const emailRegularExpresion = new RegExp('[^@]+@[^@]+\\.[^@]+');
+    const { firstName, lastName, email, phone } = this.props;
 
     return (
       <div className="OrderFormContact">
@@ -19,26 +20,34 @@ class OrderFormContact extends React.Component {
             placeholder="Ján"
             id="name"
             size="half"
+            value={firstName}
+            onChange={(value) => this.props.onChange('firstName', value)}
           />
           <TextareaWithLabel
             regex={nameRegularExpression}
             label="Priezvisko*"
             placeholder="Tóth"
             id="surname"
+            value={lastName}
             size="half"
+            onChange={(value) => this.props.onChange('lastName', value)}
           />
         </InputFieldsContainer>
         <TextareaWithLabel
           regex={emailRegularExpresion}
           label="Email*"
+          value={email}
           placeholder="jantoth@gmail.com"
           id="register-email"
+          onChange={(value) => this.props.onChange('email', value)}
         />
         <TextareaWithLabel
           regex={emailRegularExpresion}
           label="Tel. číslo*"
+          value={phone}
           placeholder="+421 90 909 090"
           id="register-telephone"
+          onChange={(value) => this.props.onChange('phone', value)}
         />
       </div>
     );
