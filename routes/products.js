@@ -1,4 +1,38 @@
 const express = require('express');
+const multer = require('multer');
+const fs = require('fs');
+
+// Experimenting with some shit
+// const path = require('path');
+// const crypto = require('crypto');
+
+// Saving files into file system
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './uploads/');
+    },
+    filename: (req, file, cb) => {
+        // Experimenting with some shit
+        // const id = crypto.randomBytes(16).toString('hex');
+        cb(null, file.originalname);
+    },
+});
+// Rules for uploaded files
+const fileFilter = (req, file, cb) => {
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+        cb(null, true);
+    } else {
+        cb(null, false);
+    }
+};
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 1024 * 1024 * 5,
+    },
+    fileFilter: fileFilter,
+});
+
 const router = express.Router();
 
 // Product model
@@ -9,14 +43,17 @@ const Product = require('../models/Product');
 // @access  Public
 router.get('/', (req, res, next) => {
     Product.find()
-        .sort({ date: -1 })
-        .then(products => {
-            res.status(200).json(products);
+        .sort({ createdAt: -1 })
+        .then((products) => {
+            res.status(200).json({
+                count: products.length,
+                items: products,
+            });
         })
-        .catch(err => {
+        .catch((err) => {
             console.log(err);
             res.status(500).json({
-                error: err
+                error: err,
             });
         });
 });
@@ -27,23 +64,22 @@ router.get('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
     const id = req.params.id;
     Product.findById(id)
-        .then(product => {
+        .then((product) => {
             if (product) {
                 // Product exists, so return it
                 res.status(200).json(product);
             } else {
                 // Product does not exist
                 res.status(404).json({
-                    message: "Product not found",
-                    code: 404
+                    message: 'Product not found',
+                    code: 404,
                 });
             }
         })
-        // Internal error
-        .catch(err => {
+        .catch((err) => {
             console.log(err);
             res.status(500).json({
-                error: err
+                error: err,
             });
         });
 });
@@ -51,23 +87,31 @@ router.get('/:id', (req, res, next) => {
 // @route   POST product
 // @desc    Create a Product
 // @access  Public
-router.post('/', (req, res, next) => {
-    const newProduct = new Product({
-        name: req.body.name,
-        desc_short: req.body.desc_short,
-        desc_long: req.body.desc_long,
-        price: req.body.price,
-        type: req.body.type,
-    });
+router.post('/', upload.array('images'), (req, res, next) => {
+    const imagePaths = [];
+    if (req.files) {
+        req.files.forEach((element) => {
+            imagePaths.push(element.path);
+        });
+    }
+    req.body.images = imagePaths;
+
+    const newProduct = new Product(req.body);
 
     newProduct.save()
-        .then(product => {
-            res.status(201).json(product);
+        .then((response) => {
+            res.status(201).json({
+                status: 'success',
+                item: response,
+                errors: {},
+            });
         })
-        .catch(err => {
+        .catch((err) => {
             console.log(err);
             res.status(500).json({
-                error: err
+                status: 'error',
+                item: newProduct,
+                errors: err.errors,
             });
         });
 });
@@ -78,25 +122,31 @@ router.post('/', (req, res, next) => {
 router.delete('/:id', (req, res, next) => {
     const id = req.params.id;
     Product.findById(id)
-        .then(product => {
+        .then((product) => {
             if (product) {
                 // Product exists, so remove it
+
+                // // Remove images
+                // product.images.forEach((element) => {
+                //     fs.unlink(element, (err) => {
+                //         if (err) throw err;
+                //     });
+                // });
                 product.remove().then(
-                    () => res.status(200).json(product)
-                )
+                    () => res.status(200).json(product),
+                );
             } else {
                 // Product does not exist
                 res.status(404).json({
-                    message: "Product not found",
-                    code: 404
+                    message: 'Product not found',
+                    code: 404,
                 });
             }
         })
-        // Internal error
-        .catch(err => {
+        .catch((err) => {
             console.log(err);
             res.status(500).json({
-                error: err
+                error: err,
             });
         });
 });
@@ -104,20 +154,36 @@ router.delete('/:id', (req, res, next) => {
 // @route   PATCH product/:id
 // @desc    Update a Product
 // @access  Public
-router.patch('/:id', (req, res, next) => {
+router.patch('/:id', upload.array('images'), (req, res, next) => {
     const id = req.params.id;
-    var updateObject = req.body;
+    const updateObject = req.body;
 
-    Product.findOneAndUpdate({_id: id}, {$set: updateObject}, {new: true}, (err, result) => {
-        if (result) {
-            res.status(200).json(result);
-        } else {
-            // Product does not exist
-            res.status(404).json({
-                message: "Product not found",
-                code: 404
-            });
-        }
+    const imagePaths = [];
+    req.files.forEach((element) => {
+        imagePaths.push(element.path);
+    });
+    updateObject.images = imagePaths;
+
+    Product.findOneAndUpdate(
+        { _id: id },
+        { $set: updateObject },
+        { new: true },
+        (err, result) => {
+            if (result) {
+                res.status(200).json(result);
+            } else {
+                // Product does not exist
+                res.status(404).json({
+                    message: 'Product not found',
+                    code: 404,
+                });
+            }
+        },
+    ).catch((err) => {
+        console.log(err);
+        res.status(500).json({
+            error: err,
+        });
     });
 });
 

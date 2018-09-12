@@ -1,16 +1,28 @@
 const mongoose = require('mongoose');
+const idValidator = require('mongoose-id-validator');
+
 const Schema = mongoose.Schema;
 
-// Create Schema
 const OrderSchema = new Schema({
-    address: {
-        type: String,
-        required: true
+    product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
     },
-    date: {
-        type: Date,
-        default: Date.now
-    }
-});
+    quantity: {
+        type: Number,
+        required: true,
+    },
+    // status: {
+    //     type: String,
+    //     enum: [
+    //         'pending',
+    //         'in progress',
+    //         'complete',
+    //     ],
+    //     default: 'pending',
+    // },
+}, { timestamps: true, versionKey: false });
+
+OrderSchema.plugin(idValidator);
 
 module.exports = Order = mongoose.model('Order', OrderSchema);

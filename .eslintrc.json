@@ -1,0 +1,16 @@
+{
+    "extends": "airbnb-base",
+    "rules": {
+        "indent": [
+            "error",
+            4
+        ],
+        "no-unused-vars": "off",
+        "no-console": "off",
+        "eol-last": "off",
+        "prefer-destructuring": "off",
+        "object-shorthand": "off",
+        "no-multi-assign": "off",
+        "no-undef": "off"
+    }
+}

@@ -11,6 +11,7 @@
     "react-dom": "^16.4.2",
     "react-dropdown": "^1.6.2",
     "react-emotion": "^9.2.6",
+    "react-html-parser": "^2.0.2",
     "react-image-gallery": "^0.8.10",
     "react-images-upload": "^1.2.2",
     "react-multistep": "^3.2.3",

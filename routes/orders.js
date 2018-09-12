@@ -1,36 +1,108 @@
 const express = require('express');
+
 const router = express.Router();
 
-// Order model
+// Models
 const Order = require('../models/Order');
+const Product = require('../models/Product');
 
-// @route   GET orders
+// @route   GET order
 // @desc    Get all orders
 // @access  Public
 router.get('/', (req, res, next) => {
     Order.find()
-        .sort({ date: -1 })
-        .then(orders => res.json(orders));
+        .sort({ createdAt: -1 })
+        .populate('product', 'name price type')
+        .then((orders) => {
+            res.status(200).json({
+                count: orders.length,
+                items: orders,
+            });
+        })
+        .catch((err) => {
+            res.status(500).json({
+                error: err,
+            });
+        });
 });
 
-// @route   POST orders
-// @desc    Create a Order
+// @route   GET order/:id
+// @desc    Get order by id
+// @access  Public
+router.get('/:id', (req, res, next) => {
+    const id = req.params.id;
+    Order.findById(id)
+        .populate('product', '-createdAt -updatedAt')
+        .then((order) => {
+            if (order) {
+                res.status(200).json(order);
+            } else {
+                res.status(404).json({
+                    message: 'Order not found',
+                    code: 404,
+                });
+            }
+        })
+        .catch((err) => {
+            res.status(500).json({
+                error: err,
+            });
+        });
+});
+
+// @route   POST order
+// @desc    Create an Order
 // @access  Public
 router.post('/', (req, res, next) => {
     const newOrder = new Order({
-        name: req.body.name
+        product: req.body.product,
+        quantity: req.body.quantity,
     });
 
-    newOrder.save().then(Order => res.json(Order));
+    newOrder.save()
+        .then((response) => {
+            res.status(201).json({
+                status: 'success',
+                item: response,
+                errors: {},
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: 'error',
+                item: newOrder,
+                errors: err.errors,
+            });
+        });
 });
 
-// @route   DELETE orders/:id
-// @desc    Delete a Order
+// @route   DELETE order/:id
+// @desc    Delete an Order
 // @access  Public
 router.delete('/:id', (req, res, next) => {
-    Order.findById(req.params.id)
-        .then(Order => Order.remove().then(() => res.json({ success: true })))
-        .catch(err => res.status(404).json({ success: false }));
+    Order.findByIdAndDelete(req.params.id)
+        .then((response) => {
+            if (response) {
+                res.status(200).json({
+                    status: 'success',
+                    item: response,
+                    errors: {},
+                });
+            } else {
+                res.status(404).json({
+                    message: 'Order not found',
+                    code: 404,
+                });
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: 'error',
+                errors: err,
+            });
+        });
 });
 
 module.exports = router;
