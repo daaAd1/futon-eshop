@@ -5,6 +5,7 @@ const session = require('express-session');
 const morgan = require('morgan');
 
 const mongoURI = require('./config/keys').mongoURI;
+const mongoLOCAL = require('./config/keys').mongoLOCAL;
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(bodyParser.json());
 app.use('/uploads', express.static('uploads'));
 
 // Connect to MongoDB
+// Use mongoURI for mLab, mongoLOCAL for local monogDB
 mongoose.connect(mongoURI, { useNewUrlParser: true })
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));

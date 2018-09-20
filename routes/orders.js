@@ -54,10 +54,7 @@ router.get('/:id', (req, res, next) => {
 // @desc    Create an Order
 // @access  Public
 router.post('/', (req, res, next) => {
-    const newOrder = new Order({
-        product: req.body.product,
-        quantity: req.body.quantity,
-    });
+    const newOrder = new Order(req.body);
 
     newOrder.save()
         .then((response) => {
