@@ -12,9 +12,9 @@ import ShowRoom from './ShowRoom';
 import InformationPage from './InformationPage';
 import AdminDashboard from './admin/AdminDashboard';
 import AdminProducts from './admin/AdminProducts';
-import AdminOrders from './admin/AdminOrders';
 import AdminAttributes from './admin/AdminAttributes';
 import AdminTypes from './admin/AdminTypes';
+import OrdersContainer from '../containers/admin/OrdersContainer';
 
 class App extends Component {
   render() {
@@ -22,7 +22,7 @@ class App extends Component {
       <HashRouter>
         <div>
           <AdminDashboard />
-          <Route exact path={routes.ADMIN_ORDERS} component={() => <AdminOrders />} />
+          <Route exact path={routes.ADMIN_ORDERS} component={() => <OrdersContainer />} />
           <Route exact path={routes.ADMIN_PRODUCTS} component={() => <AdminProducts />} />
           <Route exact path={routes.ADMIN_TYPES} component={() => <AdminTypes />} />
           <Route exact path={routes.ADMIN_ATTRIBUTES} component={() => <AdminAttributes />} />

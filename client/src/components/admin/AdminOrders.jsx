@@ -6,35 +6,6 @@ import '../../styles/admin/AdminOrders.css';
 
 class AdminOrders extends React.Component {
   render() {
-    const data = [
-      {
-        id: '1',
-        name: 'Dezider Korikovskij',
-        email: 'deziderkorikovskij@hotmail.com',
-        telephone: '+421901901901',
-        totalPrice: '599,00 €',
-        state: 'SK',
-        city: 'Nove mesto nad Vahom',
-        address: 'Trojokovskeho 2, 04001',
-        payment: 'dobierka',
-        note:
-          '3 poschodie 3 poschodie 3 poschodie 3 poschodie 3 poschodie 3 poschodie 3 poschodie 3 poschodie 3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie 3 poschodie 3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie',
-      },
-      {
-        id: '1',
-        name: 'Jozef Korikov',
-        email: 'jozefkorikov@email.com',
-        telephone: '+421901901901',
-        totalPrice: '199,00 €',
-        state: 'SK',
-        city: 'Bardejov',
-        address: 'Kosicka 2, 04001',
-        payment: 'prevodom',
-        note:
-          '3 poschodie 3 poschodie 3 poschodie 3 poschodie 3 poschodie 3 poschodie 3 poschodie 3 poschodie 3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie 3 poschodie 3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie',
-      },
-    ];
-
     const columns = [
       {
         Header: 'id',
@@ -43,42 +14,21 @@ class AdminOrders extends React.Component {
       },
       {
         Header: 'Meno',
-        accessor: 'name',
+        accessor: 'customerName',
       },
       {
         Header: 'Email',
         accessor: 'email',
-        //accessor: (d) => d.friend.name, // Custom value accessors!
       },
       {
-        //Header: (props) => <span>Friend Age</span>, // Custom header components!
         Header: 'Tel. č',
-        accessor: 'telephone',
+        accessor: 'phone',
       },
       {
-        //Header: (props) => <span>Friend Age</span>, // Custom header components!
         Header: 'Cena celkovo',
         accessor: 'totalPrice',
         maxWidth: 120,
       },
-      // {
-      //   Header: 'Štát',
-      //   accessor: 'state',
-      //   maxWidth: 60,
-      // },
-      // {
-      //   Header: 'Mesto',
-      //   accessor: 'city',
-      // },
-      // {
-      //   Header: 'Adresa',
-      //   accessor: 'address',
-      // },
-      // {
-      //   Header: 'Platba',
-      //   accessor: 'payment',
-      //   maxWidth: 100,
-      // },
       {
         Header: 'Poznámka',
         accessor: 'note',
@@ -90,17 +40,44 @@ class AdminOrders extends React.Component {
         maxWidth: 50,
       },
     ];
+
+    const { orders, isFetching } = this.props;
+    const { items } = orders;
+
     return (
       <div className="AdminOrders">
         <h1>Objednávky</h1>
         <ReactTable
-          data={data}
+          data={items}
           columns={columns}
-          minRows="10"
+          minRows="5"
           style={{
             textAlign: 'center',
           }}
+          loading={isFetching}
           SubComponent={(row) => {
+            const {
+              cart,
+              customerName,
+              email,
+              phone,
+              city,
+              country,
+              address,
+              postalCode,
+              paymentMethod,
+              delivery,
+              note,
+            } = row.original;
+            const cartItems = cart.map((item) => {
+              <CartItem
+                image={false}
+                type="readOnly"
+                price="99"
+                itemQuantity="1"
+                name="Matrac hriva-latex"
+              />;
+            });
             return (
               <div className="AdminOrders-orderInfo">
                 <div>
@@ -138,46 +115,43 @@ class AdminOrders extends React.Component {
                 </div>
                 <div>
                   <p>Meno</p>
-                  <p>Jozef Korikov</p>
+                  <p>{customerName}</p>
                 </div>
                 <div>
                   <p>Email</p>
-                  <p>jozefkorikov@gotmaaldked.com</p>
+                  <p>{email}</p>
                 </div>
                 <div>
                   <p>Tel. č</p>
-                  <p>+42191019101</p>
+                  <p>{phone}</p>
                 </div>
                 <div>
                   <p>Štát</p>
-                  <p>SK</p>
+                  <p>{country}</p>
                 </div>
                 <div>
                   <p>Mesto</p>
-                  <p>Nove mesto nad vahom</p>
+                  <p>{city}</p>
                 </div>
                 <div>
                   <p>Ulica</p>
-                  <p>Kosicka9a311 20, 04001</p>
+                  <p>{address}</p>
+                </div>
+                <div>
+                  <p>PSČ</p>
+                  <p>{postalCode}</p>
                 </div>
                 <div>
                   <p>Platba</p>
-                  <p>dobierkou</p>
+                  <p>{paymentMethod}</p>
+                </div>
+                <div>
+                  <p>Doprava</p>
+                  <p>{delivery}</p>
                 </div>
                 <div>
                   <p>Poznámka</p>
-                  <p>
-                    3 poschodie 3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie3
-                    poschodie3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie3
-                    poschodie3 poschodie3 poschodie3 poschodie 3 poschodie3 poschodie3 poschodie3
-                    poschodie3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie3
-                    poschodie3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie 3
-                    poschodie3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie3
-                    poschodie3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie3
-                    poschodie3 poschodie3 poschodie 3 poschodie3 poschodie3 poschodie3 poschodie3
-                    poschodie3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie3 poschodie3
-                    poschodie3 poschodie3 poschodie3 poschodie3 poschodie
-                  </p>
+                  <p>{note}</p>
                 </div>
               </div>
             );

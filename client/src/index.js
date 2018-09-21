@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import '@babel/polyfill';
 import 'normalize.css';
 import './styles/main.css';
 import './styles/animations.css';
@@ -11,6 +12,8 @@ import 'react-dropdown/style.css';
 import configureStore from './store/configureStore';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
+
+/* global document */
 
 ReactDOM.render(
   <Provider store={configureStore()}>
