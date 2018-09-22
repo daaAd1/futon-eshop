@@ -36,13 +36,29 @@ class AdminOrders extends React.Component {
       },
       {
         Header: '',
-        Cell: <button className="AdminOrders-deleteButton">{deleteIcon}</button>, // Custom cell components!
+        Cell: (row) => (
+          <button
+            onClick={() => {
+              fetch(`http://localhost:5000/order/${row.original._id}`, {
+                method: 'DELETE',
+                body: {},
+                headers: {
+                  'Content-Type': 'application/json; charset=utf-8',
+                  'Access-Control-Allow-Methods': 'GET, POST, DELETE',
+                },
+              });
+            }}
+            className="AdminOrders-deleteButton"
+          >
+            {deleteIcon}
+          </button>
+        ), // Custom cell components!
         maxWidth: 50,
       },
     ];
 
     const { orders, isFetching } = this.props;
-    const { items } = orders;
+    const { items } = orders || {};
 
     return (
       <div className="AdminOrders">

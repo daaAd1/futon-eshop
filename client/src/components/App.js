@@ -11,10 +11,10 @@ import CartPage from './CartPage';
 import ShowRoom from './ShowRoom';
 import InformationPage from './InformationPage';
 import AdminDashboard from './admin/AdminDashboard';
-import AdminProducts from './admin/AdminProducts';
-import AdminAttributes from './admin/AdminAttributes';
-import AdminTypes from './admin/AdminTypes';
 import OrdersContainer from '../containers/admin/OrdersContainer';
+import ProductsContainer from '../containers/admin/ProductsContainer';
+import TypesContainer from '../containers/admin/TypesContainer';
+import AttributesContainer from '../containers/admin/AttributesContainer';
 
 class App extends Component {
   render() {
@@ -23,9 +23,9 @@ class App extends Component {
         <div>
           <AdminDashboard />
           <Route exact path={routes.ADMIN_ORDERS} component={() => <OrdersContainer />} />
-          <Route exact path={routes.ADMIN_PRODUCTS} component={() => <AdminProducts />} />
-          <Route exact path={routes.ADMIN_TYPES} component={() => <AdminTypes />} />
-          <Route exact path={routes.ADMIN_ATTRIBUTES} component={() => <AdminAttributes />} />
+          <Route exact path={routes.ADMIN_PRODUCTS} component={() => <ProductsContainer />} />
+          <Route exact path={routes.ADMIN_TYPES} component={() => <TypesContainer />} />
+          <Route exact path={routes.ADMIN_ATTRIBUTES} component={() => <AttributesContainer />} />
           <HeaderMenuContainer />
           <Route exact path={routes.HOME} component={() => <Home />} />
           <Route exact path={routes.CART} component={() => <CartPage totalPrice="599" />} />

@@ -50,7 +50,7 @@ class AdminOneAttribute extends React.Component {
 
   render() {
     const { isExpanded, options } = this.state;
-    const { id, name, shortDesc, longDesc, price, type } = this.props;
+    const { name, type, values } = this.props;
     const attributeOptions = options.map((option, index) => (
       <div className="AdminOneAttribute-oneOption">
         <TextareaAutosize value={option.name} />
@@ -87,7 +87,7 @@ class AdminOneAttribute extends React.Component {
             </div>
             <div className="AdminOneAttribute-dropdownRow">
               <p>Typ</p>
-              <Dropdown value="doplnok" options={['doplnok', 'sofa', 'futon']} />
+              <Dropdown value={type} options={[type, 'doplnok', 'sofa', 'futon']} />
             </div>
             <div className="AdminOneAttribute-optionsRow">
               <p>Možnosti</p>

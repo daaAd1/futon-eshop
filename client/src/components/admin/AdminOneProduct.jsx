@@ -11,7 +11,6 @@ import {
   emptyCircleIcon,
 } from '../../icons';
 import '../../styles/admin/AdminOneProduct.css';
-import SelectWithLabel from '../SelectWithLabel';
 
 class AdminOneProduct extends React.Component {
   state = {
@@ -131,17 +130,20 @@ class AdminOneProduct extends React.Component {
             </div>
             <div className="AdminOneProduct-dropdownRow">
               <p>Kategória</p>
-              <Dropdown value="doplnok" options={['doplnok', 'sofa', 'futon']} />
+              <Dropdown value={category} options={[category, 'doplnok', 'sofa', 'futon']} />
             </div>
             <div className="AdminOneProduct-dropdownRow">
               <p>Podkategória</p>
-              <Dropdown value="latex" options={['latex', '110x120cm', 'bavlna']} />
+              <Dropdown
+                value={subCategory}
+                options={[subCategory, 'latex', '110x120cm', 'bavlna']}
+              />
             </div>
             <div className="AdminOneProduct-dropdownRow">
               <p>Typ</p>
               <Dropdown
-                value="doplnok cerveny"
-                options={['doplnok cerveny', 'postel jeden ram', 'postel jedna farba']}
+                value={type}
+                options={[type, 'doplnok cerveny', 'postel jeden ram', 'postel jedna farba']}
               />
             </div>
             <div>

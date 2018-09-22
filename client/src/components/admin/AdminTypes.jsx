@@ -24,7 +24,12 @@ class AdminTypes extends React.Component {
   render() {
     const typesArr = ['doplnok', 'postel', 'sofa', 'futon'];
     const { isNewTypeFormOpen } = this.state;
-    const types = typesArr.map((type) => <AdminOneType name={type} />);
+    const { types } = this.props;
+    const { items } = types || [];
+    if (!items) {
+      return <div />;
+    }
+    const typeRows = items.map((type) => <AdminOneType name={type.name} />);
 
     return (
       <div className="AdminTypes">
@@ -46,7 +51,7 @@ class AdminTypes extends React.Component {
         )}
         <div className="AdminTypes-listOfTypes">
           <AdminTypesFirstRow />
-          {types}
+          {typeRows}
         </div>
       </div>
     );

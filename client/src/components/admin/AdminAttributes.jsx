@@ -56,8 +56,13 @@ class AdminAttributes extends React.Component {
       { name: 'farba tkaniny', type: 'sofa' },
       { name: 'veľkosť futonu', type: 'futon' },
     ];
-    const attributes = attributesArr.map((attribute) => (
-      <AdminOneAttribute name={attribute.name} type={attribute.type} />
+    const { attributes, isFetching } = this.props;
+    const { items } = attributes;
+    if (!items) {
+      return <div />;
+    }
+    const attributeRows = items.map((attribute) => (
+      <AdminOneAttribute name={attribute.name} type={attribute.type} values={attribute.values} />
     ));
     const attributeOptions = options.map((option, index) => (
       <div className="AdminOneAttribute-oneOption">
@@ -105,7 +110,7 @@ class AdminAttributes extends React.Component {
         )}
         <div className="AdminAttributes-listOfAttributes">
           <AdminAttributesFirstRow />
-          {attributes}
+          {attributeRows}
         </div>
       </div>
     );
