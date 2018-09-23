@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { HashRouter, Route, Link } from 'react-router-dom';
 import '../styles/components/App.css';
 import 'react-table/react-table.css';
-import * as routes from '../routes';
+import * as routes from '../constants/routes';
 import HeaderMenuContainer from '../containers/HeaderMenuContainer';
 import FooterMenu from './FooterMenu';
 import OrderForm from './OrderForm';
@@ -15,6 +15,9 @@ import OrdersContainer from '../containers/admin/OrdersContainer';
 import ProductsContainer from '../containers/admin/ProductsContainer';
 import TypesContainer from '../containers/admin/TypesContainer';
 import AttributesContainer from '../containers/admin/AttributesContainer';
+import Product from './Product';
+import ProductListContainer from '../containers/ProductListContainer';
+import SingleProductContainer from '../containers/SingleProductContainer';
 
 class App extends Component {
   render() {
@@ -28,9 +31,11 @@ class App extends Component {
           <Route exact path={routes.ADMIN_ATTRIBUTES} component={() => <AttributesContainer />} />
           <HeaderMenuContainer />
           <Route exact path={routes.HOME} component={() => <Home />} />
+          <Route exact path={routes.PRODUCTS} component={() => <ProductListContainer />} />
+          <Route exact path={routes.SINGLE_PRODUCT} component={SingleProductContainer} />
           <Route exact path={routes.CART} component={() => <CartPage totalPrice="599" />} />
           <Route exact path={routes.CHECKOUT} component={() => <OrderForm />} />
-          <Route exact path={routes.SHOWROOM} component={() => <ShowRoom />} />
+          <Route exact path={routes.SHOWROOM} component={ShowRoom} />
           <Route exact path={routes.FAQ} component={() => <InformationPage text="faq" />} />
           <Route
             exact

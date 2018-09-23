@@ -1,4 +1,4 @@
-import * as routes from '../routes';
+import * as routes from '../constants/routes';
 
 const initialState = {
   route: '',

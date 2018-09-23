@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../img/logo.jpg';
-import * as routes from '../routes';
+import * as routes from '../constants/routes';
 import '../styles/components/HeaderMenu.css';
 import { hamburgerIcon, arrowDownIcon } from '../icons';
 import Cart from './Cart';

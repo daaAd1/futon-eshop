@@ -21,9 +21,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const ProductContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Product);
+const ProductContainer = connect(mapDispatchToProps)(Product);
 
 export default ProductContainer;

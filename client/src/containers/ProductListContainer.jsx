@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import AdminProducts from '../../components/admin/AdminProducts';
-import fetchProductsIfNeeded from '../../actions/ProductActions';
+import fetchProductsIfNeeded from '../actions/ProductActions';
+import ProductList from '../components/ProductList';
 
-class ProductsContainer extends React.Component {
+class ProductListContainer extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchProductsIfNeeded());
@@ -12,7 +12,7 @@ class ProductsContainer extends React.Component {
   render() {
     const { products } = this.props;
 
-    return <AdminProducts products={products.productsItems} isFetching={products.isFetching} />;
+    return <ProductList products={products.productsItems} isFetching={products.isFetching} />;
   }
 }
 
@@ -25,4 +25,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(ProductsContainer);
+export default connect(mapStateToProps)(ProductListContainer);

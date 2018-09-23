@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/components/CartPage.css';
-import * as routes from '../routes';
+import * as routes from '../constants/routes';
 import CartItem from './CartItem';
 
 class CartPage extends React.Component {

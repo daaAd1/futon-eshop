@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import '../styles/components/FooterMenu.css';
-import * as routes from '../routes';
+import * as routes from '../constants/routes';
 
 class FooterMenu extends React.Component {
   render() {

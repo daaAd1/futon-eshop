@@ -16,7 +16,7 @@ const fetchOrders = () => {
     dispatch(requestOrders());
     return fetch(`${urls.BASE_URL}/${urls.ORDERS_URL}`)
       .then((response) => response.json())
-      .then((json) => console.log(json));
+      .then((json) => dispatch(receiveOrders(json)));
   };
 };
 

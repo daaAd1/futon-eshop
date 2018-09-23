@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/components/Cart.css';
-import * as routes from '../routes';
+import * as routes from '../constants/routes';
 import { emptyCartIcon } from '../icons';
 import Button from './Button';
 import CartItem from './CartItem';

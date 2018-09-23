@@ -12,7 +12,8 @@ import futon2 from '../img/futon2.jpeg';
 import futon3 from '../img/futon3.jpeg';
 
 const Product = (props) => {
-  const { name, price, smallDesc, longDesc } = props;
+  const { productWithId, productId } = props;
+  const { name, price, descShort, descLong } = productWithId;
 
   const images = [
     {
@@ -37,7 +38,7 @@ const Product = (props) => {
           <ImageGallery items={images} showPlayButton={false} slideDuration={0} />
         </div>
         <div className="ProductGeneralUI-details">
-          <p className="ProductGeneralUI-description">{smallDesc}</p>
+          <p className="ProductGeneralUI-description">{descShort}</p>
           <div className="ProductGeneralUI-cartDetails">
             <p className="ProductGeneralUI-price">{price} €</p>
             <label className="ProductGeneralUI-numberOfItems" htmlFor="mnozstvo">
@@ -54,7 +55,7 @@ const Product = (props) => {
       </div>
       <div className="ProductGeneralUI-longDescription">
         <h2>Popis produktu</h2>
-        <p>{ReactHtmlParser(longDesc)}</p>
+        <p>{ReactHtmlParser(descLong)}</p>
       </div>
     </div>
   );

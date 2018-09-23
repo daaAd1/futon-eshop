@@ -2,7 +2,7 @@ import * as types from '../constants/ActionTypes';
 
 const initialState = {
   isFetching: false,
-  products: [],
+  productsItems: [],
 };
 
 const products = (state = initialState, action) => {
@@ -16,7 +16,7 @@ const products = (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        products: action.products,
+        productsItems: action.products,
       };
     default:
       return state;
