@@ -31,7 +31,7 @@ class App extends Component {
           <Route exact path={routes.ADMIN_ATTRIBUTES} component={() => <AttributesContainer />} />
           <HeaderMenuContainer />
           <Route exact path={routes.HOME} component={() => <Home />} />
-          <Route exact path={routes.PRODUCTS} component={() => <ProductListContainer />} />
+          <Route exact path={routes.PRODUCTS} component={ProductListContainer} />
           <Route exact path={routes.SINGLE_PRODUCT} component={SingleProductContainer} />
           <Route exact path={routes.CART} component={() => <CartPage totalPrice="599" />} />
           <Route exact path={routes.CHECKOUT} component={() => <OrderForm />} />

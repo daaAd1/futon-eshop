@@ -13,7 +13,7 @@ import futon3 from '../img/futon3.jpeg';
 
 const Product = (props) => {
   const { productWithId, productId } = props;
-  const { name, price, descShort, descLong } = productWithId;
+  const { name, price, descShort, descLong } = productWithId || {};
 
   const images = [
     {

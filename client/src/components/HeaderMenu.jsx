@@ -21,7 +21,7 @@ const HeaderMenu = (props) => {
       <div className="HeaderMenu-navigationLinks">
         <div className="HeaderMenu-centerContainer">
           <div className="HeaderMenu-dropdownLink">
-            <a href="#">
+            <a href="/product?category=futon/">
               Futony{' '}
               <label title="Show additional links" htmlFor="dropdownLinkOne">
                 {arrowDownIcon}
@@ -30,11 +30,11 @@ const HeaderMenu = (props) => {
             <input className="HeaderMenu-hiddenInput" type="checkbox" id="dropdownLinkOne" />
 
             <div className="HeaderMenu-dropdownAdditionalLinks">
-              <a href="/futony/bavlna/">Bavlna</a>
-              <a href="/futony/kokos/">Kokos</a>
-              <a href="/futony/latex/">Latex</a>
-              <a href="/futony/detske/">Detské</a>
-              <a href="/futony/masazove/">K masážam</a>
+              <a href="/product?category=futon&subcategory=bavlna/">Bavlna</a>
+              <a href="/product?category=futon&subcategory=kokos/">Kokos</a>
+              <a href="/product?category=futon&subcategory=latex/">Latex</a>
+              <a href="/product?category=futon&subcategory=detske/">Detské</a>
+              <a href="/product?category=futon&subcategory=masazove/">K masážam</a>
             </div>
           </div>
           <div className="HeaderMenu-dropdownLink">

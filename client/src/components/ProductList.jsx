@@ -9,13 +9,15 @@ import futon5 from '../img/futon5.jpeg';
 import futon6 from '../img/futon6.jpeg';
 
 const ProductList = (props) => {
-  const { products, isFetching } = props;
-  if (!products) {
-    return <div>loading</div>;
-  }
-  const { items } = products && products;
+  const { filteredProducts, isFetching } = props;
+  // if (!filteredProducts) {
+  //   return <div>loading</div>;
+  // }
+  // const { products } = filteredProducts && filteredProducts;
+
   const productCards =
-    items && items.map((product) => <ProductCard name={product.name} price={product.price} />);
+    filteredProducts &&
+    filteredProducts.map((product) => <ProductCard name={product.name} price={product.price} />);
 
   return (
     <ul className="ProductListGeneralUI">
