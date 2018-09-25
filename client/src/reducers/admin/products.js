@@ -1,11 +1,11 @@
-import * as types from '../constants/ActionTypes';
+import * as types from '../../constants/ActionTypes';
 
 const initialState = {
   isFetching: false,
-  productsList: [],
+  products: [],
 };
 
-const products = (state = initialState, action) => {
+const productsState = (state = initialState, action) => {
   switch (action.type) {
     case types.REQUEST_PRODUCTS:
       return {
@@ -16,11 +16,11 @@ const products = (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        productsList: action.products,
+        products: action.products,
       };
     default:
       return state;
   }
 };
 
-export default products;
+export default productsState;

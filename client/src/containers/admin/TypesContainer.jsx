@@ -1,7 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import AdminTypes from '../../components/admin/AdminTypes';
 import fetchTypesIfNeeded from '../../actions/TypeActions';
+
+const propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  typesState: PropTypes.shape({
+    types: PropTypes.object.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+  }).isRequired,
+};
+
+const defaultProps = {};
 
 class TypesContainer extends React.Component {
   componentDidMount() {
@@ -10,19 +21,23 @@ class TypesContainer extends React.Component {
   }
 
   render() {
-    const { types } = this.props;
+    const { typesState } = this.props;
+    const { types, isFetching } = typesState;
 
-    return <AdminTypes types={types.types} isFetching={types.isFetching} />;
+    return <AdminTypes types={types} isFetching={isFetching} />;
   }
 }
 
 const mapStateToProps = (state) => {
-  const { isFetching, types } = state;
+  const { admin } = state;
+  const { typesState } = admin;
 
   return {
-    types,
-    isFetching,
+    typesState,
   };
 };
+
+TypesContainer.propTypes = propTypes;
+TypesContainer.defaultProps = defaultProps;
 
 export default connect(mapStateToProps)(TypesContainer);

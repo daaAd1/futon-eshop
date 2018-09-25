@@ -1,11 +1,11 @@
-import * as types from '../constants/ActionTypes';
+import * as types from '../../constants/ActionTypes';
 
 const initialState = {
   isFetching: false,
   attributes: [],
 };
 
-const attributes = (state = initialState, action) => {
+const attributesState = (state = initialState, action) => {
   switch (action.type) {
     case types.REQUEST_ATTRIBUTES:
       return {
@@ -23,4 +23,4 @@ const attributes = (state = initialState, action) => {
   }
 };
 
-export default attributes;
+export default attributesState;

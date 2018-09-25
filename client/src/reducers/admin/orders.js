@@ -1,11 +1,11 @@
-import * as types from '../constants/ActionTypes';
+import * as types from '../../constants/ActionTypes';
 
 const initialState = {
   isFetching: false,
   orders: [],
 };
 
-const orders = (state = initialState, action) => {
+const ordersState = (state = initialState, action) => {
   switch (action.type) {
     case types.REQUEST_ORDERS:
       return {
@@ -23,4 +23,4 @@ const orders = (state = initialState, action) => {
   }
 };
 
-export default orders;
+export default ordersState;

@@ -1,77 +1,109 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import fetchProductsIfNeeded from '../actions/ProductActions';
 import ProductList from '../components/ProductList';
 
+const propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  products: PropTypes.shape({
+    productsList: PropTypes.object.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+  }).isRequired,
+  location: PropTypes.shape({
+    search: PropTypes.object.isRequired,
+  }).isRequired,
+};
+
+const defaultProps = {};
+
 class ProductListContainer extends React.Component {
+  static splitQueryWithQuestionMark(query) {
+    return query.split('?')[1];
+  }
+
+  static splitQueryWithAmpersands(query) {
+    return query.split('&');
+  }
+
+  static splitQueryArrWithEqualsSign(queryArr) {
+    return queryArr.map((query) => query.split('='));
+  }
+
+  static putValuesToObj(queryArr) {
+    const values = {};
+
+    values.category =
+      (queryArr && queryArr[0] && queryArr[0][1] && queryArr[0][1].toUpperCase()) || '';
+    values.subCategory =
+      (queryArr && queryArr[1] && queryArr[1][1] && queryArr[1][1].toUpperCase()) || '';
+
+    return values;
+  }
+
+  static filterProducts(products, options) {
+    const { items } = products;
+
+    if (options === '') {
+      return items;
+    } else if (options.subCategory === '') {
+      return items && items.filter((product) => product.category === options.category);
+    }
+
+    return (
+      items &&
+      items.filter(
+        (product) =>
+          product.category === options.category && product.subCategory === options.subCategory,
+      )
+    );
+  }
+
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchProductsIfNeeded());
   }
 
-  getValuesFromQuery() {
+  putValuesFromQueryToObj() {
     const { location } = this.props;
     const { search } = location || {};
     const defaultQuery = search;
 
     if (search !== undefined && search.length !== 0) {
-      const queryNoQuestionMark = this.splitQueryWithQuestionMark(defaultQuery);
-      const queryArrNoAmpersands = this.splitQueryWithAmpersands(queryNoQuestionMark);
-      const queryNoEqualsSign = this.splitQueryArrWithEqualsSign(queryArrNoAmpersands);
+      const queryNoQuestionMark = ProductListContainer.splitQueryWithQuestionMark(defaultQuery);
+      const queryArrNoAmpersands = ProductListContainer.splitQueryWithAmpersands(
+        queryNoQuestionMark,
+      );
+      const queryNoEqualsSign = ProductListContainer.splitQueryArrWithEqualsSign(
+        queryArrNoAmpersands,
+      );
 
-      return this.getValuesFromQueryArr(queryNoEqualsSign);
-    }
-  }
-
-  splitQueryWithQuestionMark(query) {
-    return query.split('?')[1];
-  }
-
-  splitQueryWithAmpersands(query) {
-    return query.split('&');
-  }
-
-  splitQueryArrWithEqualsSign(queryArr) {
-    return queryArr.map((query) => query.split('='));
-  }
-
-  getValuesFromQueryArr(queryArr) {
-    return queryArr.map((valuePair) => ({ [valuePair[0]]: valuePair[1].toUpperCase() }));
-  }
-
-  filterProducts(options) {
-    const {
-      products: {
-        productsItems: { items },
-      },
-    } = this.props;
-
-    if (options === '') {
-      return items;
+      return ProductListContainer.putValuesToObj(queryNoEqualsSign);
     }
 
-    return items && items.filter((product) => product.category === options[0].category);
+    return false;
   }
 
   render() {
-    const {
-      products: { isFetching },
-    } = this.props;
+    const { products } = this.props;
+    const { productsList, isFetching } = products;
 
-    const urlOptions = this.getValuesFromQuery() || '';
-    const filteredProducts = this.filterProducts(urlOptions);
-    console.log(filteredProducts);
+    const urlOptions = this.putValuesFromQueryToObj() || '';
+    const filteredProducts = ProductListContainer.filterProducts(productsList, urlOptions);
+
     return <ProductList filteredProducts={filteredProducts} isFetching={isFetching} />;
   }
 }
 
 const mapStateToProps = (state) => {
-  const { isFetching, products } = state;
+  const { products } = state;
 
   return {
     products,
-    isFetching,
   };
 };
+
+ProductListContainer.propTypes = propTypes;
+ProductListContainer.defaultProps = defaultProps;
 
 export default connect(mapStateToProps)(ProductListContainer);

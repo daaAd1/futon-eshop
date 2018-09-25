@@ -17,7 +17,9 @@ const ProductList = (props) => {
 
   const productCards =
     filteredProducts &&
-    filteredProducts.map((product) => <ProductCard name={product.name} price={product.price} />);
+    filteredProducts.map((product) => (
+      <ProductCard key={product._id} name={product.name} price={product.price} />
+    ));
 
   return (
     <ul className="ProductListGeneralUI">

@@ -7,8 +7,8 @@ const findProductWithId = (products, id) => {
 
 const mapStateToProps = (state, props) => {
   const { products } = state;
-  const { productsItems } = products && products;
-  const { items } = productsItems && productsItems;
+  const { productsList } = products && products;
+  const { items } = productsList && productsList;
   const { match } = props;
   const { params } = match && match;
   const { id } = params && params;

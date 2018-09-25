@@ -1,7 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import fetchAttributesIfNeeded from '../../actions/AttributeActions';
 import AdminAttributes from '../../components/admin/AdminAttributes';
+
+const propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  attributesState: PropTypes.shape({
+    attributes: PropTypes.object.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+  }).isRequired,
+};
+
+const defaultProps = {};
 
 class AttributesContainer extends React.Component {
   componentDidMount() {
@@ -10,21 +21,23 @@ class AttributesContainer extends React.Component {
   }
 
   render() {
-    const { attributes } = this.props;
+    const { attributesState } = this.props;
+    const { attributes, isFetching } = attributesState;
 
-    return (
-      <AdminAttributes attributes={attributes.attributes} isFetching={attributes.isFetching} />
-    );
+    return <AdminAttributes attributes={attributes} isFetching={isFetching} />;
   }
 }
 
 const mapStateToProps = (state) => {
-  const { isFetching, attributes } = state;
+  const { admin } = state;
+  const { attributesState } = admin;
 
   return {
-    isFetching,
-    attributes,
+    attributesState,
   };
 };
+
+AttributesContainer.propTypes = propTypes;
+AttributesContainer.defaultProps = defaultProps;
 
 export default connect(mapStateToProps)(AttributesContainer);
