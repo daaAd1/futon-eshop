@@ -19,6 +19,14 @@ class AdminOneAttribute extends React.Component {
         name: 'modrá',
         price: '19,99',
       },
+      {
+        name: 'zelena',
+        price: '29,99',
+      },
+      {
+        name: 'zlta',
+        price: '39,99',
+      },
     ],
   };
 

@@ -11,8 +11,8 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import 'react-dropdown/style.css';
 import configureStore from './store/configureStore';
-import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
+import AppContainer from './containers/AppContainer';
 
 /* global document */
 
@@ -20,7 +20,7 @@ const { store, persistor } = configureStore();
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <App />
+      <AppContainer />
     </PersistGate>
   </Provider>,
   document.getElementById('root'),

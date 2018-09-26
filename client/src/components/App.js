@@ -3,7 +3,7 @@ import { HashRouter, Route, Link } from 'react-router-dom';
 import '../styles/components/App.css';
 import 'react-table/react-table.css';
 import * as routes from '../constants/routes';
-import HeaderMenuContainer from '../containers/HeaderMenuContainer';
+import HeaderMenu from './HeaderMenu';
 import FooterMenu from './FooterMenu';
 import OrderForm from './OrderForm';
 import Home from './Home';
@@ -21,15 +21,26 @@ import SingleProductContainer from '../containers/SingleProductContainer';
 
 class App extends Component {
   render() {
+    const { isAuthentificated } = this.props;
+
     return (
       <HashRouter>
         <div>
-          <AdminDashboard />
-          <Route exact path={routes.ADMIN_ORDERS} component={() => <OrdersContainer />} />
-          <Route exact path={routes.ADMIN_PRODUCTS} component={() => <ProductsContainer />} />
-          <Route exact path={routes.ADMIN_TYPES} component={() => <TypesContainer />} />
-          <Route exact path={routes.ADMIN_ATTRIBUTES} component={() => <AttributesContainer />} />
-          <HeaderMenuContainer />
+          {isAuthentificated && (
+            <div>
+              <AdminDashboard />
+              <Route exact path={routes.ADMIN_ORDERS} component={() => <OrdersContainer />} />
+              <Route exact path={routes.ADMIN_PRODUCTS} component={() => <ProductsContainer />} />
+              <Route exact path={routes.ADMIN_TYPES} component={() => <TypesContainer />} />
+              <Route
+                exact
+                path={routes.ADMIN_ATTRIBUTES}
+                component={() => <AttributesContainer />}
+              />
+            </div>
+          )}
+
+          <HeaderMenu />
           <Route exact path={routes.HOME} component={() => <Home />} />
           <Route exact path={routes.PRODUCTS} component={ProductListContainer} />
           <Route exact path={routes.SINGLE_PRODUCT} component={SingleProductContainer} />

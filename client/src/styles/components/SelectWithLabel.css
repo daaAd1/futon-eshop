@@ -1,7 +1,7 @@
 .SelectWithLabel {
   display: flex;
   flex-flow: column wrap;
-  max-width: 300px;
+  width: 250px;
   text-align: left;
   padding-bottom: 1px;
   font-size: 20px;
@@ -11,7 +11,7 @@
 .Dropdown-control,
 .Dropdown-menu {
   border-radius: 0px;
-  max-width: 300px;
+  width: 250px;
 }
 
 .Dropdown-control {

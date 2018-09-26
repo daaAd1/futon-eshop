@@ -60,6 +60,7 @@ class ProductListContainer extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props);
     const { dispatch } = this.props;
     dispatch(fetchProductsIfNeeded());
   }

@@ -5,14 +5,15 @@ const initialState = {
 };
 
 const addProductToCart = (cart, action) => {
-  const productIndex = cart.findIndex((product) => product.id === action.id);
-  if (productIndex === -1) {
-    return [cart, { id: action.id, count: action.count }];
-  }
-
-  const newCart = cart;
-  newCart[productIndex].count += action.count;
-  return newCart;
+  return [
+    ...cart,
+    {
+      id: action.id,
+      quantity: action.quantity,
+      totalItemPrice: action.totalItemPrice,
+      selectedOptions: action.selectedOptions,
+    },
+  ];
 };
 
 const removeProductFromCart = (cart, action) => {
@@ -21,12 +22,12 @@ const removeProductFromCart = (cart, action) => {
     return cart;
   }
 
-  if (action.newCount === 0) {
+  if (action.newQuantity === 0) {
     return [cart.slice(productIndex, 1)];
   }
 
   const newCart = cart;
-  newCart[productIndex].count = action.newCount;
+  newCart[productIndex].quantity = action.quantity;
   return newCart;
 };
 
