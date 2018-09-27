@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import AdminOrders from '../../components/admin/AdminOrders';
-import fetchOrdersIfNeeded from '../../actions/OrderActions';
+import { fetchOrdersIfNeeded, removeOrder } from '../../actions/OrderActions';
 
 const propTypes = {
   dispatch: PropTypes.func.isRequired,
@@ -21,10 +21,16 @@ class OrdersContainer extends React.Component {
   }
 
   render() {
-    const { ordersState } = this.props;
+    const { ordersState, dispatch } = this.props;
     const { orders, isFetching } = ordersState;
 
-    return <AdminOrders orders={orders} isFetching={isFetching} />;
+    return (
+      <AdminOrders
+        orders={orders}
+        isFetching={isFetching}
+        removeOrderFromList={(id) => dispatch(removeOrder(id))}
+      />
+    );
   }
 }
 

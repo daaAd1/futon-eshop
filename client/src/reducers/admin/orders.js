@@ -7,6 +7,14 @@ const initialState = {
 
 const ordersState = (state = initialState, action) => {
   switch (action.type) {
+    case types.DELETE_ORDER:
+      return {
+        ...state,
+        orders: {
+          ...state.orders,
+          items: state.orders.items.filter((order) => order._id !== action.id),
+        },
+      };
     case types.REQUEST_ORDERS:
       return {
         ...state,

@@ -11,6 +11,11 @@ const receiveOrders = (json) => ({
   orders: json,
 });
 
+const deleteOrder = (id) => ({
+  type: types.DELETE_ORDER,
+  id,
+});
+
 const fetchOrders = () => {
   return (dispatch) => {
     dispatch(requestOrders());
@@ -36,4 +41,15 @@ const fetchOrdersIfNeeded = () => {
   };
 };
 
-export default fetchOrdersIfNeeded;
+const removeOrder = (id) => {
+  return (dispatch) => {
+    return fetch(`${urls.BASE_URL}/${urls.ORDERS_URL}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(() => dispatch(deleteOrder(id)));
+  };
+};
+
+export { fetchOrdersIfNeeded, removeOrder };

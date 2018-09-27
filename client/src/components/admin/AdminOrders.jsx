@@ -3,9 +3,31 @@ import ReactTable from 'react-table';
 import CartItem from '../CartItem';
 import { deleteIcon } from '../../icons';
 import '../../styles/admin/AdminOrders.css';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 class AdminOrders extends React.Component {
+  confirmAndRemoveOrder(id, removeFunction) {
+    confirmAlert({
+      title: 'Potvrďte vymazanie',
+      message: 'Ste si istý, že chcete vymazať túto objednávku?',
+      buttons: [
+        {
+          label: 'Áno',
+          onClick: () => removeFunction(id),
+        },
+        {
+          label: 'Nie',
+          onClick: () => {},
+        },
+      ],
+    });
+  }
+
   render() {
+    const { orders, isFetching, removeOrderFromList } = this.props;
+    const { items } = orders || {};
+
     const columns = [
       {
         Header: 'id',
@@ -38,16 +60,8 @@ class AdminOrders extends React.Component {
         Header: '',
         Cell: (row) => (
           <button
-            onClick={() => {
-              fetch(`http://localhost:5000/order/${row.original._id}`, {
-                method: 'DELETE',
-                body: {},
-                headers: {
-                  'Content-Type': 'application/json; charset=utf-8',
-                  'Access-Control-Allow-Methods': 'GET, POST, DELETE',
-                },
-              });
-            }}
+            // onClick={() => removeOrderFromList(row.original._id)}
+            onClick={() => this.confirmAndRemoveOrder(row.original._id, removeOrderFromList)}
             className="AdminOrders-deleteButton"
           >
             {deleteIcon}
@@ -56,9 +70,6 @@ class AdminOrders extends React.Component {
         maxWidth: 50,
       },
     ];
-
-    const { orders, isFetching } = this.props;
-    const { items } = orders || {};
 
     return (
       <div className="AdminOrders">
