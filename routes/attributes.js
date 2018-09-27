@@ -58,7 +58,7 @@ router.post('/', (req, res, next) => {
     const newAttribute = new Attribute({
         name: req.body.name,
         type: req.body.type,
-        values: req.body.values,
+        options: req.body.options,
     });
 
     newAttribute.save()

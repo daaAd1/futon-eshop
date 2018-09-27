@@ -4,7 +4,6 @@ require('mongoose-type-email');
 
 const Schema = mongoose.Schema;
 
-
 const cartSchema = mongoose.Schema({
     product: {
         type: mongoose.Schema.Types.ObjectId,
