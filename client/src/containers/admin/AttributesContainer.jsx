@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import fetchAttributesIfNeeded from '../../actions/AttributeActions';
+import {
+  fetchAttributesIfNeeded,
+  removeAttribute,
+  updateAttribute,
+  createNewAttribute,
+} from '../../actions/AttributeActions';
 import AdminAttributes from '../../components/admin/AdminAttributes';
 
 const propTypes = {
@@ -21,10 +26,18 @@ class AttributesContainer extends React.Component {
   }
 
   render() {
-    const { attributesState } = this.props;
+    const { attributesState, dispatch } = this.props;
     const { attributes, isFetching } = attributesState;
 
-    return <AdminAttributes attributes={attributes} isFetching={isFetching} />;
+    return (
+      <AdminAttributes
+        deleteAttribute={(id) => removeAttribute(id)}
+        updateAttribute={(body, id) => updateAttribute(body, id)}
+        createNewAttribute={(body) => dispatch(createNewAttribute(body))}
+        attributes={attributes}
+        isFetching={isFetching}
+      />
+    );
   }
 }
 

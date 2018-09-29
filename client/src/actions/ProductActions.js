@@ -36,4 +36,28 @@ const fetchProductsIfNeeded = () => {
   };
 };
 
-export default fetchProductsIfNeeded;
+const updateProduct = (body, id) => {
+  return () => {
+    return fetch(`${urls.BASE_URL}/${urls.PRODUCTS_URL}/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then((response) => console.log('Success:', JSON.stringify(response)));
+  };
+};
+
+const createNewProduct = (body) => {
+  return () => {
+    return fetch(`${urls.BASE_URL}/${urls.PRODUCTS_URL}`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(() => window.location.reload());
+  };
+};
+
+export { fetchProductsIfNeeded, updateProduct, createNewProduct };

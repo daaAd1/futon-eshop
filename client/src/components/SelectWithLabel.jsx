@@ -8,17 +8,25 @@ const propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   defaultOption: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
 };
 
-const defaultProps = {};
+const defaultProps = {
+  onChange: () => {},
+};
 
 const SelectWithLabel = (props) => {
-  const { label, options, defaultOption, id } = props;
+  const { label, options, defaultOption, id, onChange } = props;
 
   return (
     <label htmlFor={id} className="SelectWithLabel">
       {label}
-      <Dropdown options={options} value={defaultOption} placeholder="Select an option" />
+      <Dropdown
+        options={options}
+        value={defaultOption}
+        onChange={onChange}
+        placeholder="Select an option"
+      />
     </label>
   );
 };

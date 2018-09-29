@@ -3,6 +3,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import Dropdown from 'react-dropdown';
 import Button from '../Button';
 import AdminAttributesFirstRow from './AdminAttributesFirstRow';
+import AdminNewAttribute from './AdminNewAttribute';
 import AdminOneAttribute from './AdminOneAttribute';
 import AdminAttributesOptionsFirstRow from './AdminAttributesOptionsFirstRow';
 import { deleteIcon } from '../../icons';
@@ -62,7 +63,12 @@ class AdminAttributes extends React.Component {
       return <div />;
     }
     const attributeRows = items.map((attribute) => (
-      <AdminOneAttribute name={attribute.name} type={attribute.type} values={attribute.values} />
+      <AdminOneAttribute
+        createNewAttribute={this.props.createNewAttribute}
+        name={attribute.name}
+        type={attribute.type}
+        values={attribute.values}
+      />
     ));
     const attributeOptions = options.map((option, index) => (
       <div className="AdminOneAttribute-oneOption">
@@ -81,32 +87,7 @@ class AdminAttributes extends React.Component {
           <Button onClick={this.toggleNewAttributeForm} text="Nový atribút" />
         </div>
         {isNewAttributeFormOpen && (
-          <div className="AdminAttributes-newAttribute swing-in-top-bck">
-            <div>
-              <p>Názov typu</p>
-              <TextareaAutosize />
-            </div>
-            <div className="AdminOneAttribute-dropdownRow">
-              <p>Typ</p>
-              <Dropdown value="doplnok" options={['doplnok', 'sofa', 'futon']} />
-            </div>
-            <div className="AdminOneAttribute-optionsRow">
-              <p>Možnosti</p>
-              <div>
-                <AdminAttributesOptionsFirstRow />
-                {attributeOptions}
-                <div className="AdminOneAttribute-oneOption">
-                  <div className="AdminOneAttribute-newOption">
-                    <Button type="secondary" onClick={this.addNewOption} text="+" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="AdminAttributes-newAttributeButton">
-              <p />
-              <Button text="Vytvoriť atribút" />
-            </div>
-          </div>
+          <AdminNewAttribute createNewAttribute={this.props.createNewAttribute} />
         )}
         <div className="AdminAttributes-listOfAttributes">
           <AdminAttributesFirstRow />

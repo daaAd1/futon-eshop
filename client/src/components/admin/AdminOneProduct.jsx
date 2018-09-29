@@ -2,6 +2,7 @@ import React from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import ImageUploader from 'react-images-upload';
 import Dropdown from 'react-dropdown';
+import SelectWithLabel from '../SelectWithLabel';
 import Button from '../Button';
 import {
   deleteIcon,
@@ -13,37 +14,58 @@ import {
 import '../../styles/admin/AdminOneProduct.css';
 
 class AdminOneProduct extends React.Component {
-  state = {
-    isExpanded: false,
-    isActive: true,
-    images: [],
-    data: [],
-    offset: 0,
-  };
-
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    const {
+      id,
+      active,
+      name,
+      descShort,
+      descLong,
+      price,
+      category,
+      subCategory,
+      type,
+      images,
+    } = props;
+    this.state = {
+      id,
+      active,
+      name,
+      descShort,
+      descLong,
+      price,
+      category,
+      subCategory,
+      type,
+      images,
+      newImages: [],
+      isExpanded: false,
+    };
 
     this.removeImage = this.removeImage.bind(this);
     this.addImage = this.addImage.bind(this);
+    this.handleFieldChange = this.handleFieldChange.bind(this);
+    this.handleSelectChange = this.handleSelectChange.bind(this);
     this.handleExpandChange = this.handleExpandChange.bind(this);
     this.handleActiveChange = this.handleActiveChange.bind(this);
+    this.updateProduct = this.updateProduct.bind(this);
   }
 
   removeImage(index) {
     const newState = this.state;
-    newState.images.splice(index, 1);
+    newState.newImages.splice(index, 1);
     this.setState(newState);
   }
 
-  addImage(images) {
+  addImage(imgArray) {
     const joinedArray = [];
-    const currentImages = this.state.images;
+    const { newImages } = this.state;
 
-    images.forEach((newImg) => {
+    imgArray.forEach((newImg) => {
       let isDuplicate = false;
-      if (currentImages.length > 0) {
-        currentImages.forEach((currentImg) => {
+      if (newImages.length > 0) {
+        newImages.forEach((currentImg) => {
           if (newImg.name === currentImg.name) {
             isDuplicate = true;
           }
@@ -56,8 +78,23 @@ class AdminOneProduct extends React.Component {
     });
 
     this.setState({
-      images: currentImages.concat(joinedArray),
+      newImages: newImages.concat(joinedArray),
     });
+  }
+
+  removeImageFromExisting(index) {
+    const newState = this.state;
+    newState.images.splice(index, 1);
+    this.setState(newState);
+  }
+
+  handleFieldChange(event) {
+    const key = event.target.id;
+    this.setState({ [key]: event.target.value });
+  }
+
+  handleSelectChange(value, key) {
+    this.setState({ [key]: value });
   }
 
   handleExpandChange() {
@@ -68,15 +105,56 @@ class AdminOneProduct extends React.Component {
 
   handleActiveChange() {
     this.setState((prevState) => ({
-      isActive: !prevState.isActive,
+      active: !prevState.active,
     }));
   }
 
-  render() {
-    const { isExpanded, isActive } = this.state;
-    const { id, name, shortDesc, longDesc, price, type, category, subCategory } = this.props;
+  updateProduct() {
+    const { updateProduct } = this.props;
+    const {
+      id,
+      name,
+      descShort,
+      descLong,
+      price,
+      category,
+      subCategory,
+      type,
+      images,
+      active,
+    } = this.state;
 
-    const productActive = isActive
+    const body = {};
+    body.name = name;
+    body.descShort = descShort;
+    body.descLong = descLong;
+    body.price = price;
+    body.category = category;
+    body.subCategory = subCategory;
+    body.type = type;
+    body.images = images;
+    body.active = active;
+
+    updateProduct(body, id);
+  }
+
+  render() {
+    const {
+      isExpanded,
+      active,
+      id,
+      name,
+      descShort,
+      descLong,
+      price,
+      type,
+      category,
+      subCategory,
+      images,
+      newImages,
+    } = this.state;
+
+    const productActive = active
       ? 'color-change-reverse'
       : 'AdminOneProduct-propertiesInactive color-change ';
 
@@ -84,6 +162,9 @@ class AdminOneProduct extends React.Component {
       <div className="AdminOneProduct">
         <div className={`AdminOneProduct-properties ${productActive}`}>
           <div
+            role="button"
+            tabIndex="0"
+            onKeyDown={this.handleExpandChange}
             onClick={this.handleExpandChange}
             className="AdminOneProduct-small AdminOneProduct-cursorPointer"
           >
@@ -91,52 +172,66 @@ class AdminOneProduct extends React.Component {
           </div>
           <div className="AdminOneProduct-small">{id}</div>
           <div>{name}</div>
-          <div>{shortDesc}</div>
-          <div>{longDesc}</div>
+          <div>{descShort}</div>
+          <div>{descLong}</div>
           <div>{price}</div>
           <div>{category}</div>
           <div>{subCategory}</div>
           <div>{type}</div>
           <div
+            role="button"
+            tabIndex="0"
+            onKeyDown={this.handleActiveChange}
             onClick={this.handleActiveChange}
             className="AdminOneProduct-small AdminOneProduct-cursorPointer"
           >
-            <button className="AdminOneProduct-activeButton">
-              {isActive ? fullCircleIcon : emptyCircleIcon}
+            <button type="button" className="AdminOneProduct-activeButton">
+              {active ? fullCircleIcon : emptyCircleIcon}
             </button>
           </div>
         </div>
         {isExpanded && (
-          <div className="AdminOneProduct-expandedInfo swing-in-top-bck">
+          <div className="AdminOneProduct-expandedInfo AdminNewProduct swing-in-top-bck">
             <div>
               <p>id</p>
-              <p>1</p>
+              <p>{id}</p>
             </div>
             <div>
               <p>Názov</p>
-              <TextareaAutosize value={name} />
+              <TextareaAutosize id="name" value={name} onChange={this.handleFieldChange} />
             </div>
             <div>
               <p>Krátky popis</p>
-              <TextareaAutosize value={shortDesc} />
+              <TextareaAutosize
+                id="descShort"
+                value={descShort}
+                onChange={this.handleFieldChange}
+              />
             </div>
             <div>
               <p>Dlhý popis</p>
-              <TextareaAutosize value={longDesc} />
+              <TextareaAutosize id="descLong" value={descLong} onChange={this.handleFieldChange} />
             </div>
             <div>
               <p>Cena</p>
-              <TextareaAutosize value={price} />
+              <TextareaAutosize id="price" value={price} onChange={this.handleFieldChange} />
             </div>
             <div className="AdminOneProduct-dropdownRow">
               <p>Kategória</p>
-              <Dropdown value={category} options={[category, 'doplnok', 'sofa', 'futon']} />
+              <SelectWithLabel
+                id="category"
+                onChange={(select) => this.handleSelectChange(select.value, 'category')}
+                value={category}
+                defaultOption={category}
+                options={['FUTON', 'SOFA', 'BED', 'ADD-ON']}
+              />
             </div>
             <div className="AdminOneProduct-dropdownRow">
               <p>Podkategória</p>
               <Dropdown
                 value={subCategory}
                 options={[subCategory, 'latex', '110x120cm', 'bavlna']}
+                onChange={this.handleSelectChange}
               />
             </div>
             <div className="AdminOneProduct-dropdownRow">
@@ -144,16 +239,28 @@ class AdminOneProduct extends React.Component {
               <Dropdown
                 value={type}
                 options={[type, 'doplnok cerveny', 'postel jeden ram', 'postel jedna farba']}
+                onChange={this.handleSelectChange}
               />
             </div>
             <div>
               <p>Obrázky</p>
               <div className="AdminProducts-imageUpload">
                 <h2>Aktuálne súbory</h2>
-                <ul className="AdminOneProduct-uploadedImages">
-                  {this.state.images.map((img) => (
+                {/* <ul className="AdminOneProduct-uploadedImages">
+                  {images.map((img) => (
                     <li key={img.name}>
                       {img.name} - {img.size / 1000000} mb <Button text="odstrániť" />
+                    </li>
+                  ))}
+                </ul> */}
+                <ul className="AdminOneProduct-uploadedImages">
+                  {images.map((img, index) => (
+                    <li>
+                      {img.split('/')[1]}
+                      <Button
+                        onClick={() => this.removeImageFromExisting(index)}
+                        text="odstrániť"
+                      />
                     </li>
                   ))}
                 </ul>
@@ -166,7 +273,7 @@ class AdminOneProduct extends React.Component {
                 />
                 <h2>Nahrané súbory</h2>
                 <ul>
-                  {this.state.images.map((img, index) => (
+                  {newImages.map((img, index) => (
                     <li key={img.name}>
                       {img.name} - {img.size / 1000000} mb{' '}
                       <Button onClick={() => this.removeImage(index)} text="odstrániť" />
@@ -177,7 +284,7 @@ class AdminOneProduct extends React.Component {
             </div>
             <div className="AdminProducts-saveButton">
               <p />
-              <Button text="Uložiť" />
+              <Button text="Uložiť" onClick={this.updateProduct} />
             </div>
           </div>
         )}

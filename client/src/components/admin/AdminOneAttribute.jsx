@@ -3,6 +3,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import Dropdown from 'react-dropdown';
 import Button from '../Button';
 import { deleteIcon, deleteIconWhite, chevronDownIcon, chevronUpIcon } from '../../icons';
+import AdminNewAttribute from './AdminNewAttribute';
 import '../../styles/admin/AdminOneAttribute.css';
 import AdminAttributesFirstRow from './AdminAttributesFirstRow';
 import AdminAttributesOptionsFirstRow from './AdminAttributesOptionsFirstRow';
@@ -87,34 +88,7 @@ class AdminOneAttribute extends React.Component {
             <button className="AdminOneAttribute-activeButton">{deleteIcon}</button>
           </div>
         </div>
-        {isExpanded && (
-          <div className="AdminOneAttribute-expandedInfo swing-in-top-bck">
-            <div>
-              <p>Názov</p>
-              <TextareaAutosize value={name} />
-            </div>
-            <div className="AdminOneAttribute-dropdownRow">
-              <p>Typ</p>
-              <Dropdown value={type} options={[type, 'doplnok', 'sofa', 'futon']} />
-            </div>
-            <div className="AdminOneAttribute-optionsRow">
-              <p>Možnosti</p>
-              <div>
-                <AdminAttributesOptionsFirstRow />
-                {attributeOptions}
-                <div className="AdminOneAttribute-oneOption">
-                  <div className="AdminOneAttribute-newOption">
-                    <Button type="secondary" onClick={this.addNewOption} text="+" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="AdminOneAttribute-saveButton">
-              <p />
-              <Button text="Uložiť" />
-            </div>
-          </div>
-        )}
+        {isExpanded && <AdminNewAttribute createNewAttribute={this.props.createNewAttribute} />}
       </div>
     );
   }

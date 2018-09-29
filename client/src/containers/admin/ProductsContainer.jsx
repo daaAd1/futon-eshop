@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import AdminProducts from '../../components/admin/AdminProducts';
-import fetchProductsIfNeeded from '../../actions/ProductActions';
+import {
+  fetchProductsIfNeeded,
+  updateProduct,
+  createNewProduct,
+} from '../../actions/ProductActions';
 
 const propTypes = {
   dispatch: PropTypes.func.isRequired,
@@ -21,10 +25,17 @@ class ProductsContainer extends React.Component {
   }
 
   render() {
-    const { productsState } = this.props;
+    const { productsState, dispatch } = this.props;
     const { products, isFetching } = productsState;
 
-    return <AdminProducts products={products} isFetching={isFetching} />;
+    return (
+      <AdminProducts
+        products={products}
+        isFetching={isFetching}
+        updateProduct={(body, id) => dispatch(updateProduct(body, id))}
+        createNewProduct={(body) => dispatch(createNewProduct(body))}
+      />
+    );
   }
 }
 

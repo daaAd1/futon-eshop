@@ -11,6 +11,11 @@ const receiveAttributes = (json) => ({
   attributes: json,
 });
 
+const deleteAttribute = (id) => ({
+  type: types.DELETE_ATTRIBUTE,
+  id,
+});
+
 const fetchAttributes = () => {
   return (dispatch) => {
     dispatch(requestAttributes());
@@ -36,4 +41,39 @@ const fetchAttributesIfNeeded = () => {
   };
 };
 
-export default fetchAttributesIfNeeded;
+const updateAttribute = (body, id) => {
+  return () => {
+    return fetch(`${urls.BASE_URL}/${urls.ATTRIBUTES_URL}/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then((response) => console.log('Success:', JSON.stringify(response)));
+  };
+};
+
+const createNewAttribute = (body) => {
+  return () => {
+    return fetch(`${urls.BASE_URL}/${urls.ATTRIBUTES_URL}`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(() => window.location.reload());
+  };
+};
+
+const removeAttribute = (id) => {
+  return (dispatch) => {
+    return fetch(`${urls.BASE_URL}/${urls.ATTRIBUTES_URL}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(() => dispatch(deleteAttribute(id)));
+  };
+};
+
+export { fetchAttributesIfNeeded, removeAttribute, updateAttribute, createNewAttribute };

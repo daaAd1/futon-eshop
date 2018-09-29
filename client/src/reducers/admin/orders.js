@@ -12,6 +12,7 @@ const ordersState = (state = initialState, action) => {
         ...state,
         orders: {
           ...state.orders,
+          count: state.orders.count - 1,
           items: state.orders.items.filter((order) => order._id !== action.id),
         },
       };

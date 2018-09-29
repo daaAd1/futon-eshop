@@ -11,6 +11,11 @@ const receiveTypes = (json) => ({
   types: json,
 });
 
+const deleteType = (id) => ({
+  type: types.DELETE_TYPE,
+  id,
+});
+
 const fetchTypes = () => {
   return (dispatch) => {
     dispatch(requestTypes());
@@ -36,4 +41,39 @@ const fetchTypesIfNeeded = () => {
   };
 };
 
-export default fetchTypesIfNeeded;
+const updateType = (body, id) => {
+  return () => {
+    return fetch(`${urls.BASE_URL}/${urls.TYPES_URL}/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then((response) => console.log('Success:', JSON.stringify(response)));
+  };
+};
+
+const createNewType = (body) => {
+  return () => {
+    return fetch(`${urls.BASE_URL}/${urls.TYPES_URL}`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(() => window.location.reload());
+  };
+};
+
+const removeType = (id) => {
+  return (dispatch) => {
+    return fetch(`${urls.BASE_URL}/${urls.TYPES_URL}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(() => dispatch(deleteType(id)));
+  };
+};
+
+export { fetchTypesIfNeeded, createNewType, updateType, removeType };

@@ -74,6 +74,7 @@ class AdminOrders extends React.Component {
     return (
       <div className="AdminOrders">
         <h1>Objednávky</h1>
+        <h2>{orders.count}</h2>
         <ReactTable
           data={items}
           columns={columns}

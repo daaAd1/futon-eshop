@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Product from '../components/Product';
 import { removeProductFromCart, addProductToCart } from '../actions/CartActions';
-import fetchAttributesIfNeeded from '../actions/AttributeActions';
+import { fetchAttributesIfNeeded } from '../actions/AttributeActions';
 
 const propTypes = {
   dispatch: PropTypes.func.isRequired,

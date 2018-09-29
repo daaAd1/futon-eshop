@@ -2,7 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import AdminTypes from '../../components/admin/AdminTypes';
-import fetchTypesIfNeeded from '../../actions/TypeActions';
+import {
+  fetchTypesIfNeeded,
+  createNewType,
+  updateType,
+  removeType,
+} from '../../actions/TypeActions';
 
 const propTypes = {
   dispatch: PropTypes.func.isRequired,
@@ -21,10 +26,18 @@ class TypesContainer extends React.Component {
   }
 
   render() {
-    const { typesState } = this.props;
+    const { typesState, dispatch } = this.props;
     const { types, isFetching } = typesState;
 
-    return <AdminTypes types={types} isFetching={isFetching} />;
+    return (
+      <AdminTypes
+        types={types}
+        isFetching={isFetching}
+        updateType={(body, id) => dispatch(updateType(body, id))}
+        createNewType={(body) => dispatch(createNewType(body))}
+        deleteType={(id) => dispatch(removeType(id))}
+      />
+    );
   }
 }
 

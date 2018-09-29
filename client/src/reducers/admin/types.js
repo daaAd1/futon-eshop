@@ -18,6 +18,15 @@ const typesState = (state = initialState, action) => {
         isFetching: false,
         types: action.types,
       };
+    case actionTypes.DELETE_TYPE:
+      return {
+        ...state,
+        types: {
+          ...state.types,
+          count: state.types.count - 1,
+          items: state.types.items.filter((type) => type._id !== action.id),
+        },
+      };
     default:
       return state;
   }

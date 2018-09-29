@@ -1,9 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from '../Button';
-import TextareaAutosize from 'react-textarea-autosize';
 import AdminOneType from './AdminOneType';
+import AdminNewType from './AdminNewType';
 import AdminTypesFirstRow from './AdminTypesFirstRow';
 import '../../styles/admin/AdminTypes.css';
+
+const propTypes = {
+  types: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+  createNewType: PropTypes.func.isRequired,
+  updateType: PropTypes.func.isRequired,
+  deleteType: PropTypes.func.isRequired,
+};
+
+const defaultProps = {};
 
 class AdminTypes extends React.Component {
   constructor() {
@@ -22,14 +35,21 @@ class AdminTypes extends React.Component {
   }
 
   render() {
-    const typesArr = ['doplnok', 'postel', 'sofa', 'futon'];
     const { isNewTypeFormOpen } = this.state;
-    const { types } = this.props;
+    const { types, updateType, createNewType, deleteType } = this.props;
     const { items } = types || [];
+
     if (!items) {
       return <div />;
     }
-    const typeRows = items.map((type) => <AdminOneType name={type.name} />);
+    const typeRows = items.map((type) => (
+      <AdminOneType
+        id={type._id}
+        updateType={updateType}
+        deleteType={() => deleteType(type._id)}
+        name={type.name}
+      />
+    ));
 
     return (
       <div className="AdminTypes">
@@ -37,18 +57,7 @@ class AdminTypes extends React.Component {
           <h1>Typy produktov</h1>
           <Button onClick={this.toggleNewTypeForm} text="Nový typ" />
         </div>
-        {isNewTypeFormOpen && (
-          <div className="AdminTypes-newType swing-in-top-bck">
-            <div>
-              <p>Názov typu</p>
-              <TextareaAutosize />
-            </div>
-            <div className="AdminTypes-newTypeButton">
-              <p />
-              <Button text="Vytvoriť typ" />
-            </div>
-          </div>
-        )}
+        {isNewTypeFormOpen && <AdminNewType createNewType={createNewType} />}
         <div className="AdminTypes-listOfTypes">
           <AdminTypesFirstRow />
           {typeRows}
@@ -57,5 +66,8 @@ class AdminTypes extends React.Component {
     );
   }
 }
+
+AdminTypes.propTypes = propTypes;
+AdminTypes.defaultProps = defaultProps;
 
 export default AdminTypes;
