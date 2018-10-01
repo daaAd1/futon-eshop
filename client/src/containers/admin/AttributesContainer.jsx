@@ -31,8 +31,8 @@ class AttributesContainer extends React.Component {
 
     return (
       <AdminAttributes
-        deleteAttribute={(id) => removeAttribute(id)}
-        updateAttribute={(body, id) => updateAttribute(body, id)}
+        deleteAttribute={(id) => dispatch(removeAttribute(id))}
+        updateAttribute={(body, id) => dispatch(updateAttribute(body, id))}
         createNewAttribute={(body) => dispatch(createNewAttribute(body))}
         attributes={attributes}
         isFetching={isFetching}

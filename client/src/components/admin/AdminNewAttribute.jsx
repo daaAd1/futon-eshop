@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TextareaAutosize from 'react-textarea-autosize';
 import '../../styles/admin/AdminNewProduct.css';
-import { deleteIcon, deleteIconWhite, chevronDownIcon, chevronUpIcon } from '../../icons';
+import { deleteIcon } from '../../icons';
 import Button from '../Button';
 import SelectWithLabel from '../SelectWithLabel';
 import AdminAttributesOptionsFirstRow from './AdminAttributesOptionsFirstRow';
@@ -86,10 +86,12 @@ class AdminNewAttribute extends React.Component {
     const attributeOptions = options.map((option, index) => (
       <div className="AdminOneAttribute-oneOption">
         <TextareaAutosize
+          required
           value={option.name}
           onChange={(event) => this.handleOptionChange(event, index, 'name')}
         />
         <TextareaAutosize
+          required
           value={option.price}
           onChange={(event) => this.handleOptionChange(event, index, 'price')}
         />
@@ -105,8 +107,15 @@ class AdminNewAttribute extends React.Component {
       </div>
     ));
 
+    let isOneOptionFilled = false;
+    options.map((option) => {
+      if (option.name !== '' && option.price !== '') {
+        isOneOptionFilled = true;
+      }
+    });
+
     return (
-      <div className="AdminOneAttribute-expandedInfo swing-in-top-bck">
+      <div className="AdminOneAttribute-expandedInfo AdminNewProduct swing-in-top-bck">
         <div>
           <p>Názov</p>
           <TextareaAutosize id="name" value={name} onChange={this.handleFieldChange} />
@@ -135,7 +144,7 @@ class AdminNewAttribute extends React.Component {
         </div>
         <div className="AdminOneAttribute-saveButton">
           <p />
-          <Button text="Uložiť" onClick={this.createNewAttribute} />
+          <Button text="Uložiť" disabled={!isOneOptionFilled} onClick={this.createNewAttribute} />
         </div>
       </div>
     );

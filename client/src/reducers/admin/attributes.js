@@ -7,6 +7,15 @@ const initialState = {
 
 const attributesState = (state = initialState, action) => {
   switch (action.type) {
+    case types.DELETE_ATTRIBUTE:
+      return {
+        ...state,
+        attributes: {
+          ...state.attributes,
+          count: state.attributes.count - 1,
+          items: state.attributes.items.filter((attribute) => attribute._id !== action.id),
+        },
+      };
     case types.REQUEST_ATTRIBUTES:
       return {
         ...state,

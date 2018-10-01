@@ -1,48 +1,67 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextareaAutosize from 'react-textarea-autosize';
-import Dropdown from 'react-dropdown';
 import Button from '../Button';
-import { deleteIcon, deleteIconWhite, chevronDownIcon, chevronUpIcon } from '../../icons';
-import AdminNewAttribute from './AdminNewAttribute';
+import SelectWithLabel from '../SelectWithLabel';
+import { deleteIcon, chevronDownIcon, chevronUpIcon } from '../../icons';
 import '../../styles/admin/AdminOneAttribute.css';
-import AdminAttributesFirstRow from './AdminAttributesFirstRow';
 import AdminAttributesOptionsFirstRow from './AdminAttributesOptionsFirstRow';
 
-class AdminOneAttribute extends React.Component {
-  state = {
-    isExpanded: false,
-    options: [
-      {
-        name: 'červená',
-        price: '11,99',
-      },
-      {
-        name: 'modrá',
-        price: '19,99',
-      },
-      {
-        name: 'zelena',
-        price: '29,99',
-      },
-      {
-        name: 'zlta',
-        price: '39,99',
-      },
-    ],
-  };
+const propTypes = {
+  name: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  options: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+  }).isRequired,
+  id: PropTypes.string.isRequired,
+  updateAttribute: PropTypes.func.isRequired,
+  deleteAttribute: PropTypes.func.isRequired,
+};
 
-  constructor() {
-    super();
+const defaultProps = {};
+
+class AdminOneAttribute extends React.Component {
+  constructor(props) {
+    super(props);
+    const { name, type, options } = props;
+    this.state = {
+      name,
+      type,
+      options,
+      isExpanded: false,
+    };
 
     this.handleExpandChange = this.handleExpandChange.bind(this);
+    this.handleFieldChange = this.handleFieldChange.bind(this);
+    this.handleSelectChange = this.handleSelectChange.bind(this);
+    this.handleOptionChange = this.handleOptionChange.bind(this);
     this.addNewOption = this.addNewOption.bind(this);
     this.removeOption = this.removeOption.bind(this);
+    this.updateAttribute = this.updateAttribute.bind(this);
   }
 
   handleExpandChange() {
     this.setState((prevState) => ({
       isExpanded: !prevState.isExpanded,
     }));
+  }
+
+  handleFieldChange(event) {
+    const key = event.target.id;
+    this.setState({ [key]: event.target.value });
+  }
+
+  handleSelectChange(value, key) {
+    this.setState({ [key]: value });
+  }
+
+  handleOptionChange(event, index, key) {
+    const { options } = this.state;
+    options[index][key] = event.target.value;
+    this.setState({
+      options,
+    });
   }
 
   removeOption(index) {
@@ -57,14 +76,43 @@ class AdminOneAttribute extends React.Component {
     }));
   }
 
+  updateAttribute() {
+    const { name, type, options } = this.state;
+    const { id, updateAttribute } = this.props;
+
+    const body = {};
+    body.name = name;
+    body.type = type;
+    body.options = options;
+
+    updateAttribute(body, id);
+  }
+
   render() {
-    const { isExpanded, options } = this.state;
-    const { name, type, values } = this.props;
+    const { name, type, options, isExpanded } = this.state;
+    const { deleteAttribute, id } = this.props;
+
     const attributeOptions = options.map((option, index) => (
-      <div className="AdminOneAttribute-oneOption">
-        <TextareaAutosize value={option.name} />
-        <TextareaAutosize value={option.price} />
-        <div className="AdminOneAttribute-deleteButton" onClick={() => this.removeOption(index)}>
+      <div className="AdminOneAttribute-oneOption" key={index}>
+        <TextareaAutosize
+          id={`name${index}`}
+          required
+          value={option.name}
+          onChange={(event) => this.handleOptionChange(event, index, 'name')}
+        />
+        <TextareaAutosize
+          id={`price${index}`}
+          required
+          value={option.price}
+          onChange={(event) => this.handleOptionChange(event, index, 'price')}
+        />
+        <div
+          role="button"
+          tabIndex="0"
+          onKeyDown={() => this.removeOption(index)}
+          onClick={() => this.removeOption(index)}
+          className="AdminOneAttribute-deleteButton"
+        >
           {deleteIcon}
         </div>
       </div>
@@ -74,6 +122,9 @@ class AdminOneAttribute extends React.Component {
       <div className="AdminOneAttribute">
         <div className="AdminOneAttribute-properties">
           <div
+            role="button"
+            tabIndex="0"
+            onKeyDown={this.handleExpandChange}
             onClick={this.handleExpandChange}
             className="AdminOneAttribute-small AdminOneAttribute-cursorPointer"
           >
@@ -82,16 +133,62 @@ class AdminOneAttribute extends React.Component {
           <div>{name}</div>
           <div>{type}</div>
           <div
+            role="button"
+            tabIndex="0"
+            onKeyDown={this.handleActiveChange}
             onClick={this.handleActiveChange}
             className="AdminOneAttribute-small AdminOneProduct-cursorPointer"
           >
-            <button className="AdminOneAttribute-activeButton">{deleteIcon}</button>
+            <button
+              type="button"
+              className="AdminOneAttribute-activeButton"
+              onClick={() => deleteAttribute(id)}
+            >
+              {deleteIcon}
+            </button>
           </div>
         </div>
-        {isExpanded && <AdminNewAttribute createNewAttribute={this.props.createNewAttribute} />}
+        {isExpanded && (
+          <div className="AdminOneAttribute-expandedInfo AdminNewProduct swing-in-top-bck">
+            <div>
+              <p>Názov</p>
+              <TextareaAutosize id="name" value={name} onChange={this.handleFieldChange} />
+            </div>
+            <div className="AdminOneAttribute-dropdownRow">
+              <p>Typ</p>
+              <SelectWithLabel
+                label=""
+                id="type"
+                onChange={(select) => this.handleSelectChange(select.value, 'type')}
+                value={type}
+                defaultOption=""
+                options={['FUTON', 'SOFA', 'BED', 'ADD-ON']}
+              />
+            </div>
+            <div className="AdminOneAttribute-optionsRow">
+              <p>Možnosti</p>
+              <div>
+                <AdminAttributesOptionsFirstRow />
+                {attributeOptions}
+                <div className="AdminOneAttribute-oneOption">
+                  <div className="AdminOneAttribute-newOption">
+                    <Button type="secondary" onClick={this.addNewOption} text="+" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="AdminOneAttribute-saveButton">
+              <p />
+              <Button text="Uložiť" onClick={this.updateAttribute} />
+            </div>
+          </div>
+        )}
       </div>
     );
   }
 }
+
+AdminOneAttribute.propTypes = propTypes;
+AdminOneAttribute.defaultProps = defaultProps;
 
 export default AdminOneAttribute;

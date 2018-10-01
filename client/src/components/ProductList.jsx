@@ -1,24 +1,36 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../styles/components/ProductListGeneralUI.css';
 import ProductCard from './ProductCard';
-import futon from '../img/futon.jpeg';
-import futon2 from '../img/futon8.jpeg';
-import futon3 from '../img/futon7.jpeg';
-import futon4 from '../img/futon4.jpeg';
-import futon5 from '../img/futon5.jpeg';
-import futon6 from '../img/futon6.jpeg';
+
+const propTypes = {
+  isFetching: PropTypes.bool.isRequired,
+  filteredProducts: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    images: PropTypes.array.isRequired,
+  }).isRequired,
+};
+
+const defaultProps = {};
 
 const ProductList = (props) => {
   const { filteredProducts, isFetching } = props;
-  // if (!filteredProducts) {
-  //   return <div>loading</div>;
-  // }
-  // const { products } = filteredProducts && filteredProducts;
+  if (isFetching) {
+    return <div>loading</div>;
+  }
 
   const productCards =
     filteredProducts &&
     filteredProducts.map((product) => (
-      <ProductCard key={product._id} name={product.name} price={product.price} />
+      <ProductCard
+        key={product._id}
+        id={product._id}
+        name={product.name}
+        price={product.price}
+        titleImage={product.images[0]}
+      />
     ));
 
   return (
@@ -28,5 +40,8 @@ const ProductList = (props) => {
     </ul>
   );
 };
+
+ProductList.propTypes = propTypes;
+ProductList.defaultProps = defaultProps;
 
 export default ProductList;
