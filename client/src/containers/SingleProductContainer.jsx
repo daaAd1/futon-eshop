@@ -26,19 +26,18 @@ class SingleProductContainer extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
     const { dispatch } = this.props;
     dispatch(fetchAttributesIfNeeded());
   }
 
-  onRemoveFromCartClick(id, count, totalItemPrice, selectedOptions) {
+  onRemoveFromCartClick(id, count, name, totalItemPrice, selectedOptions) {
     const { dispatch } = this.props;
-    dispatch(removeProductFromCart(id, count, totalItemPrice, selectedOptions));
+    dispatch(removeProductFromCart(id, count, name, totalItemPrice, selectedOptions));
   }
 
-  onAddToCartClick(id, count, totalItemPrice, selectedOptions) {
+  onAddToCartClick(id, count, name, totalItemPrice, selectedOptions) {
     const { dispatch } = this.props;
-    dispatch(addProductToCart(id, count, totalItemPrice, selectedOptions));
+    dispatch(addProductToCart(id, count, name, totalItemPrice, selectedOptions));
   }
 
   render() {
@@ -65,7 +64,6 @@ const mapStateToProps = (state, props) => {
   const { match } = props;
   const { params } = match && match;
   const { id } = params && params;
-  console.log(state, props);
 
   const productId = id;
   const productWithId = findProductWithId(items, productId);

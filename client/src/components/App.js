@@ -18,6 +18,7 @@ import AttributesContainer from '../containers/admin/AttributesContainer';
 import Product from './Product';
 import ProductListContainer from '../containers/ProductListContainer';
 import SingleProductContainer from '../containers/SingleProductContainer';
+import CartPageContainer from '../containers/CartPageContainer';
 
 class App extends Component {
   render() {
@@ -44,7 +45,7 @@ class App extends Component {
           <Route exact path={routes.HOME} component={() => <Home />} />
           <Route exact path={routes.PRODUCTS} component={ProductListContainer} />
           <Route exact path={routes.SINGLE_PRODUCT} component={SingleProductContainer} />
-          <Route exact path={routes.CART} component={() => <CartPage totalPrice="599" />} />
+          <Route exact path={routes.CART} component={CartPageContainer} />
           <Route exact path={routes.CHECKOUT} component={() => <OrderForm />} />
           <Route exact path={routes.SHOWROOM} component={ShowRoom} />
           <Route exact path={routes.FAQ} component={() => <InformationPage text="faq" />} />

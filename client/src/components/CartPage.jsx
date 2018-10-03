@@ -1,22 +1,50 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import '../styles/components/CartPage.css';
 import * as routes from '../constants/routes';
 import CartItem from './CartItem';
 
+const propTypes = {
+  cart: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    totalItemPrice: PropTypes.string.isRequired,
+    selectedOptions: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+  onRemoveProductClick: PropTypes.func.isRequired,
+};
+
+const defaultProps = {};
+
 class CartPage extends React.Component {
   render() {
-    const { totalPrice } = this.props;
+    const { cart, onRemoveProductClick } = this.props;
+
+    const cartItems = cart.map((product, index) => (
+      <CartItem
+        onRemoveProductClick={() => onRemoveProductClick(index, 0)}
+        price={product.totalItemPrice}
+        itemQuantity={product.quantity}
+        selectedOptions={product.selectedOptions}
+        name={product.name}
+        id={product.id}
+      />
+    ));
+
+    const totalPricesArray = cart.map((product) => product.totalItemPrice);
+    const totalPrice = totalPricesArray.reduce((a, b) => a + b, 0);
 
     return (
       <div className="CartPage">
         <h1>Košík</h1>
         <div className="CartPage-items">
-          <CartItem price="99" itemQuantity="1" name="Matrac hriva-latex" />{' '}
-          <CartItem price="199" itemQuantity="3" name="Matrac vlna-hriva-latex" />{' '}
-          <CartItem price="299" itemQuantity="2" name="Bavlnený matrac s vrstvou kokosu a peny" />
+          {cartItems}
           <div className="CartPage-totalPrice">
-            <p>Cena celkovo:</p>{' '}
+            <p>Cena celkovo:</p>
             <p>
               {totalPrice}
               ,00 €
@@ -32,5 +60,8 @@ class CartPage extends React.Component {
     );
   }
 }
+
+CartPage.propTypes = propTypes;
+CartPage.defaultProps = defaultProps;
 
 export default CartPage;

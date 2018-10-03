@@ -1,19 +1,18 @@
 import * as types from '../constants/ActionTypes';
 
-const addProductToCart = (id, quantity, totalItemPrice, selectedOptions) => ({
+const addProductToCart = (id, quantity, name, totalItemPrice, selectedOptions) => ({
   type: types.ADD_PRODUCT_TO_CART,
   id,
   quantity,
+  name,
   totalItemPrice,
   selectedOptions,
 });
 
-const removeProductFromCart = (id, newQuantity, totalItemPrice, selectedOptions) => ({
+const removeProductFromCart = (index, newQuantity) => ({
   type: types.REMOVE_PRODUCT_FROM_CART,
-  id,
+  index,
   newQuantity,
-  totalItemPrice,
-  selectedOptions,
 });
 
 const example = {

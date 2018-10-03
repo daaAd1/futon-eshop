@@ -31,7 +31,16 @@ class CartItem extends React.Component {
 
   render() {
     const { isOpen, quantity } = this.state;
-    const { name, itemQuantity, value, price, type, image } = this.props;
+    const {
+      name,
+      itemQuantity,
+      id,
+      price,
+      type,
+      image,
+      selectedOptions,
+      onRemoveProductClick,
+    } = this.props;
 
     return (
       <div onClick={this.toggleOpen} className="CartItem">
@@ -50,10 +59,7 @@ class CartItem extends React.Component {
           <p>Počet kusov: {itemQuantity}</p>
         )}
         {type !== 'readOnly' && (
-          <div
-            onClick={() => this.props.onRemoveProductClick(1, 2)}
-            className="CartItem-deleteIcon"
-          >
+          <div onClick={onRemoveProductClick} className="CartItem-deleteIcon">
             {deleteIcon}
           </div>
         )}

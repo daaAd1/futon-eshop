@@ -13,3 +13,4 @@ export const FAQ = '/faq';
 export const CONTACT = '/kontakt';
 export const SHIPPING = '/doprava-a-platba';
 export const TERMS = '/obchodne-podmienky';
+export const FUTON = '/product?category=futon';

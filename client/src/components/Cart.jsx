@@ -7,12 +7,12 @@ import Button from './Button';
 import CartItem from './CartItem';
 
 class Cart extends React.Component {
-  state = {
-    isOpen: false,
-  };
-
   constructor(props) {
     super(props);
+
+    this.state = {
+      isOpen: false,
+    };
 
     this.toggleOpen = this.toggleOpen.bind(this);
     this.closeCart = this.closeCart.bind(this);
@@ -32,37 +32,31 @@ class Cart extends React.Component {
 
   render() {
     const { isOpen } = this.state;
-    const { numberOfItems, totalPrice } = this.props;
+    const { numberOfItems, cart, onRemoveProductClick } = this.props;
 
     const isOpenClass = isOpen ? 'Cart-isOpen' : '';
+    const cartItems = cart.map((product, index) => (
+      <CartItem
+        onRemoveProductClick={() => onRemoveProductClick(index, 0)}
+        price={product.totalItemPrice}
+        itemQuantity={product.quantity}
+        name={product.name}
+      />
+    ));
+
+    const totalPricesArray = cart.map((product) => product.totalItemPrice);
+    const totalPrice = totalPricesArray.reduce((a, b) => a + b, 0);
 
     return (
       <div className={`HeaderMenu-rightContainerDropdownLink Cart ${isOpenClass}`}>
-        <a onClick={this.toggleOpen}>
+        <a role="button" tabIndex={0} onKeyDown={this.toggleOpen} onClick={this.toggleOpen}>
           {emptyCartIcon}
           <span className="Cart-numberOfItems">{numberOfItems}</span>
         </a>
         {isOpen && (
           <div className=" Cart-info">
             <div className="Cart-items">
-              <CartItem
-                onRemoveProductClick={this.props.onRemoveProductClick}
-                price="99"
-                itemQuantity="1"
-                name="Matrac hriva-latex"
-              />{' '}
-              <CartItem
-                onRemoveProductClick={this.props.onRemoveProductClick}
-                price="199"
-                itemQuantity="3"
-                name="Matrac vlna-hriva-latex"
-              />{' '}
-              <CartItem
-                onRemoveProductClick={this.props.onRemoveProductClick}
-                price="299"
-                itemQuantity="2"
-                name="Bavlnený matrac s vrstvou kokosu a peny"
-              />
+              {cartItems}
               <div className="Cart-totalPrice">
                 <p>Cena celkovo:</p>{' '}
                 <p>

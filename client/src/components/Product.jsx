@@ -84,7 +84,13 @@ class Product extends React.Component {
               </label>
               <Button
                 onClick={() =>
-                  this.props.onAddToCartClick(productId, quantity, totalPrice, selectedOptions)
+                  this.props.onAddToCartClick(
+                    productId,
+                    quantity,
+                    name,
+                    totalPrice,
+                    selectedOptions,
+                  )
                 }
                 text="Pridať do košíka"
                 shop="add_to_cart"
