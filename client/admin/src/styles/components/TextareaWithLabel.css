@@ -1,0 +1,92 @@
+.TextareaWithLabel {
+  display: flex;
+  flex-flow: column wrap;
+  max-width: 350px;
+  text-align: left;
+  padding-bottom: 1px;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.half {
+  width: 160px;
+}
+
+.third {
+  width: 97px;
+}
+
+.quarter {
+  width: 65px;
+}
+
+.TextareaWithLabel > div {
+  display: flex;
+  position: relative;
+}
+
+.TextareaWithLabel > div > div {
+  position: absolute;
+  display: inline-block;
+  left: 100%;
+  width: 30px;
+  height: 30px;
+}
+
+.TextareaWithLabel svg {
+  position: absolute;
+  top: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+.TextareaWithLabel textarea {
+  width: 100%;
+  padding: 8px;
+
+  resize: none;
+  overflow: hidden;
+
+  background-color: white;
+  color: #444444;
+  border: 1px solid #ccc;
+}
+
+.TextareaWithLabel textarea:focus {
+  outline: none;
+  border-left: 1px solid #f3928a;
+}
+
+.TextareaWithLabel textarea::placeholder {
+  color: #ccced7;
+}
+
+.wrongInput textarea:not(:focus) {
+  border-bottom: 2px solid #b71c1c !important;
+}
+
+@media only screen and (max-width: 440px) {
+  .TextareaWithLabel {
+    width: 95%;
+  }
+
+  .half,
+  .third,
+  .quarter {
+    margin-right: 0 !important;
+  }
+
+  .TextareaWithLabel > div > div {
+    left: calc(100%);
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .half,
+  .third,
+  .quarter {
+    width: 95%;
+    margin-right: 0 !important;
+    max-width: 350px;
+  }
+}

@@ -35,9 +35,9 @@ class SingleProductContainer extends React.Component {
     dispatch(removeProductFromCart(id, count, name, totalItemPrice, selectedOptions));
   }
 
-  onAddToCartClick(id, count, name, totalItemPrice, selectedOptions) {
+  onAddToCartClick(id, count, name, totalItemPrice, selectedOptions, image) {
     const { dispatch } = this.props;
-    dispatch(addProductToCart(id, count, name, totalItemPrice, selectedOptions));
+    dispatch(addProductToCart(id, count, name, totalItemPrice, selectedOptions, image));
   }
 
   render() {

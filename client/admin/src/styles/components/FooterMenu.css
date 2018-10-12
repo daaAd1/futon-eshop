@@ -1,0 +1,33 @@
+.FooterMenu {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+
+  margin: 15px;
+
+  background-color: #261c1b;
+  color: white;
+}
+
+.FooterMenu a {
+  padding: 10px;
+  text-align: center;
+  flex-grow: 1;
+
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+
+.FooterMenu a:hover {
+  background-color: #eb4b3d;
+}
+
+@media only screen and (max-width: 760px) {
+  .FooterMenu {
+    display: flex;
+    flex-flow: column;
+    margin: 10px auto;
+    width: 95%;
+  }
+}

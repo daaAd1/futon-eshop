@@ -13,6 +13,7 @@ import OrderFormAddress from './OrderFormAddress';
 import OrderFormContact from './OrderFormContact';
 import OrderFormPayment from './OrderFormPayment';
 import OrderFormLastStep from './OrderFormLastStep';
+import OrderFormCartContainer from '../containers/OrderFormCartContainer';
 
 class OrderForm extends React.Component {
   state = {
@@ -139,7 +140,7 @@ class OrderForm extends React.Component {
         )}
         {currentStep === 4 && (
           <div className="slide-in-right ">
-            <OrderFormLastStep note={note} onChange={this.handleFormChange} />
+            <OrderFormCartContainer note={note} onChange={this.handleFormChange} />
           </div>
         )}
 

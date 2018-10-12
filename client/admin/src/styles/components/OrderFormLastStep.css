@@ -1,0 +1,59 @@
+.OrderFormLastStep-informations {
+  display: flex;
+  flex-flow: column;
+  margin-bottom: 10px;
+}
+
+.OrderFormLastStep-informations > div {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.OrderFormLastStep-totalPrice {
+  text-align: right;
+  font-weight: 700;
+  font-size: 18px;
+  padding-top: 20px;
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+}
+
+.OrderFormLastStep-totalPrice p:first-child {
+  margin-right: 30px;
+}
+
+.OrderFormLastStep h2 {
+  margin-bottom: 10px;
+}
+
+.OrderFormLastStep p {
+  margin: 0;
+}
+
+.OrderFormLastStep-additionalNote {
+  margin-bottom: 30px !important;
+}
+
+.OrderFormLastStep-cart {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.OrderFormLastStep-additionalNote textarea {
+  padding: 8px;
+
+  width: 100%;
+  max-width: 500px;
+  resize: none;
+  overflow: hidden;
+
+  background-color: white;
+  color: #444444;
+  border: 1px solid #ccc;
+}
+
+.OrderFormLastStep-additionalNote textarea::placeholder {
+  color: #ccced7;
+}

@@ -13,6 +13,10 @@
   border-bottom: 2px solid #eb4b3d;
 }
 
+.Cart a {
+  outline: none;
+}
+
 .Cart svg {
   width: 35px;
   height: 35px;
@@ -58,6 +62,15 @@
   background-color: #261c1b;
   color: white;
   cursor: initial;
+}
+
+.Cart-linkDisabled {
+  background-color: gray !important;
+  cursor: initial !important;
+}
+
+.Cart-linkDisabled:hover {
+  font-size: 17px !important;
 }
 
 .Cart-info a {

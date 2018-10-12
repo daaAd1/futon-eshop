@@ -1,0 +1,128 @@
+.Button {
+  min-width: 64px;
+  height: 36px;
+
+  padding: 0px 16px;
+  margin: 0;
+
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+
+  border: 0;
+  outline: none;
+
+  background-color: #eb4b3d;
+  color: #f5f5f5;
+
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+  position: relative;
+  overflow: hidden;
+}
+
+.Button:hover {
+  background-color: #e82e1e;
+
+  cursor: pointer;
+}
+
+.Button:disabled {
+  font-weight: 400;
+
+  box-shadow: 0px 0px;
+  background-color: transparent;
+  color: gray;
+}
+
+.Button:disabled:hover,
+.Button:disabled:focus {
+  cursor: initial;
+  background-color: transparent;
+  color: gray;
+}
+
+.Button:disabled:active {
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+  transform: translateY(0px);
+}
+
+.Button:active {
+  box-shadow: 0 3px #757575;
+  transform: translateY(2px);
+}
+
+.secondary {
+  background-color: white;
+  color: #eb4b3d;
+
+  border: 1px solid #eb4b3d;
+}
+
+.secondary:hover {
+  background-color: #fce8e6;
+}
+
+.tertiary {
+  background-color: transparent;
+  color: #eb4b3d;
+
+  box-shadow: 0px 0px;
+}
+
+.tertiary:hover {
+  background-color: #fce8e6;
+}
+
+.tertiary:active {
+  box-shadow: 0px 0px;
+  transform: translateY(0px);
+}
+
+.tertiary:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
+
+.tertiary:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+.small-round {
+  border-radius: 4px;
+}
+
+.medium-round {
+  border-radius: 10px;
+}
+
+.big-round {
+  border-radius: 16px;
+}
