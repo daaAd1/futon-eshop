@@ -81,14 +81,58 @@ router.post('/', (req, res, next) => {
 // @desc    Delete a Type
 // @access  Public
 router.delete('/:id', (req, res, next) => {
-
+    Type.findByIdAndDelete(req.params.id)
+        .then((response) => {
+            if (response) {
+                res.status(200).json({
+                    status: 'success',
+                    item: response,
+                    errors: {},
+                });
+            } else {
+                res.status(404).json({
+                    message: 'Type not found',
+                    code: 404,
+                });
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({
+                status: 'error',
+                errors: err,
+            });
+        });
 });
 
 // @route   PATCH type/:id
 // @desc    Update a Type
 // @access  Public
 router.patch('/:id', (req, res, next) => {
+    const id = req.params.id;
+    const updateObject = req.body;
 
+    Type.findOneAndUpdate(
+        { _id: id },
+        { $set: updateObject },
+        { new: true },
+        (err, result) => {
+            if (result) {
+                res.status(200).json(result);
+            } else {
+                // Product does not exist
+                res.status(404).json({
+                    message: 'Type not found',
+                    code: 404,
+                });
+            }
+        },
+    ).catch((err) => {
+        console.log(err);
+        res.status(500).json({
+            error: err,
+        });
+    });
 });
 
 module.exports = router;
