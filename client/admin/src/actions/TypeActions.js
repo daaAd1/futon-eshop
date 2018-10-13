@@ -44,7 +44,7 @@ const fetchTypesIfNeeded = () => {
 const updateType = (body, id) => {
   return () => {
     return fetch(`${urls.BASE_URL}/${urls.TYPES_URL}/${id}`, {
-      method: 'PUT',
+      method: 'PATCH',
       body: JSON.stringify(body),
       headers: {
         'Content-Type': 'application/json',

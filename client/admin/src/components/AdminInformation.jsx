@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { confirmAlert } from 'react-confirm-alert';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import Button from './Button';
@@ -8,61 +9,121 @@ import '../styles/admin/AdminTypes.css';
 import '../styles/admin/AdminInformation.css';
 
 const propTypes = {
-  updateFaq: PropTypes.func.isRequired,
-  updateDelivery: PropTypes.func.isRequired,
-  updateContact: PropTypes.func.isRequired,
-  updateRules: PropTypes.func.isRequired,
-  updateShowroom: PropTypes.func.isRequired,
+  updateInformations: PropTypes.func.isRequired,
+  informations: PropTypes.shape({
+    faq: PropTypes.string.isRequired,
+    delivery: PropTypes.string.isRequired,
+    contact: PropTypes.string.isRequired,
+    rules: PropTypes.string.isRequired,
+    showroom: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 const defaultProps = {};
 
 class AdminInformation extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    const { informations } = props;
+    const faq = (informations && informations.faq) || 'abc';
+
     this.state = {
-      isNewTypeFormOpen: false,
       currentOption: 'FAQ',
-      currentText: '',
+      currentText: faq,
     };
 
+    this.confirmAndChangeCurrentOption = this.confirmAndChangeCurrentOption.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.updateInformation = this.updateInformation.bind(this);
+  }
+
+  confirmAndChangeCurrentOption(changeFunction, selectedOption) {
+    const { currentOption, currentText } = this.state;
+    const { informations } = this.props;
+    const { faq, rules, contact, delivery, showroom } = informations || {};
+
+    if (
+      selectedOption !== currentOption &&
+      currentText !== faq &&
+      currentText !== rules &&
+      currentText !== delivery &&
+      currentText !== showroom &&
+      currentText !== contact
+    ) {
+      confirmAlert({
+        title: 'Potvrďte zmenu',
+        message: 'Neuložili ste si svoje zmeny, ste si istý, že chcete zmeniť typ informácií?',
+        buttons: [
+          {
+            label: 'Áno',
+            onClick: () => this.handleSelectChange(selectedOption),
+          },
+          {
+            label: 'Nie',
+            onClick: () => {
+              this.setState({ currentOption });
+            },
+          },
+        ],
+      });
+    } else {
+      this.handleSelectChange(selectedOption);
+    }
   }
 
   handleChange(value) {
     this.setState({ currentText: value });
   }
 
-  handleSelectChange(value, key) {
-    this.setState({ [key]: value });
+  handleSelectChange(value) {
+    const { informations } = this.props;
+    const { faq, delivery, contact, rules, showroom } = informations || {};
+
+    this.setState({ currentOption: value });
+
+    if (value === 'FAQ') {
+      this.setState({ currentText: faq || 'faq' });
+    } else if (value === 'Doprava') {
+      this.setState({ currentText: delivery || 'doprava' });
+    } else if (value === 'Kontakt') {
+      this.setState({ currentText: contact || 'kontakt' });
+    } else if (value === 'Obch. podmienky') {
+      this.setState({ currentText: rules || 'podmienky' });
+    } else {
+      this.setState({ currentText: showroom || 'showroom' });
+    }
   }
 
   updateInformation() {
     const { currentOption, currentText } = this.state;
-    const { updateFaq, updateDelivery, updateContact, updateRules, updateShowroom } = this.props;
+    const { updateInformations, informations } = this.props;
+    const { faq, delivery, contact, rules, showroom } = informations;
 
     const body = {};
-    body.text = currentText;
+    body.faq = faq;
+    body.delivery = delivery;
+    body.contact = contact;
+    body.rules = rules;
+    body.showroom = showroom;
 
     if (currentOption === 'FAQ') {
-      updateFaq(body, 'faq');
+      body.faq = currentText;
     } else if (currentOption === 'Doprava') {
-      updateDelivery(body, 'delivery');
+      body.delivery = currentText;
     } else if (currentOption === 'Kontakt') {
-      updateContact(body, 'contact');
+      body.contact = currentText;
     } else if (currentOption === 'Obch. podmienky') {
-      updateRules(body, 'rules');
+      body.rules = currentText;
     } else {
-      updateShowroom(body, 'showroom');
+      body.showroom = currentText;
     }
+
+    updateInformations(body);
   }
 
   render() {
-    const { isNewTypeFormOpen, currentText, currentOption } = this.state;
-    const { types, updateType, createNewType, deleteType } = this.props;
-    const { items } = types || [];
+    const { currentText, currentOption } = this.state;
 
     // if (!items) {
     //   return (
@@ -74,14 +135,6 @@ class AdminInformation extends React.Component {
     //     </div>
     //   );
     // }
-    // const typeRows = items.map((type) => (
-    //   <AdminOneType
-    //     id={type._id}
-    //     updateType={updateType}
-    //     deleteType={() => deleteType(type._id)}
-    //     name={type.name}
-    //   />
-    // ));
 
     return (
       <div className="AdminInformation">
@@ -89,7 +142,10 @@ class AdminInformation extends React.Component {
           <h1>Informácie</h1>
           <SelectWithLabel
             id="Možnosť"
-            onChange={(select) => this.handleSelectChange(select.value, 'currentOption')}
+            // onChange={(select) => this.handleSelectChange(select.value)}
+            onChange={(select) =>
+              this.confirmAndChangeCurrentOption(this.handleSelectChange, select.value)
+            }
             options={['FAQ', 'Doprava', 'Kontakt', 'Obch. podmienky', 'ShowRoom']}
             defaultOption={currentOption}
             value={currentOption}

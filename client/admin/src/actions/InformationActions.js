@@ -2,30 +2,25 @@ import fetch from 'cross-fetch';
 import * as types from '../constants/ActionTypes';
 import * as urls from '../constants/ApiConstants';
 
-const requestAttributes = () => ({
-  type: types.REQUEST_ATTRIBUTES,
+const requestInformations = () => ({
+  type: types.REQUEST_INFORMATIONS,
 });
 
-const receiveAttributes = (json) => ({
-  type: types.RECEIVE_ATTRIBUTES,
+const receiveInformations = (json) => ({
+  type: types.RECEIVE_INFORMATIONS,
   attributes: json,
 });
 
-const deleteAttribute = (id) => ({
-  type: types.DELETE_ATTRIBUTE,
-  id,
-});
-
-const fetchAttributes = () => {
+const fetchInformations = () => {
   return (dispatch) => {
-    dispatch(requestAttributes());
-    return fetch(`${urls.BASE_URL}/${urls.ATTRIBUTES_URL}`)
+    dispatch(requestInformations());
+    return fetch(`${urls.BASE_URL}/${urls.INFORMATIONS_URL}`)
       .then((response) => response.json())
-      .then((json) => dispatch(receiveAttributes(json)));
+      .then((json) => dispatch(receiveInformations(json)));
   };
 };
 
-const shouldFetchAttributes = (state) => {
+const shouldFetchInformations = (state) => {
   const { isFetching } = state;
   if (isFetching) {
     return false;
@@ -35,16 +30,16 @@ const shouldFetchAttributes = (state) => {
 
 const fetchInformationsIfNeeded = () => {
   return (dispatch, getState) => {
-    if (shouldFetchAttributes(getState())) {
-      return dispatch(fetchAttributes());
+    if (shouldFetchInformations(getState())) {
+      return dispatch(fetchInformations());
     }
   };
 };
 
-const updateAttribute = (body, id) => {
+const updateInformations = (body) => {
   return () => {
-    return fetch(`${urls.BASE_URL}/${urls.ATTRIBUTES_URL}/${id}`, {
-      method: 'PUT',
+    return fetch(`${urls.BASE_URL}/${urls.INFORMATIONS_URL}`, {
+      method: 'PATCH',
       body: JSON.stringify(body),
       headers: {
         'Content-Type': 'application/json',
@@ -53,27 +48,4 @@ const updateAttribute = (body, id) => {
   };
 };
 
-const createNewAttribute = (body) => {
-  return () => {
-    return fetch(`${urls.BASE_URL}/${urls.ATTRIBUTES_URL}`, {
-      method: 'POST',
-      body: JSON.stringify(body),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }).then(() => window.location.reload());
-  };
-};
-
-const removeAttribute = (id) => {
-  return (dispatch) => {
-    return fetch(`${urls.BASE_URL}/${urls.ATTRIBUTES_URL}/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }).then(() => dispatch(deleteAttribute(id)));
-  };
-};
-
-export { fetchInformationsIfNeeded, removeAttribute, updateAttribute, createNewAttribute };
+export { fetchInformationsIfNeeded, updateInformations };

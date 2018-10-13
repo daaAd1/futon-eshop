@@ -10,6 +10,7 @@ const propTypes = {
     attributes: PropTypes.object.isRequired,
     isFetching: PropTypes.bool.isRequired,
   }).isRequired,
+  updateInformations: PropTypes.func.isRequired,
 };
 
 const defaultProps = {};
@@ -21,13 +22,9 @@ class InformationContainer extends React.Component {
   }
 
   render() {
-    const { updateInformation, dispatch } = this.props;
+    const { updateInformations, dispatch } = this.props;
 
-    return (
-      <AdminInformation
-        updateInformation={(body, type) => dispatch(updateInformation(body, type))}
-      />
-    );
+    return <AdminInformation updateInformation={(body) => dispatch(updateInformations(body))} />;
   }
 }
 
