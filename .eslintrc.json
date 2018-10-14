@@ -11,6 +11,7 @@
         "prefer-destructuring": "off",
         "object-shorthand": "off",
         "no-multi-assign": "off",
-        "no-undef": "off"
+        "no-undef": "off",
+        "eqeqeq": "off"
     }
 }

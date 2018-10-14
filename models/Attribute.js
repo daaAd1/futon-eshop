@@ -2,8 +2,9 @@ const mongoose = require('mongoose');
 const idValidator = require('mongoose-id-validator');
 
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 
-const typeSchema = mongoose.Schema({
+const OptionSchema = Schema({
     name: {
         type: String,
         required: true,
@@ -12,17 +13,22 @@ const typeSchema = mongoose.Schema({
         type: Number,
         required: true,
     },
-}, { _id: false });
+});
 
 const AttributeSchema = new Schema({
     name: {
         type: String,
         required: true,
-        unique: true,
     },
-    options: [typeSchema],
+    type: {
+        type: ObjectId,
+        ref: 'Type',
+        required: true,
+    },
+    options: [OptionSchema],
 }, { versionKey: false });
 
 AttributeSchema.plugin(idValidator);
 
+module.exports = Option = mongoose.model('Option', OptionSchema);
 module.exports = Attribute = mongoose.model('Attribute', AttributeSchema);

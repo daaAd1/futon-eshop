@@ -3,16 +3,37 @@ const idValidator = require('mongoose-id-validator');
 require('mongoose-type-email');
 
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 
-const cartSchema = mongoose.Schema({
+// Validates if id of selectedOption belongs to given attribute
+async function belongsToAttribute(value) {
+    const attribute = await Attribute.findById(this.attribute);
+    return !attribute.options.every(element => value.toString() !== element.id.toString());
+}
+
+const CartSchema = new Schema({
     product: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: ObjectId,
         ref: 'Product',
     },
     quantity: {
         type: Number,
         required: true,
     },
+    attributes: [{
+        _id: false,
+        attribute: {
+            type: ObjectId,
+            ref: 'Attribute',
+        },
+        selectedOption: {
+            type: ObjectId,
+            validate: {
+                validator: belongsToAttribute,
+                message: props => `Given attribute doesn't contain selected option: ${props.value}!`,
+            },
+        },
+    }],
 }, { _id: false });
 
 const OrderSchema = new Schema({
@@ -25,7 +46,7 @@ const OrderSchema = new Schema({
         required: true,
     },
     phone: {
-        type: Number,
+        type: String,
         required: true,
     },
     country: {
@@ -44,7 +65,7 @@ const OrderSchema = new Schema({
         type: Number,
         required: true,
     },
-    cart: [cartSchema],
+    cart: [CartSchema],
     paymentMethod: {
         type: String,
         enum: [

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const idValidator = require('mongoose-id-validator');
 
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 
 const ProductSchema = new Schema({
     name: {
@@ -35,7 +36,7 @@ const ProductSchema = new Schema({
         required: true,
     },
     type: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: ObjectId,
         ref: 'Type',
         required: true,
     },
