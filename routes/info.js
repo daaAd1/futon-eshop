@@ -3,18 +3,16 @@ const express = require('express');
 const router = express.Router();
 
 // Models
-const Type = require('../models/Type');
+const Info = require('../models/Info');
 
-// @route   GET type
-// @desc    Get all types
+// @route   GET info
+// @desc    Get all info
 // @access  Public
 router.get('/', (req, res, next) => {
-    Type.find()
-        .sort({ createdAt: -1 })
-        .then((types) => {
+    Info.findOne()
+        .then((info) => {
             res.status(200).json({
-                count: types.length,
-                items: types,
+                info,
             });
         })
         .catch((err) => {
@@ -25,41 +23,19 @@ router.get('/', (req, res, next) => {
         });
 });
 
-// @route   GET type/:id
-// @desc    Get type by id
-// @access  Public
-router.get('/:id', (req, res, next) => {
-    const id = req.params.id;
-    Type.findById(id)
-        .then((type) => {
-            if (type) {
-                // Type exists, so return it
-                res.status(200).json(type);
-            } else {
-                // Type does not exist
-                res.status(404).json({
-                    message: 'Type not found',
-                    code: 404,
-                });
-            }
-        })
-        .catch((err) => {
-            console.log(err);
-            res.status(500).json({
-                error: err,
-            });
-        });
-});
-
-// @route   POST type
-// @desc    Create a Type
+// @route   POST info
+// @desc    Create Info
 // @access  Public
 router.post('/', (req, res, next) => {
-    const newType = new Type({
-        name: req.body.name,
+    const newInfo = new Info({
+        contact: req.body.contact,
+        showroom: req.body.showroom,
+        delivery: req.body.delivery,
+        faq: req.body.faq,
+        businessTerms: req.body.businessTerms,
     });
 
-    newType.save()
+    newInfo.save()
         .then((response) => {
             res.status(201).json({
                 status: 'success',
@@ -71,17 +47,18 @@ router.post('/', (req, res, next) => {
             console.log(err);
             res.status(500).json({
                 status: 'error',
-                item: newType,
+                item: newInfo,
                 errors: err,
             });
         });
 });
 
-// @route   DELETE type/:id
-// @desc    Delete a Type
+
+// @route   DELETE info
+// @desc    Delete Info
 // @access  Public
-router.delete('/:id', (req, res, next) => {
-    Type.findByIdAndDelete(req.params.id)
+router.delete('/', (req, res, next) => {
+    Info.findByIdAndDelete('MAIN')
         .then((response) => {
             if (response) {
                 res.status(200).json({
@@ -91,7 +68,7 @@ router.delete('/:id', (req, res, next) => {
                 });
             } else {
                 res.status(404).json({
-                    message: 'Type not found',
+                    message: 'Info not found',
                     code: 404,
                 });
             }
@@ -105,24 +82,23 @@ router.delete('/:id', (req, res, next) => {
         });
 });
 
-// @route   PATCH type/:id
-// @desc    Update a Type
+// @route   PATCH info
+// @desc    Update Info
 // @access  Public
-router.patch('/:id', (req, res, next) => {
-    const id = req.params.id;
+router.patch('/', (req, res, next) => {
     const updateObject = req.body;
 
-    Type.findOneAndUpdate(
-        { _id: id },
+    Info.findOneAndUpdate(
+        { _id: 'MAIN' },
         { $set: updateObject },
         { new: true },
         (err, result) => {
             if (result) {
                 res.status(200).json(result);
             } else {
-                // Type does not exist
+                // Info does not exist
                 res.status(404).json({
-                    message: 'Type not found',
+                    message: 'Info not found',
                     code: 404,
                 });
             }

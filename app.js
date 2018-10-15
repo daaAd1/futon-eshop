@@ -29,6 +29,7 @@ const productRoutes = require('./routes/products');
 const orderRoutes = require('./routes/orders');
 const typeRoutes = require('./routes/types');
 const attributeRoutes = require('./routes/attributes');
+const infoRoutes = require('./routes/info');
 
 // Handeling CORS
 app.use((req, res, next) => {
@@ -49,6 +50,7 @@ app.use('/product', productRoutes);
 app.use('/order', orderRoutes);
 app.use('/type', typeRoutes);
 app.use('/attribute', attributeRoutes);
+app.use('/info', infoRoutes);
 
 app.use((req, res, next) => {
     const error = new Error('Not found');
