@@ -1,0 +1,23 @@
+.SelectWithLabel {
+  display: flex;
+  flex-flow: column wrap;
+  width: 250px;
+  text-align: left;
+  padding-bottom: 1px;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.Dropdown-control,
+.Dropdown-menu {
+  border-radius: 0px;
+  width: 250px;
+}
+
+.Dropdown-control {
+  padding: 6px 8px;
+}
+
+.Dropdown-arrow {
+  margin-top: 4px;
+}

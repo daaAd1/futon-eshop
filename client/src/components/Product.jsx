@@ -1,4 +1,5 @@
 import React from 'react';
+import posed from 'react-pose';
 import ImageGallery from 'react-image-gallery';
 import '../styles/components/ProductGeneralUI.css';
 import ReactHtmlParser, {
@@ -13,19 +14,21 @@ import futon2 from '../img/futon2.jpeg';
 import futon3 from '../img/futon3.jpeg';
 
 class Product extends React.Component {
-  state = {
-    quantity: 1,
-    totalPrice: 199,
-    selectedOptions: [
-      { name: 'Farba tkaniny', value: 'červená' },
-      { name: 'Veľkost futonu', value: '190x200cm' },
-    ],
-  };
-
   constructor() {
     super();
 
+    this.state = {
+      quantity: 1,
+      totalPrice: 199,
+      selectedOptions: [
+        { name: 'Farba tkaniny', value: 'červená' },
+        { name: 'Veľkost futonu', value: '190x200cm' },
+      ],
+      addToCartClick: false,
+    };
+
     this.handleQuantityChange = this.handleQuantityChange.bind(this);
+    this.putImagesFromPropsToArray = this.putImagesFromPropsToArray.bind(this);
   }
 
   handleQuantityChange(event) {
@@ -34,37 +37,53 @@ class Product extends React.Component {
     });
   }
 
+  putImagesFromPropsToArray() {
+    const { productWithId } = this.props;
+    const { images } = productWithId;
+
+    return images && images.map((image) => ({ original: image, thumbnail: image }));
+  }
+
   render() {
-    const { quantity, totalPrice, selectedOptions } = this.state;
+    const { quantity, totalPrice, selectedOptions, addToCartClick } = this.state;
     const { productWithId, productId } = this.props;
-    const { name, price, descShort, descLong } = productWithId || {};
+    const { name, price, descShort, descLong, images } = productWithId || {};
+    const firstImage = images[0];
 
-    const images = [
-      {
-        original: futon,
-        thumbnail: futon,
-      },
-      {
-        original: futon2,
-        thumbnail: futon2,
-      },
-      {
-        original: futon3,
-        thumbnail: futon3,
-      },
-    ];
-
+    const imageArray = this.putImagesFromPropsToArray();
+    // const images = [
+    //   {
+    //     original: futon,
+    //     thumbnail: futon,
+    //   },
+    //   {
+    //     original: futon2,
+    //     thumbnail: futon2,
+    //   },
+    //   {
+    //     original: futon3,
+    //     thumbnail: futon3,
+    //   },
+    // ];
+    const Box = posed.div();
     return (
       <div className="ProductGeneralUI">
         <h1 className="ProductGeneralUI-heading">{name}</h1>
         <div className="ProductGeneralUI-mainContent">
           <div className="ProductGeneralUI-images">
-            <ImageGallery items={images} showPlayButton={false} slideDuration={0} />
+            <ImageGallery items={imageArray} showPlayButton={false} slideDuration={0} />
           </div>
           <div className="ProductGeneralUI-details">
             <p className="ProductGeneralUI-description">{descShort}</p>
             <div className="ProductGeneralUI-cartDetails">
-              <p className="ProductGeneralUI-price">{price} €</p>
+              <p
+                onClick={() => {
+                  this.setState({ addToCartClick: true });
+                }}
+                className="ProductGeneralUI-price"
+              >
+                {price} €
+              </p>
               <SelectWithLabel
                 id="farba"
                 label="Farba"
@@ -82,6 +101,7 @@ class Product extends React.Component {
                   onChange={this.handleQuantityChange}
                 />
               </label>
+              {addToCartClick && <Box className="add-to-cart" />}
               <Button
                 onClick={() =>
                   this.props.onAddToCartClick(
@@ -90,6 +110,7 @@ class Product extends React.Component {
                     name,
                     totalPrice,
                     selectedOptions,
+                    firstImage,
                   )
                 }
                 text="Pridať do košíka"

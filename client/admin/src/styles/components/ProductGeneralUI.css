@@ -1,0 +1,133 @@
+.ProductGeneralUI {
+  position: relative;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 50%;
+  max-width: 900px;
+
+  padding: 30px 30px;
+  margin: 20px 20px;
+
+  border: 1px solid #efefef;
+  box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.ProductGeneralUI:hover {
+  box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.2);
+}
+
+.ProductGeneralUI-heading {
+  margin: 0;
+  padding: 0px 0px 30px 0px;
+}
+
+.ProductGeneralUI-mainContent {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding: 0px 0px 30px;
+}
+
+.ProductGeneralUI-images {
+  width: 50%;
+
+  padding: 0 30px 0 0px;
+}
+
+.image-gallery-image {
+  max-width: 650px;
+  max-height: 350px;
+}
+
+.ProductGeneralUI-images img {
+  width: 100%;
+
+  display: inline-block;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.ProductGeneralUI-details {
+  display: flex;
+  flex-flow: column wrap;
+
+  color: #666666;
+
+  width: 50%;
+  padding: 0 0 0 30px;
+}
+
+.ProductGeneralUI-cartDetails {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: flex-end;
+}
+
+.ProductGeneralUI-description {
+  padding: 0px 0px 30px 0px;
+}
+
+.ProductGeneralUI-details p,
+input {
+  margin: 0;
+}
+
+.ProductGeneralUI-numberOfItems {
+  padding: 0px 0px 10px 0px;
+}
+
+.ProductGeneralUI-numberOfItems input {
+  margin: 0px 0px 0px 10px;
+  padding: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.ProductGeneralUI-price {
+  font-weight: 700;
+  padding: 0px 0px 10px;
+  color: #444444;
+}
+
+.ProductGeneralUI-longDescription {
+  color: #666666;
+}
+
+.ProductGeneralUI-longDescription h2,
+.ProductGeneralUI-longDescription b {
+  color: #444444;
+}
+
+.ProductGeneralUI-similarProducts {
+  padding: 0px 0px 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .ProductGeneralUI {
+    margin: 10px 5px;
+    padding: 20px 0px;
+    width: 95%;
+  }
+
+  .ProductGeneralUI-heading {
+    text-align: center;
+  }
+  .ProductGeneralUI-mainContent {
+    flex-flow: column wrap;
+    align-items: center;
+  }
+
+  .ProductGeneralUI-images {
+    padding: 0px 0px 20px;
+    width: 80%;
+  }
+
+  .ProductGeneralUI-details,
+  .ProductGeneralUI-longDescription {
+    padding: 0px 0px 0px;
+    width: 80%;
+    margin: 0 auto;
+  }
+}

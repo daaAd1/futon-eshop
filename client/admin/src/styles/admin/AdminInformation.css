@@ -1,0 +1,49 @@
+.AdminInformation {
+  position: relative;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 50%;
+  width: 95%;
+  max-width: 1200px;
+
+  padding: 30px 30px;
+  margin: 20px auto;
+
+  border: 1px solid #efefef;
+  box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.AdminInformation-saveButton {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.AdminInformation:hover {
+  box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.2);
+}
+
+.AdminInformation-header {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.AdminInformation-header label {
+  margin: 21px 0px;
+}
+
+.quill {
+  margin: 21px 0px !important;
+}
+
+.AdminInformation button {
+}
+
+@media only screen and (max-width: 760px) {
+  .AdminInformation {
+    width: 95%;
+  }
+}

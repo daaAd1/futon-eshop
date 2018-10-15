@@ -4,10 +4,11 @@ import { removeProductFromCart } from '../actions/CartActions';
 
 const mapStateToProps = (state) => {
   const { cartState } = state;
-  const { cart } = cartState;
+  const { cart, shouldAnimate } = cartState;
 
   return {
     cart,
+    shouldAnimate,
   };
 };
 

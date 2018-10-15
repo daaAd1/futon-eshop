@@ -1,0 +1,44 @@
+/*
+primary:   #261c1b
+secondary: #EB4B3D 
+*/
+
+html {
+  box-sizing: border-box;
+  line-height: 1.6;
+  font-family: 'Nunito', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  line-height: 1.2;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  color: #444444;
+  background-color: #f9f9f9;
+}
+
+svg {
+  vertical-align: middle;
+}
+
+textarea,
+input {
+  border: 1px solid #ccc;
+  color: #444444;
+}

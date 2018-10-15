@@ -32,6 +32,7 @@ class CartPage extends React.Component {
         selectedOptions={product.selectedOptions}
         name={product.name}
         id={product.id}
+        image={product.image}
       />
     ));
 
@@ -52,9 +53,15 @@ class CartPage extends React.Component {
           </div>
         </div>
         <div className="CartPage-linkCheckout">
-          <Link onClick={this.closeCart} className="CartPage-link" to={routes.CHECKOUT}>
-            Prejsť k objednávke
-          </Link>
+          {cart.length > 0 ? (
+            <Link onClick={this.closeCart} className="CartPage-link" to={routes.CHECKOUT}>
+              Prejsť k objednávke
+            </Link>
+          ) : (
+            <a className="CartPage-link Cart-linkDisabled" to={routes.CHECKOUT}>
+              Prejsť k objednávke
+            </a>
+          )}
         </div>
       </div>
     );

@@ -1,0 +1,13 @@
+.row {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.row label {
+  margin-right: 30px;
+}
+
+.row button {
+  margin-right: 30px;
+}

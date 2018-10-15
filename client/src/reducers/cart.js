@@ -2,6 +2,7 @@ import * as types from '../constants/ActionTypes';
 
 const initialState = {
   cart: [],
+  shouldAnimate: false,
 };
 
 const addProductToCart = (cart, action) => {
@@ -13,6 +14,7 @@ const addProductToCart = (cart, action) => {
       name: action.name,
       totalItemPrice: action.totalItemPrice,
       selectedOptions: action.selectedOptions,
+      image: action.image,
     },
   ];
 };
@@ -45,11 +47,13 @@ const cartState = (state = initialState, action) => {
     case types.ADD_PRODUCT_TO_CART:
       return {
         ...state,
+        shouldAnimate: true,
         cart: addProductToCart(state.cart, action),
       };
     case types.REMOVE_PRODUCT_FROM_CART:
       return {
         ...state,
+        shouldAnimate: true,
         cart: removeProductFromCart(state.cart, action),
       };
     default:

@@ -1,0 +1,80 @@
+.CartPage {
+  position: relative;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 50%;
+  max-width: 900px;
+
+  padding: 30px 30px;
+  margin: 20px auto;
+
+  border: 1px solid #efefef;
+  box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.CartPage:hover {
+  box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.2);
+}
+
+.CartPage-totalPrice {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+}
+
+.CartPage-totalPrice p {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.CartPage-totalPrice p:first-child {
+  margin-right: 30px;
+}
+
+.CartPage-linkCheckout {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.CartPage-linkCheckout a {
+  min-width: 64px;
+  line-height: 45px !important;
+  text-align: center !important;
+
+  margin: 0;
+
+  text-decoration: none;
+  text-transform: uppercase;
+
+  border: 0;
+  outline: none;
+
+  background-color: #eb4b3d;
+  color: #f5f5f5 !important;
+
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+  position: relative;
+  overflow: hidden;
+  width: 230px;
+
+  font-size: 18px;
+  font-weight: 400;
+
+  padding: 0px 10px;
+
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -ms-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+
+.CartPage-linkCheckout a:hover {
+  background-color: #e82e1e;
+  font-size: 17px;
+  cursor: pointer;
+}
