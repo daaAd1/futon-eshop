@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withToastManager } from 'react-toast-notifications';
 import { confirmAlert } from 'react-confirm-alert';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -25,11 +26,12 @@ class AdminInformation extends React.Component {
   constructor(props) {
     super(props);
     const { informations } = props;
-    const faq = (informations && informations.faq) || 'abc';
+    const { info } = informations && informations;
+    const { faq } = info || {};
 
     this.state = {
       currentOption: 'FAQ',
-      currentText: faq,
+      currentText: faq || 'loading',
     };
 
     this.confirmAndChangeCurrentOption = this.confirmAndChangeCurrentOption.bind(this);
@@ -41,12 +43,13 @@ class AdminInformation extends React.Component {
   confirmAndChangeCurrentOption(changeFunction, selectedOption) {
     const { currentOption, currentText } = this.state;
     const { informations } = this.props;
-    const { faq, rules, contact, delivery, showroom } = informations || {};
+    const { info } = informations;
+    const { faq, businessTerms, contact, delivery, showroom } = info || {};
 
     if (
-      selectedOption !== currentOption &&
+      currentOption !== selectedOption &&
       currentText !== faq &&
-      currentText !== rules &&
+      currentText !== businessTerms &&
       currentText !== delivery &&
       currentText !== showroom &&
       currentText !== contact
@@ -78,7 +81,8 @@ class AdminInformation extends React.Component {
 
   handleSelectChange(value) {
     const { informations } = this.props;
-    const { faq, delivery, contact, rules, showroom } = informations || {};
+    const { info } = informations;
+    const { faq, delivery, contact, businessTerms, showroom } = info || {};
 
     this.setState({ currentOption: value });
 
@@ -89,7 +93,7 @@ class AdminInformation extends React.Component {
     } else if (value === 'Kontakt') {
       this.setState({ currentText: contact || 'kontakt' });
     } else if (value === 'Obch. podmienky') {
-      this.setState({ currentText: rules || 'podmienky' });
+      this.setState({ currentText: businessTerms || 'podmienky' });
     } else {
       this.setState({ currentText: showroom || 'showroom' });
     }
@@ -97,15 +101,15 @@ class AdminInformation extends React.Component {
 
   updateInformation() {
     const { currentOption, currentText } = this.state;
-    const { updateInformations, informations } = this.props;
-    const { faq, delivery, contact, rules, showroom } = informations;
+    const { updateInformations, toastManager } = this.props;
+    // const { faq, delivery, contact, businessTerms, showroom } = informations;
 
     const body = {};
-    body.faq = faq;
-    body.delivery = delivery;
-    body.contact = contact;
-    body.rules = rules;
-    body.showroom = showroom;
+    // body.faq = faq;
+    // body.delivery = delivery;
+    // body.contact = contact;
+    // body.businessTerms = businessTerms;
+    // body.showroom = showroom;
 
     if (currentOption === 'FAQ') {
       body.faq = currentText;
@@ -114,7 +118,7 @@ class AdminInformation extends React.Component {
     } else if (currentOption === 'Kontakt') {
       body.contact = currentText;
     } else if (currentOption === 'Obch. podmienky') {
-      body.rules = currentText;
+      body.businessTerms = currentText;
     } else {
       body.showroom = currentText;
     }
@@ -123,6 +127,7 @@ class AdminInformation extends React.Component {
   }
 
   render() {
+    const { toastManager, error } = this.props;
     const { currentText, currentOption } = this.state;
 
     // if (!items) {
@@ -163,4 +168,4 @@ class AdminInformation extends React.Component {
 AdminInformation.propTypes = propTypes;
 AdminInformation.defaultProps = defaultProps;
 
-export default AdminInformation;
+export default withToastManager(AdminInformation);

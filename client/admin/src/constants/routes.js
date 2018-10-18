@@ -1,4 +1,5 @@
 export const HOME = '/';
+export const LOGIN = 'login';
 export const ADMIN = '/admin';
 export const ADMIN_ORDERS = '/admin/orders';
 export const ADMIN_PRODUCTS = '/admin/products';

@@ -28,6 +28,7 @@ class AdminAttributes extends React.Component {
     };
 
     this.toggleNewAttributeForm = this.toggleNewAttributeForm.bind(this);
+    this.createNewAttribute = this.createNewAttribute.bind(this);
   }
 
   toggleNewAttributeForm() {
@@ -36,15 +37,27 @@ class AdminAttributes extends React.Component {
     }));
   }
 
+  createNewAttribute(body) {
+    const { createNewAttribute } = this.props;
+
+    this.setState({
+      isNewAttributeFormOpen: false,
+    });
+
+    createNewAttribute(body);
+  }
+
   render() {
     const { isNewAttributeFormOpen } = this.state;
     const {
+      types,
       attributes,
       isFetching,
       createNewAttribute,
       deleteAttribute,
       updateAttribute,
     } = this.props;
+    const typesItems = types.items;
     const { items } = attributes;
     if (isFetching || !items) {
       return (
@@ -56,24 +69,36 @@ class AdminAttributes extends React.Component {
         </div>
       );
     }
-    const attributeRows = items.map((attribute) => (
-      <AdminOneAttribute
-        createNewAttribute={createNewAttribute}
-        deleteAttribute={deleteAttribute}
-        updateAttribute={updateAttribute}
-        name={attribute.name}
-        type={attribute.type}
-        options={attribute.options}
-        id={attribute._id}
-      />
-    ));
+    const attributeRows = items.map((attribute) => {
+      const type =
+        typesItems &&
+        typesItems[typesItems.findIndex((type) => type._id === attribute.type)] &&
+        typesItems[typesItems.findIndex((type) => type._id === attribute.type)].name;
+      return (
+        <AdminOneAttribute
+          types={typesItems}
+          createNewAttribute={createNewAttribute}
+          deleteAttribute={deleteAttribute}
+          updateAttribute={updateAttribute}
+          name={attribute.name}
+          type={type}
+          options={attribute.options}
+          id={attribute._id}
+        />
+      );
+    });
     return (
       <div className="AdminAttributes">
         <div className="AdminAttributes-header">
           <h1>Atribúty</h1>
           <Button onClick={this.toggleNewAttributeForm} text="Nový atribút" />
         </div>
-        {isNewAttributeFormOpen && <AdminNewAttribute createNewAttribute={createNewAttribute} />}
+        {isNewAttributeFormOpen && (
+          <AdminNewAttribute
+            types={typesItems}
+            createNewAttribute={(body) => this.createNewAttribute(body)}
+          />
+        )}
         <div className="AdminAttributes-listOfAttributes">
           <AdminAttributesFirstRow />
           {attributeRows}

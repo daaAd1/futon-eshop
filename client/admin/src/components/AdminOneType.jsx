@@ -29,6 +29,14 @@ class AdminOneType extends React.Component {
     this.updateType = this.updateType.bind(this);
   }
 
+  componentWillReceiveProps(prevProps) {
+    if (prevProps.name !== this.state.name) {
+      this.setState({
+        name: prevProps.name,
+      });
+    }
+  }
+
   handleFieldChange(event) {
     const key = event.target.id;
     this.setState({ [key]: event.target.value });

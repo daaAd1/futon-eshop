@@ -6,9 +6,10 @@ const requestInformations = () => ({
   type: types.REQUEST_INFORMATIONS,
 });
 
-const receiveInformations = (json) => ({
+const receiveInformations = (json, error = '') => ({
   type: types.RECEIVE_INFORMATIONS,
-  attributes: json,
+  informations: json,
+  error,
 });
 
 const fetchInformations = () => {
@@ -16,7 +17,8 @@ const fetchInformations = () => {
     dispatch(requestInformations());
     return fetch(`${urls.BASE_URL}/${urls.INFORMATIONS_URL}`)
       .then((response) => response.json())
-      .then((json) => dispatch(receiveInformations(json)));
+      .then((json) => dispatch(receiveInformations(json)))
+      .catch((error) => dispatch(receiveInformations('', error)));
   };
 };
 
@@ -37,14 +39,16 @@ const fetchInformationsIfNeeded = () => {
 };
 
 const updateInformations = (body) => {
-  return () => {
+  return (dispatch) => {
     return fetch(`${urls.BASE_URL}/${urls.INFORMATIONS_URL}`, {
       method: 'PATCH',
       body: JSON.stringify(body),
       headers: {
         'Content-Type': 'application/json',
       },
-    }).then((response) => console.log('Success:', JSON.stringify(response)));
+    })
+      .then(() => dispatch(fetchInformationsIfNeeded()))
+      .catch((error) => dispatch(receiveInformations('', error)));
   };
 };
 

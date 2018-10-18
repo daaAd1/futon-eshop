@@ -34,9 +34,16 @@ class AdminTypes extends React.Component {
     }));
   }
 
+  createNewType(body) {
+    const { createNewType } = this.props;
+
+    this.setState({ isNewTypeFormOpen: false });
+    createNewType(body);
+  }
+
   render() {
     const { isNewTypeFormOpen } = this.state;
-    const { types, updateType, createNewType, deleteType } = this.props;
+    const { types, updateType, deleteType } = this.props;
     const { items } = types || [];
 
     if (!items) {
@@ -49,14 +56,16 @@ class AdminTypes extends React.Component {
         </div>
       );
     }
-    const typeRows = items.map((type) => (
-      <AdminOneType
-        id={type._id}
-        updateType={updateType}
-        deleteType={() => deleteType(type._id)}
-        name={type.name}
-      />
-    ));
+    const typeRows = items.map((type) => {
+      return (
+        <AdminOneType
+          id={type._id}
+          updateType={updateType}
+          deleteType={() => deleteType(type._id)}
+          name={type.name}
+        />
+      );
+    });
 
     return (
       <div className="AdminTypes">
@@ -64,7 +73,7 @@ class AdminTypes extends React.Component {
           <h1>Typy produktov</h1>
           <Button onClick={this.toggleNewTypeForm} text="Nový typ" />
         </div>
-        {isNewTypeFormOpen && <AdminNewType createNewType={createNewType} />}
+        {isNewTypeFormOpen && <AdminNewType createNewType={(body) => this.createNewType(body)} />}
         <div className="AdminTypes-listOfTypes">
           <AdminTypesFirstRow />
           {typeRows}

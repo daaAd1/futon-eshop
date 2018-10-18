@@ -42,26 +42,26 @@ const fetchTypesIfNeeded = () => {
 };
 
 const updateType = (body, id) => {
-  return () => {
+  return (dispatch) => {
     return fetch(`${urls.BASE_URL}/${urls.TYPES_URL}/${id}`, {
       method: 'PATCH',
       body: JSON.stringify(body),
       headers: {
         'Content-Type': 'application/json',
       },
-    }).then((response) => console.log('Success:', JSON.stringify(response)));
+    }).then(() => dispatch(fetchTypesIfNeeded()));
   };
 };
 
 const createNewType = (body) => {
-  return () => {
+  return (dispatch) => {
     return fetch(`${urls.BASE_URL}/${urls.TYPES_URL}`, {
       method: 'POST',
       body: JSON.stringify(body),
       headers: {
         'Content-Type': 'application/json',
       },
-    }).then(() => window.location.reload());
+    }).then(() => dispatch(fetchTypesIfNeeded()));
   };
 };
 

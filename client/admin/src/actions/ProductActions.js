@@ -37,26 +37,26 @@ const fetchProductsIfNeeded = () => {
 };
 
 const updateProduct = (body, id) => {
-  return () => {
+  return (dispatch) => {
     return fetch(`${urls.BASE_URL}/${urls.PRODUCTS_URL}/${id}`, {
       method: 'PATCH',
       body: JSON.stringify(body),
       headers: {
         'Content-Type': 'application/json',
       },
-    }).then((response) => console.log('Success:', JSON.stringify(response)));
+    }).then(() => dispatch(fetchProductsIfNeeded()));
   };
 };
 
 const createNewProduct = (body) => {
-  return () => {
+  return (dispatch) => {
     return fetch(`${urls.BASE_URL}/${urls.PRODUCTS_URL}`, {
       method: 'POST',
       body: JSON.stringify(body),
       headers: {
         'Content-Type': 'application/json',
       },
-    }).then(() => window.location.reload());
+    }).then(() => dispatch(fetchProductsIfNeeded()));
   };
 };
 

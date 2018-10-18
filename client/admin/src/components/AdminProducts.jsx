@@ -54,9 +54,11 @@ class AdminProducts extends React.Component {
   }
 
   render() {
-    const { products, isFetching } = this.props;
+    const { products, types, isFetching, createNewProduct } = this.props;
     const { items } = products || {};
-    const { expanded, isNewProductOpen, currentPage, numOfProducts, itemsPerPage } = this.state;
+    const typesItems = types.items;
+    const { isNewProductOpen, currentPage, numOfProducts, itemsPerPage } = this.state;
+
     if (!items) {
       return (
         <div className="AdminProducts">
@@ -67,21 +69,27 @@ class AdminProducts extends React.Component {
         </div>
       );
     }
+
     const productRows = items.map((product, index) => {
       const rows = [];
       if (
         index + 1 <= currentPage * itemsPerPage &&
         index + 1 >= currentPage * itemsPerPage - (itemsPerPage - 1)
       ) {
+        const type =
+          typesItems &&
+          typesItems[typesItems.findIndex((type) => type._id === product.type)] &&
+          typesItems[typesItems.findIndex((type) => type._id === product.type)].name;
         rows.push(
           <AdminOneProduct
             id={product._id}
+            types={typesItems}
             active={product.active}
             name={product.name}
             descShort={product.descShort}
             descLong={product.descLong}
             price={product.price}
-            type={product.type}
+            type={type}
             images={product.images}
             category={product.category}
             subCategory={product.subCategory}
@@ -112,7 +120,9 @@ class AdminProducts extends React.Component {
           <h1>Produkty</h1>
           <Button onClick={this.toggleNewProductForm} text="Nový produkt" />
         </div>
-        {isNewProductOpen && <AdminNewProduct createNewProduct={this.props.createNewProduct} />}
+        {isNewProductOpen && (
+          <AdminNewProduct types={typesItems} createNewProduct={createNewProduct} />
+        )}
         <div className="AdminProducts-gridContainer">
           <AdminProductsFirstRow />
           {productRows}

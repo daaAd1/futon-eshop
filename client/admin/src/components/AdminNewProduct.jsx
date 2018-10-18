@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextareaAutosize from 'react-textarea-autosize';
+import Dropdown from 'react-dropdown';
 import ImageUploader from 'react-images-upload';
 import '../styles/admin/AdminNewProduct.css';
 import Button from './Button';
@@ -9,6 +10,10 @@ import { deleteIconWhite } from '../icons';
 
 const propTypes = {
   createNewProduct: PropTypes.func.isRequired,
+  types: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 const defaultProps = {};
@@ -88,8 +93,11 @@ class AdminNewProduct extends React.Component {
   }
 
   createNewProduct() {
+    const { createNewProduct, types } = this.props;
     const { name, descShort, descLong, price, category, subCategory, type, images } = this.state;
-    const { createNewProduct } = this.props;
+
+    const selectedTypeId =
+      types.find((item) => item.name === type) && types.find((item) => item.name === type)._id;
 
     const body = {};
     body.name = name;
@@ -98,14 +106,17 @@ class AdminNewProduct extends React.Component {
     body.price = price;
     body.category = category;
     body.subCategory = subCategory;
-    body.type = type;
+    body.type = selectedTypeId;
     body.image = images;
 
     createNewProduct(body);
   }
 
   render() {
+    const { types } = this.props;
     const { name, descShort, descLong, price, category, subCategory, type, images } = this.state;
+    const typeOptions = types.map((item) => item.name);
+
     return (
       <React.Fragment>
         <div className="AdminProducts-productInfo AdminNewProduct swing-in-top-bck">
@@ -143,9 +154,14 @@ class AdminNewProduct extends React.Component {
               onChange={this.handleFieldChange}
             />
           </div>
-          <div>
+          <div className="AdminOneProduct-dropdownRow">
             <p>Typ</p>
-            <TextareaAutosize id="type" value={type} onChange={this.handleFieldChange} />
+            <Dropdown
+              value={type}
+              placeholder="Vyberte možnosť"
+              options={typeOptions.sort()}
+              onChange={(select) => this.handleSelectChange(select.value, 'type')}
+            />
           </div>
           <div>
             <p>Obrázky</p>

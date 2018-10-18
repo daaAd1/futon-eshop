@@ -42,26 +42,26 @@ const fetchAttributesIfNeeded = () => {
 };
 
 const updateAttribute = (body, id) => {
-  return () => {
+  return (dispatch) => {
     return fetch(`${urls.BASE_URL}/${urls.ATTRIBUTES_URL}/${id}`, {
       method: 'PATCH',
       body: JSON.stringify(body),
       headers: {
         'Content-Type': 'application/json',
       },
-    }).then((response) => console.log('Success:', JSON.stringify(response)));
+    }).then(() => dispatch(fetchAttributesIfNeeded()));
   };
 };
 
 const createNewAttribute = (body) => {
-  return () => {
+  return (dispatch) => {
     return fetch(`${urls.BASE_URL}/${urls.ATTRIBUTES_URL}`, {
       method: 'POST',
       body: JSON.stringify(body),
       headers: {
         'Content-Type': 'application/json',
       },
-    }).then(() => window.location.reload());
+    }).then(() => dispatch(fetchAttributesIfNeeded()));
   };
 };
 

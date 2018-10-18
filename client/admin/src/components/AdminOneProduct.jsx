@@ -44,6 +44,7 @@ class AdminOneProduct extends React.Component {
     this.handleExpandChange = this.handleExpandChange.bind(this);
     this.handleActiveChange = this.handleActiveChange.bind(this);
     this.updateProduct = this.updateProduct.bind(this);
+    this.toggleProduct = this.toggleProduct.bind(this);
   }
 
   removeImage(index) {
@@ -104,6 +105,38 @@ class AdminOneProduct extends React.Component {
   }
 
   updateProduct() {
+    const { updateProduct, types } = this.props;
+    const {
+      id,
+      name,
+      descShort,
+      descLong,
+      price,
+      category,
+      subCategory,
+      type,
+      images,
+      active,
+    } = this.state;
+
+    const selectedTypeId =
+      types.find((item) => item.name === type) && types.find((item) => item.name === type)._id;
+
+    const body = {};
+    body.name = name;
+    // body.descShort = descShort;
+    // body.descLong = descLong;
+    // body.price = price;
+    // body.category = category;
+    // body.subCategory = subCategory;
+    // body.type = selectedTypeId;
+    // body.images = images;
+    // body.active = active;
+
+    updateProduct(body, id);
+  }
+
+  toggleProduct() {
     const { updateProduct } = this.props;
     const {
       id,
@@ -127,12 +160,14 @@ class AdminOneProduct extends React.Component {
     body.subCategory = subCategory;
     body.type = type;
     body.images = images;
-    body.active = active;
+    body.active = !active;
 
     updateProduct(body, id);
   }
 
   render() {
+    const { types } = this.props;
+    const typeOptions = types && types.map((type) => type.name);
     const {
       isExpanded,
       active,
@@ -151,7 +186,6 @@ class AdminOneProduct extends React.Component {
     const productActive = active
       ? 'color-change-reverse'
       : 'AdminOneProduct-propertiesInactive color-change ';
-
     return (
       <div className="AdminOneProduct">
         <div className={`AdminOneProduct-properties ${productActive}`}>
@@ -179,7 +213,11 @@ class AdminOneProduct extends React.Component {
             onClick={this.handleActiveChange}
             className="AdminOneProduct-small AdminOneProduct-cursorPointer"
           >
-            <button type="button" className="AdminOneProduct-activeButton">
+            <button
+              onClick={this.toggleProduct}
+              type="button"
+              className="AdminOneProduct-activeButton"
+            >
               {active ? fullCircleIcon : emptyCircleIcon}
             </button>
           </div>
@@ -232,8 +270,8 @@ class AdminOneProduct extends React.Component {
               <p>Typ</p>
               <Dropdown
                 value={type}
-                options={[type, 'doplnok cerveny', 'postel jeden ram', 'postel jedna farba']}
-                onChange={this.handleSelectChange}
+                options={typeOptions.sort()}
+                onChange={(select) => this.handleSelectChange(select.value, 'type')}
               />
             </div>
             <div>

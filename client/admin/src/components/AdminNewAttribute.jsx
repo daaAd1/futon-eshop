@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextareaAutosize from 'react-textarea-autosize';
+import Dropdown from 'react-dropdown';
 import '../styles/admin/AdminNewProduct.css';
 import { deleteIcon } from '../icons';
 import Button from './Button';
-import SelectWithLabel from './SelectWithLabel';
 import AdminAttributesOptionsFirstRow from './AdminAttributesOptionsFirstRow';
 
 const propTypes = {
   createNewAttribute: PropTypes.func.isRequired,
+  types: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 const defaultProps = {};
@@ -70,19 +74,25 @@ class AdminNewAttribute extends React.Component {
   }
 
   createNewAttribute() {
+    const { createNewAttribute, types } = this.props;
     const { name, type, options } = this.state;
-    const { createNewAttribute } = this.props;
+
+    const selectedTypeId =
+      types.find((item) => item.name === type) && types.find((item) => item.name === type)._id;
 
     const body = {};
     body.name = name;
-    body.type = type;
+    body.type = selectedTypeId;
     body.options = options;
 
     createNewAttribute(body);
   }
 
   render() {
+    const { types } = this.props;
     const { name, type, options } = this.state;
+
+    const typeOptions = types.map((item) => item.name);
     const attributeOptions = options.map((option, index) => (
       <div className="AdminOneAttribute-oneOption">
         <TextareaAutosize
@@ -97,7 +107,6 @@ class AdminNewAttribute extends React.Component {
         />
         <div
           role="button"
-          tabIndex="0"
           onKeyDown={() => this.removeOption(index)}
           onClick={() => this.removeOption(index)}
           className="AdminOneAttribute-deleteButton"
@@ -120,14 +129,13 @@ class AdminNewAttribute extends React.Component {
           <p>Názov</p>
           <TextareaAutosize id="name" value={name} onChange={this.handleFieldChange} />
         </div>
-        <div className="AdminOneAttribute-dropdownRow">
+        <div className="AdminOneProduct-dropdownRow">
           <p>Typ</p>
-          <SelectWithLabel
-            id="type"
-            onChange={(select) => this.handleSelectChange(select.value, 'type')}
+          <Dropdown
             value={type}
-            defaultOption=""
-            options={['FUTON', 'SOFA', 'BED', 'ADD-ON']}
+            options={typeOptions.sort()}
+            placeholder="Vyberte možnosť"
+            onChange={(select) => this.handleSelectChange(select.value, 'type')}
           />
         </div>
         <div className="AdminOneAttribute-optionsRow">

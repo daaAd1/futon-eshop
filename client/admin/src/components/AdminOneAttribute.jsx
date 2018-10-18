@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextareaAutosize from 'react-textarea-autosize';
+import Dropdown from 'react-dropdown';
 import Button from './Button';
-import SelectWithLabel from './SelectWithLabel';
 import { deleteIcon, chevronDownIcon, chevronUpIcon } from '../icons';
 import '../styles/admin/AdminOneAttribute.css';
 import AdminAttributesOptionsFirstRow from './AdminAttributesOptionsFirstRow';
@@ -13,6 +13,10 @@ const propTypes = {
   options: PropTypes.shape({
     name: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
+  }).isRequired,
+  types: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
   }).isRequired,
   id: PropTypes.string.isRequired,
   updateAttribute: PropTypes.func.isRequired,
@@ -77,20 +81,24 @@ class AdminOneAttribute extends React.Component {
   }
 
   updateAttribute() {
+    const { id, updateAttribute, types } = this.props;
     const { name, type, options } = this.state;
-    const { id, updateAttribute } = this.props;
+
+    const selectedTypeId =
+      types.find((item) => item.name === type) && types.find((item) => item.name === type)._id;
 
     const body = {};
     body.name = name;
-    body.type = type;
+    body.type = selectedTypeId;
     body.options = options;
 
     updateAttribute(body, id);
   }
 
   render() {
+    const { deleteAttribute, id, types } = this.props;
     const { name, type, options, isExpanded } = this.state;
-    const { deleteAttribute, id } = this.props;
+    const typeOptions = types && types.map((item) => item.name);
 
     const attributeOptions = options.map((option, index) => (
       <div className="AdminOneAttribute-oneOption" key={index}>
@@ -154,15 +162,12 @@ class AdminOneAttribute extends React.Component {
               <p>Názov</p>
               <TextareaAutosize id="name" value={name} onChange={this.handleFieldChange} />
             </div>
-            <div className="AdminOneAttribute-dropdownRow">
+            <div className="AdminOneProduct-dropdownRow">
               <p>Typ</p>
-              <SelectWithLabel
-                label=""
-                id="type"
-                onChange={(select) => this.handleSelectChange(select.value, 'type')}
+              <Dropdown
                 value={type}
-                defaultOption=""
-                options={['FUTON', 'SOFA', 'BED', 'ADD-ON']}
+                options={typeOptions.sort()}
+                onChange={(select) => this.handleSelectChange(select.value, 'type')}
               />
             </div>
             <div className="AdminOneAttribute-optionsRow">

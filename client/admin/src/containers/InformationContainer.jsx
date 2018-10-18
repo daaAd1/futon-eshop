@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchInformationsIfNeeded } from '../actions/InformationActions';
+import { fetchInformationsIfNeeded, updateInformations } from '../actions/InformationActions';
 import AdminInformation from '../components/AdminInformation';
 
 const propTypes = {
@@ -10,7 +10,10 @@ const propTypes = {
     attributes: PropTypes.object.isRequired,
     isFetching: PropTypes.bool.isRequired,
   }).isRequired,
-  updateInformations: PropTypes.func.isRequired,
+  informationsState: PropTypes.shape({
+    infromations: PropTypes.object.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+  }).isRequired,
 };
 
 const defaultProps = {};
@@ -22,17 +25,24 @@ class InformationContainer extends React.Component {
   }
 
   render() {
-    const { updateInformations, dispatch } = this.props;
+    const { dispatch, informationsState } = this.props;
+    const { informations, error } = informationsState || {};
 
-    return <AdminInformation updateInformation={(body) => dispatch(updateInformations(body))} />;
+    return (
+      <AdminInformation
+        informations={informations}
+        error={error}
+        updateInformations={(body) => dispatch(updateInformations(body))}
+      />
+    );
   }
 }
 
 const mapStateToProps = (state) => {
-  const { attributesState } = state;
+  const { informationsState } = state;
 
   return {
-    attributesState,
+    informationsState,
   };
 };
 

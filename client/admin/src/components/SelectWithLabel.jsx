@@ -4,7 +4,7 @@ import Dropdown from 'react-dropdown';
 import '../styles/components/SelectWithLabel.css';
 
 const propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   defaultOption: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
@@ -12,6 +12,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  label: '',
   onChange: () => {},
 };
 

@@ -8,11 +8,16 @@ import {
   createNewAttribute,
 } from '../actions/AttributeActions';
 import AdminAttributes from '../components/AdminAttributes';
+import { fetchTypesIfNeeded } from '../actions/TypeActions';
 
 const propTypes = {
   dispatch: PropTypes.func.isRequired,
   attributesState: PropTypes.shape({
     attributes: PropTypes.object.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+  }).isRequired,
+  typesState: PropTypes.shape({
+    types: PropTypes.object.isRequired,
     isFetching: PropTypes.bool.isRequired,
   }).isRequired,
 };
@@ -23,14 +28,17 @@ class AttributesContainer extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchAttributesIfNeeded());
+    dispatch(fetchTypesIfNeeded());
   }
 
   render() {
-    const { attributesState, dispatch } = this.props;
+    const { attributesState, typesState, dispatch } = this.props;
     const { attributes, isFetching } = attributesState;
+    const { types } = typesState || {};
 
     return (
       <AdminAttributes
+        types={types}
         deleteAttribute={(id) => dispatch(removeAttribute(id))}
         updateAttribute={(body, id) => dispatch(updateAttribute(body, id))}
         createNewAttribute={(body) => dispatch(createNewAttribute(body))}
@@ -42,10 +50,11 @@ class AttributesContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { attributesState } = state;
+  const { attributesState, typesState } = state;
 
   return {
     attributesState,
+    typesState,
   };
 };
 
