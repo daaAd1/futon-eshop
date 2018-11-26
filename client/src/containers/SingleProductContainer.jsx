@@ -74,7 +74,14 @@ const mapStateToProps = (state, props) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  //onOrderStatusChange: (id, newStatus) => dispatch(changeOrderStatus(id, newStatus)),
+});
+
 SingleProductContainer.propTypes = propTypes;
 SingleProductContainer.defaultProps = defaultProps;
 
-export default connect(mapStateToProps)(SingleProductContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SingleProductContainer);
